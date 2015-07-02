@@ -1,4 +1,4 @@
-package com.mttch.admin.client.ui.main.center;
+package com.mttch.admin.client.ui.main.center.users;
 
 import com.sencha.gxt.widget.core.client.ContentPanel;
 

@@ -3,10 +3,9 @@ package com.mttch.admin.client.presenter.main;
 import com.google.gwt.event.shared.SimpleEventBus;
 import com.google.inject.Inject;
 import com.mttch.admin.client.events.LeftMenuToggledEvent;
-import com.mttch.admin.client.events.LoginSucceededEvent;
 import com.mttch.admin.client.presenter.AbstractPresenter;
 import com.mttch.admin.client.ui.main.MainPanel;
-import com.mttch.admin.client.ui.main.center.UsersPanel;
+import com.mttch.admin.client.ui.main.center.users.UsersPanel;
 import com.sencha.gxt.widget.core.client.ContentPanel;
 
 public class MainPanelPresenter extends AbstractPresenter {
