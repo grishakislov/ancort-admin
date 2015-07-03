@@ -1,6 +1,7 @@
 package com.mttch.admin.client.ui.main;
 
 import com.google.inject.Inject;
+import com.mttch.admin.client.AppContext;
 import com.mttch.admin.client.ui.main.menu.LeftMenu;
 import com.mttch.admin.client.ui.main.top.TopPanel;
 import com.sencha.gxt.core.client.util.Margins;
@@ -14,10 +15,9 @@ public class MainPanel extends ContentPanel {
     private LeftMenu leftMenu;
     private SimpleContainer centerContainer;
 
-    @Inject
-    public MainPanel(TopPanel topPanel, LeftMenu leftMenu) {
-        this.topPanel = topPanel;
-        this.leftMenu = leftMenu;
+    public MainPanel() {
+        this.topPanel = AppContext.injector.getTopPanel();
+        this.leftMenu = AppContext.injector.getLeftMenu();
         initUi();
     }
 

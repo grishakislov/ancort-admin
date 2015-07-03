@@ -2,6 +2,7 @@ package com.mttch.admin.client.presenter.main;
 
 import com.google.gwt.event.shared.SimpleEventBus;
 import com.google.inject.Inject;
+import com.mttch.admin.client.AppContext;
 import com.mttch.admin.client.events.LeftMenuToggledEvent;
 import com.mttch.admin.client.events.LoginSucceededEvent;
 import com.mttch.admin.client.presenter.AbstractPresenter;
@@ -13,9 +14,9 @@ public class LeftMenuPresenter extends AbstractPresenter {
     private LeftMenu leftMenu;
 
     @Inject
-    public LeftMenuPresenter(SimpleEventBus eventBus, LeftMenu leftMenu) {
+    public LeftMenuPresenter(SimpleEventBus eventBus) {
         super(eventBus);
-        this.leftMenu = leftMenu;
+        this.leftMenu = AppContext.injector.getLeftMenu();
         bind();
     }
 

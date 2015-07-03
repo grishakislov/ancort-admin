@@ -17,6 +17,8 @@ public class UserModel implements Serializable {
     private int license;
     private int linkTable;
 
+    private String key;
+
     public String getCreateDate() {
         return createDate;
     }
@@ -95,5 +97,13 @@ public class UserModel implements Serializable {
 
     public void setLinkTable(int linkTable) {
         this.linkTable = linkTable;
+    }
+
+    public String getKey() {
+        return key;
+    }
+
+    public void setKey(String key) {
+        this.key = key;
     }
 }

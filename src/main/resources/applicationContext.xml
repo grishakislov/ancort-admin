@@ -12,10 +12,12 @@
 
 
     <bean id="loginService" class="com.mttch.admin.server.service.LoginServiceImpl"/>
+    <bean id="userService" class="com.mttch.admin.server.service.UserServiceImpl"/>
     <bean id="sessionManager" class="com.mttch.admin.server.session.SessionManager"/>
 
     <util:map id="serviceURLMapper" key-type="java.lang.String" value-type="com.google.gwt.user.client.rpc.RemoteService">
         <entry key="/loginService" value-ref="loginService"/>
+        <entry key="/userService" value-ref="userService"/>
     </util:map>
 
 

@@ -2,7 +2,7 @@ package com.mttch.admin.client.ui.main.top;
 
 import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Widget;
-import com.google.inject.Inject;
+import com.mttch.admin.client.AppContext;
 import com.mttch.admin.client.utils.AppBundle;
 import com.sencha.gxt.core.client.util.Margins;
 import com.sencha.gxt.widget.core.client.container.BoxLayoutContainer;
@@ -14,9 +14,8 @@ public class TopPanel extends HBoxLayoutContainer {
 
     private UserPanel userPanel;
 
-    @Inject
-    public TopPanel(UserPanel userPanel) {
-        this.userPanel = userPanel;
+    public TopPanel() {
+        this.userPanel = AppContext.injector.getUserPanel();
         initUi();
     }
 
@@ -51,7 +50,7 @@ public class TopPanel extends HBoxLayoutContainer {
     private Widget createLogo() {
         SimpleContainer logoContainer = new SimpleContainer();
         Image image = new Image(AppBundle.INSTANCE.appLogo());
-        logoContainer.add(image, new MarginData(0,0,0,30));
+        logoContainer.add(image, new MarginData(0, 0, 0, 30));
         return logoContainer;
     }
 

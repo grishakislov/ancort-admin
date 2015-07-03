@@ -18,9 +18,9 @@ public class TopPanelPresenter extends AbstractPresenter {
     private TopPanel topPanel;
 
     @Inject
-    public TopPanelPresenter(SimpleEventBus eventBus, TopPanel topPanel) {
+    public TopPanelPresenter(SimpleEventBus eventBus) {
         super(eventBus);
-        this.topPanel = topPanel;
+        this.topPanel = AppContext.injector.getTopPanel();
         bind();
     }
 

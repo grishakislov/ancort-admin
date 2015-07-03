@@ -12,7 +12,6 @@ public interface LoginService extends RemoteService {
     void logout(String login);
 
     class ServiceLoader {
-
         private static LoginServiceAsync instance = null;
         public static synchronized LoginServiceAsync getInstance() {
             if (instance == null) {
@@ -21,7 +20,5 @@ public interface LoginService extends RemoteService {
             return instance;
         }
     }
-
-
 
 }

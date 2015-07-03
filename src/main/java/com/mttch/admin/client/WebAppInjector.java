@@ -8,6 +8,11 @@ import com.mttch.admin.client.presenter.UiPresenter;
 import com.mttch.admin.client.ui.login.LoginView;
 import com.mttch.admin.client.ui.main.MainPanel;
 import com.mttch.admin.client.ui.main.WebAppRootPanel;
+import com.mttch.admin.client.ui.main.center.users.UsersGrid;
+import com.mttch.admin.client.ui.main.center.users.UsersPanel;
+import com.mttch.admin.client.ui.main.menu.LeftMenu;
+import com.mttch.admin.client.ui.main.top.TopPanel;
+import com.mttch.admin.client.ui.main.top.UserPanel;
 
 @GinModules(WebAppGinModule.class)
 public interface WebAppInjector extends Ginjector {
@@ -24,4 +29,10 @@ public interface WebAppInjector extends Ginjector {
     public UiPresenter getUiPresenter();
 
     public LoginPresenter getLoginPresenter();
+    public LeftMenu getLeftMenu();
+    public UsersPanel getUsersPanel();
+    public UsersGrid getUsersGrid();
+    public TopPanel getTopPanel();
+
+    public UserPanel getUserPanel();
 }

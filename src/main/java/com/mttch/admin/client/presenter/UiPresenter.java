@@ -2,6 +2,7 @@ package com.mttch.admin.client.presenter;
 
 import com.google.gwt.event.shared.SimpleEventBus;
 import com.google.inject.Inject;
+import com.mttch.admin.client.AppContext;
 import com.mttch.admin.client.events.LoginSucceededEvent;
 import com.mttch.admin.client.events.LogoutEvent;
 import com.mttch.admin.client.events.UiInitializationFinishedEvent;
@@ -17,15 +18,12 @@ public class UiPresenter extends AbstractPresenter {
     private MainPanel mainPanel;
 
     @Inject
-    public UiPresenter(SimpleEventBus eventBus,
-                       WebAppRootPanel rootPanel,
-                       LoginView loginView,
-                       MainPanel mainPanel) {
+    public UiPresenter(SimpleEventBus eventBus) {
         super(eventBus);
         this.eventBus = eventBus;
-        this.rootPanel = rootPanel;
-        this.loginView = loginView;
-        this.mainPanel = mainPanel;
+        this.rootPanel = AppContext.injector.getRootPanel();
+        this.loginView = AppContext.injector.getLoginView();
+        this.mainPanel = AppContext.injector.getMainPanel();
         bind();
     }
 

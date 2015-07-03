@@ -8,9 +8,11 @@ import com.mttch.admin.client.presenter.login.LoginPresenter;
 import com.mttch.admin.client.presenter.main.LeftMenuPresenter;
 import com.mttch.admin.client.presenter.main.MainPanelPresenter;
 import com.mttch.admin.client.presenter.main.TopPanelPresenter;
+import com.mttch.admin.client.presenter.main.UsersPanelPresenter;
 import com.mttch.admin.client.ui.login.LoginView;
 import com.mttch.admin.client.ui.main.MainPanel;
 import com.mttch.admin.client.ui.main.WebAppRootPanel;
+import com.mttch.admin.client.ui.main.center.users.UsersGrid;
 import com.mttch.admin.client.ui.main.menu.LeftMenu;
 import com.mttch.admin.client.ui.main.top.TopPanel;
 import com.mttch.admin.client.ui.main.top.UserPanel;
@@ -34,6 +36,7 @@ public class WebAppGinModule extends AbstractGinModule {
         bind(LeftMenu.class).in(Singleton.class);
         bind(MainPanel.class).in(Singleton.class);
         bind(UserPanel.class).in(Singleton.class);
+        bind(UsersGrid.class).in(Singleton.class);
 
         bind(WebAppRootPanel.class).in(Singleton.class);
     }
@@ -44,6 +47,7 @@ public class WebAppGinModule extends AbstractGinModule {
         bindEagerSingleton(UiPresenter.class);
         bindEagerSingleton(MainPanelPresenter.class);
         bindEagerSingleton(TopPanelPresenter.class);
+        bindEagerSingleton(UsersPanelPresenter.class);
     }
 
     private void bindSingleton(Class cls) {

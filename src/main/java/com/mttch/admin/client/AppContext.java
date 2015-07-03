@@ -5,6 +5,7 @@ import com.mttch.admin.common.model.CorpUser;
 public class AppContext {
 
     private static CorpUser user;
+    public static WebAppInjector injector;
 
     public static CorpUser getUser() {
         return user;
@@ -17,4 +18,5 @@ public class AppContext {
     public static void logout() {
         user = null;
     }
+
 }

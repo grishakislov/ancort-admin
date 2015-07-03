@@ -2,6 +2,7 @@ package com.mttch.admin.client.presenter.main;
 
 import com.google.gwt.event.shared.SimpleEventBus;
 import com.google.inject.Inject;
+import com.mttch.admin.client.AppContext;
 import com.mttch.admin.client.events.LeftMenuToggledEvent;
 import com.mttch.admin.client.presenter.AbstractPresenter;
 import com.mttch.admin.client.ui.main.MainPanel;
@@ -15,11 +16,10 @@ public class MainPanelPresenter extends AbstractPresenter {
     private UsersPanel usersPanel;
 
     @Inject
-    public MainPanelPresenter(SimpleEventBus eventBus, MainPanel mainPanel,
-                              UsersPanel usersPanel) {
+    public MainPanelPresenter(SimpleEventBus eventBus) {
         super(eventBus);
-        this.mainPanel = mainPanel;
-        this.usersPanel = usersPanel;
+        this.mainPanel = AppContext.injector.getMainPanel();
+        this.usersPanel = AppContext.injector.getUsersPanel();
         bind();
     }
 
