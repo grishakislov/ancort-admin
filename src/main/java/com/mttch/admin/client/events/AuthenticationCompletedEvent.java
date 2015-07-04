@@ -2,10 +2,17 @@ package com.mttch.admin.client.events;
 
 import com.google.gwt.event.shared.EventHandler;
 import com.google.gwt.event.shared.GwtEvent;
+import com.mttch.admin.common.model.AuthenticationResult;
 
-public class UiInitializationFinishedEvent extends GwtEvent<UiInitializationFinishedEvent.Handler> {
+public class AuthenticationCompletedEvent extends GwtEvent<AuthenticationCompletedEvent.Handler> {
 
     public static GwtEvent.Type<Handler> TYPE = new GwtEvent.Type<Handler>();
+
+    private AuthenticationResult authenticationResult;
+
+    public AuthenticationCompletedEvent(AuthenticationResult authenticationResult) {
+        this.authenticationResult = authenticationResult;
+    }
 
     @Override
     public com.google.gwt.event.shared.GwtEvent.Type<Handler> getAssociatedType() {
@@ -14,7 +21,7 @@ public class UiInitializationFinishedEvent extends GwtEvent<UiInitializationFini
 
     @Override
     protected void dispatch(Handler handler) {
-        handler.onInit(this);
+        handler.onAuthenticationCompleted(authenticationResult);
     }
 
     public static GwtEvent.Type<Handler> getTYPE() {
@@ -22,7 +29,8 @@ public class UiInitializationFinishedEvent extends GwtEvent<UiInitializationFini
     }
 
     public interface Handler extends EventHandler {
-        void onInit(UiInitializationFinishedEvent event);
+        void onAuthenticationCompleted(AuthenticationResult authenticationResult);
     }
+
 
 }

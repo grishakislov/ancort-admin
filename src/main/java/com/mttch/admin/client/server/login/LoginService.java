@@ -8,7 +8,9 @@ import com.mttch.admin.common.model.AuthenticationResult;
 @RemoteServiceRelativePath("rpc/loginService")
 public interface LoginService extends RemoteService {
 
+    AuthenticationResult autoAuthenticate();
     AuthenticationResult authenticate(String login, String password);
+    AuthenticationResult authenticate(String sessionId);
     void logout(String login);
 
     class ServiceLoader {

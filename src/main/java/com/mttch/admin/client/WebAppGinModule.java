@@ -3,7 +3,8 @@ package com.mttch.admin.client;
 import com.google.gwt.event.shared.SimpleEventBus;
 import com.google.gwt.inject.client.AbstractGinModule;
 import com.google.inject.Singleton;
-import com.mttch.admin.client.presenter.UiPresenter;
+import com.mttch.admin.client.controller.InitController;
+import com.mttch.admin.client.controller.UiController;
 import com.mttch.admin.client.presenter.login.LoginPresenter;
 import com.mttch.admin.client.presenter.main.LeftMenuPresenter;
 import com.mttch.admin.client.presenter.main.MainPanelPresenter;
@@ -43,9 +44,10 @@ public class WebAppGinModule extends AbstractGinModule {
     }
 
     private void bindPresenters() {
+        bindEagerSingleton(InitController.class);
+        bindEagerSingleton(UiController.class);
         bindEagerSingleton(LoginPresenter.class);
         bindEagerSingleton(LeftMenuPresenter.class);
-        bindEagerSingleton(UiPresenter.class);
         bindEagerSingleton(MainPanelPresenter.class);
         bindEagerSingleton(TopPanelPresenter.class);
         bindEagerSingleton(UsersPanelPresenter.class);

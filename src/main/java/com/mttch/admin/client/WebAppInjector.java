@@ -3,8 +3,9 @@ package com.mttch.admin.client;
 import com.google.gwt.event.shared.SimpleEventBus;
 import com.google.gwt.inject.client.GinModules;
 import com.google.gwt.inject.client.Ginjector;
+import com.mttch.admin.client.controller.InitController;
 import com.mttch.admin.client.presenter.login.LoginPresenter;
-import com.mttch.admin.client.presenter.UiPresenter;
+import com.mttch.admin.client.controller.UiController;
 import com.mttch.admin.client.ui.login.LoginView;
 import com.mttch.admin.client.ui.main.MainPanel;
 import com.mttch.admin.client.ui.main.WebAppRootPanel;
@@ -17,22 +18,24 @@ import com.mttch.admin.client.ui.main.top.LogoutPanel;
 @GinModules(WebAppGinModule.class)
 public interface WebAppInjector extends Ginjector {
 
-    public SimpleEventBus getEventBus();
+    SimpleEventBus getEventBus();
 
 
-    public MainPanel getMainPanel();
+    MainPanel getMainPanel();
 
-    public LoginView getLoginView();
+    LoginView getLoginView();
 
-    public WebAppRootPanel getRootPanel();
+    WebAppRootPanel getRootPanel();
 
-    public UiPresenter getUiPresenter();
+    UiController getUiPresenter();
 
-    public LoginPresenter getLoginPresenter();
-    public LeftMenu getLeftMenu();
-    public UsersPanel getUsersPanel();
-    public UsersGrid getUsersGrid();
-    public TopPanel getTopPanel();
+    LoginPresenter getLoginPresenter();
+    LeftMenu getLeftMenu();
+    UsersPanel getUsersPanel();
+    UsersGrid getUsersGrid();
+    TopPanel getTopPanel();
 
-    public LogoutPanel getUserPanel();
+    LogoutPanel getUserPanel();
+
+    InitController getInitController();
 }

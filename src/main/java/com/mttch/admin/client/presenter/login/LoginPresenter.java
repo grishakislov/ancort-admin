@@ -2,11 +2,9 @@ package com.mttch.admin.client.presenter.login;
 
 import com.google.gwt.event.shared.SimpleEventBus;
 import com.google.inject.Inject;
-import com.mttch.admin.client.AppContext;
 import com.mttch.admin.client.callback.ServerCallback;
-import com.mttch.admin.client.events.LoginSucceededEvent;
+import com.mttch.admin.client.events.AuthenticationCompletedEvent;
 import com.mttch.admin.client.events.LogoutEvent;
-import com.mttch.admin.client.events.SetUserEvent;
 import com.mttch.admin.client.presenter.AbstractPresenter;
 import com.mttch.admin.client.server.login.LoginService;
 import com.mttch.admin.client.server.login.LoginServiceAsync;
@@ -59,9 +57,7 @@ public class LoginPresenter extends AbstractPresenter {
                 @Override
                 public void onSuccess(AuthenticationResult result) {
                     if (result.isAuthenticated()) {
-                        AppContext.setUser(result.getCorpUser());
-                        eventBus.fireEvent(new SetUserEvent(result.getCorpUser()));
-                        eventBus.fireEvent(new LoginSucceededEvent());
+                        eventBus.fireEvent(new AuthenticationCompletedEvent(result));
                     } else {
                         loginView.getPanel().getElement().<FxElement>cast().blink();
                     }
