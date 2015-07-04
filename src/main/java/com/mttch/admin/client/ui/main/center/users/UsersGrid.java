@@ -23,6 +23,8 @@ public class UsersGrid extends SimpleContainer {
 
     private void initUi() {
         grid = new Grid<>(createListStore(), createColumnModel());
+        grid.getView().setAutoFill(true);
+//        grid.getView().setForceFit(true);
         add(grid);
     }
 
@@ -38,7 +40,7 @@ public class UsersGrid extends SimpleContainer {
     }
 
     private List<ColumnConfig<UserModel, ?>> createColumnConfig() {
-        int size = 150;
+        int size = 200;
         ColumnConfig<UserModel, String> createDateCol = new ColumnConfig<>(userProperties.createDate(), size, StringConstants.UserGrid.CREATE_DATE);
         ColumnConfig<UserModel, String> receiveDateCol = new ColumnConfig<>(userProperties.receiveDate(), size, StringConstants.UserGrid.RECEIVE_DATE);
         ColumnConfig<UserModel, String> firstQueryDateCol = new ColumnConfig<>(userProperties.firstQueryDate(), size, StringConstants.UserGrid.FIRST_QUERY_DATE);
