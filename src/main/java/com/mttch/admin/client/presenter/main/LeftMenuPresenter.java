@@ -14,9 +14,9 @@ public class LeftMenuPresenter extends AbstractPresenter {
     private LeftMenu leftMenu;
 
     @Inject
-    public LeftMenuPresenter(SimpleEventBus eventBus) {
+    public LeftMenuPresenter(SimpleEventBus eventBus,LeftMenu leftMenu) {
         super(eventBus);
-        this.leftMenu = AppContext.injector.getLeftMenu();
+        this.leftMenu = leftMenu;
         bind();
     }
 

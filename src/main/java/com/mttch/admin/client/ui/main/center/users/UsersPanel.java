@@ -1,15 +1,15 @@
 package com.mttch.admin.client.ui.main.center.users;
 
 import com.google.inject.Inject;
-import com.mttch.admin.client.AppContext;
 import com.sencha.gxt.widget.core.client.ContentPanel;
 
 public class UsersPanel extends ContentPanel {
 
     UsersGrid usersGrid;
 
-    public UsersPanel() {
-        this.usersGrid = AppContext.injector.getUsersGrid();
+    @Inject
+    public UsersPanel(UsersGrid usersGrid) {
+        this.usersGrid = usersGrid;
         initUi();
     }
 

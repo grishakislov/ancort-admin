@@ -8,12 +8,12 @@ import com.sencha.gxt.widget.core.client.container.BoxLayoutContainer;
 import com.sencha.gxt.widget.core.client.container.SimpleContainer;
 import com.sencha.gxt.widget.core.client.container.VBoxLayoutContainer;
 
-public class UserPanel extends SimpleContainer {
+public class LogoutPanel extends SimpleContainer {
 
     private SimpleContainer userNameContainer;
     private TextButton logoutButton;
 
-    public UserPanel() {
+    public LogoutPanel() {
         initUi();
     }
 

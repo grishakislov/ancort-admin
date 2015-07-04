@@ -13,9 +13,10 @@ import com.mttch.admin.client.ui.login.LoginView;
 import com.mttch.admin.client.ui.main.MainPanel;
 import com.mttch.admin.client.ui.main.WebAppRootPanel;
 import com.mttch.admin.client.ui.main.center.users.UsersGrid;
+import com.mttch.admin.client.ui.main.center.users.UsersPanel;
 import com.mttch.admin.client.ui.main.menu.LeftMenu;
 import com.mttch.admin.client.ui.main.top.TopPanel;
-import com.mttch.admin.client.ui.main.top.UserPanel;
+import com.mttch.admin.client.ui.main.top.LogoutPanel;
 
 public class WebAppGinModule extends AbstractGinModule {
 
@@ -31,11 +32,11 @@ public class WebAppGinModule extends AbstractGinModule {
         bind(LoginView.class).in(Singleton.class);
 
         //Main panel
-        bind(UserPanel.class).in(Singleton.class);
+        bind(LogoutPanel.class).in(Singleton.class);
         bind(TopPanel.class).in(Singleton.class);
         bind(LeftMenu.class).in(Singleton.class);
         bind(MainPanel.class).in(Singleton.class);
-        bind(UserPanel.class).in(Singleton.class);
+        bind(UsersPanel.class).in(Singleton.class);
         bind(UsersGrid.class).in(Singleton.class);
 
         bind(WebAppRootPanel.class).in(Singleton.class);

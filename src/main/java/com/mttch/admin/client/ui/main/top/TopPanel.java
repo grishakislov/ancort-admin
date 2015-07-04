@@ -2,7 +2,7 @@ package com.mttch.admin.client.ui.main.top;
 
 import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Widget;
-import com.mttch.admin.client.AppContext;
+import com.google.inject.Inject;
 import com.mttch.admin.client.utils.AppBundle;
 import com.sencha.gxt.core.client.util.Margins;
 import com.sencha.gxt.widget.core.client.container.BoxLayoutContainer;
@@ -12,10 +12,11 @@ import com.sencha.gxt.widget.core.client.container.SimpleContainer;
 
 public class TopPanel extends HBoxLayoutContainer {
 
-    private UserPanel userPanel;
+    private LogoutPanel logoutPanel;
 
-    public TopPanel() {
-        this.userPanel = AppContext.injector.getUserPanel();
+    @Inject
+    public TopPanel(LogoutPanel logoutPanel) {
+        this.logoutPanel = logoutPanel;
         initUi();
     }
 
@@ -39,7 +40,7 @@ public class TopPanel extends HBoxLayoutContainer {
     }
 
     private Widget createUser() {
-        return userPanel;
+        return logoutPanel;
     }
 
     private Widget createCenter() {
@@ -50,11 +51,11 @@ public class TopPanel extends HBoxLayoutContainer {
     private Widget createLogo() {
         SimpleContainer logoContainer = new SimpleContainer();
         Image image = new Image(AppBundle.INSTANCE.appLogo());
-        logoContainer.add(image, new MarginData(0, 0, 0, 30));
+        logoContainer.add(image, new MarginData(0,0,0,30));
         return logoContainer;
     }
 
-    public UserPanel getUserPanel() {
-        return userPanel;
+    public LogoutPanel getLogoutPanel() {
+        return logoutPanel;
     }
 }

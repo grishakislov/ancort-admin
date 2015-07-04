@@ -20,9 +20,9 @@ public class LoginPresenter extends AbstractPresenter {
     private LoginView loginView;
 
     @Inject
-    public LoginPresenter(SimpleEventBus eventBus) {
+    public LoginPresenter(SimpleEventBus eventBus, LoginView loginView) {
         super(eventBus);
-        this.loginView = AppContext.injector.getLoginView();
+        this.loginView = loginView;
         bind();
     }
 
@@ -63,7 +63,7 @@ public class LoginPresenter extends AbstractPresenter {
                         eventBus.fireEvent(new SetUserEvent(result.getCorpUser()));
                         eventBus.fireEvent(new LoginSucceededEvent());
                     } else {
-                        loginView.getPanel().getElement().<FxElement> cast().blink();
+                        loginView.getPanel().getElement().<FxElement>cast().blink();
                     }
                 }
             });

@@ -12,7 +12,7 @@ import com.mttch.admin.client.ui.main.center.users.UsersGrid;
 import com.mttch.admin.client.ui.main.center.users.UsersPanel;
 import com.mttch.admin.client.ui.main.menu.LeftMenu;
 import com.mttch.admin.client.ui.main.top.TopPanel;
-import com.mttch.admin.client.ui.main.top.UserPanel;
+import com.mttch.admin.client.ui.main.top.LogoutPanel;
 
 @GinModules(WebAppGinModule.class)
 public interface WebAppInjector extends Ginjector {
@@ -34,5 +34,5 @@ public interface WebAppInjector extends Ginjector {
     public UsersGrid getUsersGrid();
     public TopPanel getTopPanel();
 
-    public UserPanel getUserPanel();
+    public LogoutPanel getUserPanel();
 }

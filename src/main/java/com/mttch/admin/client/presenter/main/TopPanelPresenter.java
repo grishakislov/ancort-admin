@@ -18,15 +18,15 @@ public class TopPanelPresenter extends AbstractPresenter {
     private TopPanel topPanel;
 
     @Inject
-    public TopPanelPresenter(SimpleEventBus eventBus) {
+    public TopPanelPresenter(SimpleEventBus eventBus, TopPanel topPanel) {
         super(eventBus);
-        this.topPanel = AppContext.injector.getTopPanel();
+        this.topPanel = topPanel;
         bind();
     }
 
     @Override
     public void bind() {
-        topPanel.getUserPanel().getLogoutButton().addSelectHandler(new SelectEvent.SelectHandler() {
+        topPanel.getLogoutPanel().getLogoutButton().addSelectHandler(new SelectEvent.SelectHandler() {
             @Override
             public void onSelect(SelectEvent event) {
                 handleLogout();
@@ -35,7 +35,7 @@ public class TopPanelPresenter extends AbstractPresenter {
         eventBus.addHandler(SetUserEvent.TYPE, new SetUserEvent.Handler() {
             @Override
             public void onUserSet(CorpUser corpUser) {
-                topPanel.getUserPanel().setUserName(corpUser.getLogin());
+                topPanel.getLogoutPanel().setUserName(corpUser.getLogin());
             }
         });
     }

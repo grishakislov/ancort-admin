@@ -10,12 +10,11 @@ import com.sencha.gxt.widget.core.client.container.Viewport;
 
 public class WebAppEntryPoint implements EntryPoint {
 
+    private final WebAppInjector injector = GWT.create(WebAppInjector.class);
+
     @Override
     public void onModuleLoad() {
         System.out.println("Module loaded");
-        WebAppInjector injector = GWT.create(WebAppInjector.class);
-
-        AppContext.injector = injector;
         WebAppRootPanel webAppRootPanel = injector.getRootPanel();
 
         Viewport viewport = new Viewport();
