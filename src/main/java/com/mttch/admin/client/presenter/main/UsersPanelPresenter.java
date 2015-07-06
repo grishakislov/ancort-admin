@@ -7,6 +7,7 @@ import com.mttch.admin.client.presenter.AbstractPresenter;
 import com.mttch.admin.client.ui.main.center.users.UsersGrid;
 import com.mttch.admin.client.ui.main.center.users.UsersPanel;
 import com.mttch.admin.common.model.grid.UserModel;
+import com.sencha.gxt.widget.core.client.event.SelectEvent;
 import com.sencha.gxt.widget.core.client.selection.SelectionChangedEvent;
 
 public class UsersPanelPresenter extends AbstractPresenter {
@@ -24,6 +25,13 @@ public class UsersPanelPresenter extends AbstractPresenter {
 
     @Override
     public void bind() {
+        usersPanel.getLoadLicensesButton().addSelectHandler(new SelectEvent.SelectHandler() {
+            @Override
+            public void onSelect(SelectEvent event) {
+                //TODO: implement
+            }
+        });
+
         grid.getGrid().getSelectionModel().addSelectionChangedHandler(new SelectionChangedEvent.SelectionChangedHandler<UserModel>() {
             @Override
             public void onSelectionChanged(SelectionChangedEvent<UserModel> event) {

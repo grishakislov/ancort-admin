@@ -10,6 +10,7 @@ import com.mttch.admin.client.server.user.UserServiceAsync;
 import com.mttch.admin.common.StringConstants;
 import com.mttch.admin.common.model.grid.UserModel;
 import com.sencha.gxt.cell.core.client.form.ComboBoxCell;
+import com.sencha.gxt.core.client.util.Margins;
 import com.sencha.gxt.data.client.loader.RpcProxy;
 import com.sencha.gxt.data.shared.ListStore;
 import com.sencha.gxt.data.shared.StringLabelProvider;
@@ -17,6 +18,7 @@ import com.sencha.gxt.data.shared.loader.LoadResultListStoreBinding;
 import com.sencha.gxt.data.shared.loader.PagingLoadConfig;
 import com.sencha.gxt.data.shared.loader.PagingLoadResult;
 import com.sencha.gxt.data.shared.loader.PagingLoader;
+import com.sencha.gxt.widget.core.client.container.HorizontalLayoutContainer;
 import com.sencha.gxt.widget.core.client.container.SimpleContainer;
 import com.sencha.gxt.widget.core.client.container.VerticalLayoutContainer;
 import com.sencha.gxt.widget.core.client.form.SimpleComboBox;
@@ -36,6 +38,7 @@ public class UsersGrid extends SimpleContainer {
     private UserProperties userProperties = GWT.create(UserProperties.class);
     private Grid<UserModel> grid;
     private PagingToolBar pagingToolBar;
+    private ToolBar toolBar;
 
     private SimpleComboBox<Integer> comboBox = new SimpleComboBox<>(new StringLabelProvider<Integer>());
 
@@ -74,10 +77,9 @@ public class UsersGrid extends SimpleContainer {
         grid.getView().setAutoFill(true);
 
 
-        ToolBar toolBar = new ToolBar();
-        toolBar.add(new LabelToolItem("Page row limit: "));
+        toolBar = new ToolBar();
+        toolBar.add(new LabelToolItem("Записей на страницу: "));
         toolBar.add(comboBox);
-
 
         VerticalLayoutContainer verticalLayoutContainer = new VerticalLayoutContainer();
 
@@ -154,5 +156,9 @@ public class UsersGrid extends SimpleContainer {
 
     public SimpleComboBox<Integer> getComboBox() {
         return comboBox;
+    }
+
+    public ToolBar getToolBar() {
+        return toolBar;
     }
 }

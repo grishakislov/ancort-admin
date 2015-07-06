@@ -43,21 +43,15 @@ public class LeftMenu extends VBoxLayoutContainer {
         add(usersButton, topVBoxData);
         add(serversButton, vBoxData);
         add(administrationButton, vBoxData);
-        add(createSpacer());
+        add(UiFactory.createVerticalSpacer(20));
         add(UiFactory.createWhiteLabel(StringConstants.LeftMenu.SERVICES));
         add(sipButton, vBoxData);
         add(emailButton, vBoxData);
         add(xmppButton, vBoxData);
-        add(createSpacer());
+        add(UiFactory.createVerticalSpacer(20));
         add(UiFactory.createWhiteLabel(StringConstants.LeftMenu.LOGS));
         add(eventsButton, vBoxData);
         add(actionsButton, vBoxData);
-    }
-
-    private Widget createSpacer() {
-        SimpleContainer spacer = new SimpleContainer();
-        spacer.setHeight(20);
-        return spacer;
     }
 
     private ToggleButton createToggleButton(String name) {
