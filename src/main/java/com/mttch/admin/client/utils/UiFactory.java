@@ -1,16 +1,8 @@
 package com.mttch.admin.client.utils;
 
-import com.google.gwt.event.logical.shared.SelectionEvent;
-import com.google.gwt.event.logical.shared.SelectionHandler;
 import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.Widget;
-import com.sencha.gxt.cell.core.client.form.ComboBoxCell;
-import com.sencha.gxt.core.client.Style;
-import com.sencha.gxt.data.shared.StringLabelProvider;
 import com.sencha.gxt.widget.core.client.container.SimpleContainer;
-import com.sencha.gxt.widget.core.client.form.SimpleComboBox;
-
-import java.util.List;
 
 public class UiFactory {
 
@@ -31,7 +23,7 @@ public class UiFactory {
                 "color: white; " +
                         "font-family: helvetica,arial,verdana,sans-serif;" +
                         "font-weight: bold" +
-                        "font-size: "+ sizePx + "px";
+                        "font-size: " + sizePx + "px";
         HTML htmlLabel = new HTML("<span style='" + style + "'>" + text + "</span>");
         return htmlLabel;
     }
@@ -45,7 +37,4 @@ public class UiFactory {
         HTML htmlLabel = new HTML("<span style='" + style + "'>" + text + "</span>");
         return htmlLabel;
     }
-
-
-
 }

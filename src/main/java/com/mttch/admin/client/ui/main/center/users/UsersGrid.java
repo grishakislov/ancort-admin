@@ -78,7 +78,7 @@ public class UsersGrid extends SimpleContainer {
 
 
         toolBar = new ToolBar();
-        toolBar.add(new LabelToolItem("Записей на страницу: "));
+        toolBar.add(new LabelToolItem(StringConstants.ROWS_PER_PAGE));
         toolBar.add(comboBox);
 
         VerticalLayoutContainer verticalLayoutContainer = new VerticalLayoutContainer();

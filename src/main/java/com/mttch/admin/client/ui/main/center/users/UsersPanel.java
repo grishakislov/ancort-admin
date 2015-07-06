@@ -2,6 +2,7 @@ package com.mttch.admin.client.ui.main.center.users;
 
 import com.google.inject.Inject;
 import com.mttch.admin.client.utils.UiFactory;
+import com.mttch.admin.common.StringConstants;
 import com.sencha.gxt.widget.core.client.ContentPanel;
 import com.sencha.gxt.widget.core.client.button.TextButton;
 
@@ -14,7 +15,7 @@ public class UsersPanel extends ContentPanel {
     @Inject
     public UsersPanel(UsersGrid usersGrid) {
         this.usersGrid = usersGrid;
-        loadLicensesButton = new TextButton("Загрузить лицензии");
+        loadLicensesButton = new TextButton(StringConstants.UserGrid.LOAD_LICENSES_BUTTON);
         loadLicensesButton.setWidth(170);
         usersGrid.getToolBar().add(UiFactory.createHorizontalSpacer(30));
         usersGrid.getToolBar().add(loadLicensesButton);

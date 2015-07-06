@@ -13,6 +13,8 @@ public class StringConstants {
         public static final String PUSH_TOKEN = "Push-токен";
         public static final String LICENSE = "Лицензия";
         public static final String LINK_TABLE = "Таблица связок";
+
+        public static final String LOAD_LICENSES_BUTTON = "Загрузить лицензии";
     }
 
     public static class LeftMenu {
@@ -28,14 +30,13 @@ public class StringConstants {
         public static final String ACTIONS = "Действия";
     }
 
-    public static final String USERNAME = "Username";
-    public static final String PASSWORD = "Password";
-    public static final String LOGIN = "Login";
+    public static final String USERNAME = "Логин";
+    public static final String PASSWORD = "Пароль";
+    public static final String LOGIN = "Войти";
 
-    public static final String LOGIN_TO_ACCESS_YOUR_ACCOUNT = "Login to access your account";
+    public static final String LOGIN_TO_ACCESS_YOUR_ACCOUNT = "Вход в аккаунт";
 
-    public static final String LOGOUT = "Logout";
+    public static final String LOGOUT = "Выход";
 
-
-
+    public static final String ROWS_PER_PAGE = "Записей на страницу:";
 }
