@@ -2,6 +2,14 @@ package com.mttch.admin.common;
 
 public class StringConstants {
 
+    public static class AdministratorsGrid {
+        public static final String ID = "Id";
+        public static final String NAME = "Имя администратора";
+        public static final String ONLINE  = "Онлайн";
+
+        public static final String ADD_ADMINISTRATOR_BUTTON = "Добавить администратора";
+    }
+
     public static class UserGrid {
         public static final String CREATE_DATE = "Дата создания";
         public static final String RECEIVE_DATE = "Дата получения";

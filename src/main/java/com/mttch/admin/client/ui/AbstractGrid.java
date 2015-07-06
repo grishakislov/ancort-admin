@@ -36,6 +36,10 @@ public abstract class AbstractGrid<T> extends SimpleContainer {
 
     private SimpleComboBox<Integer> comboBox = new SimpleComboBox<>(new StringLabelProvider<Integer>());
 
+    public AbstractGrid() {
+        build();
+    }
+
     public void build() {
         RpcProxy<PagingLoadConfig, PagingLoadResult<T>> rpxProxy = new RpcProxy<PagingLoadConfig, PagingLoadResult<T>>() {
             @Override

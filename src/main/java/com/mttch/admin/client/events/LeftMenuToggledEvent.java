@@ -10,7 +10,7 @@ public class LeftMenuToggledEvent extends GwtEvent<LeftMenuToggledEvent.Handler>
     public enum MenuType {
         USERS,
         SERVERS,
-        ADMINISTRATION,
+        ADMINISTRATORS,
         SIP,
         EMAIL,
         XMPP,

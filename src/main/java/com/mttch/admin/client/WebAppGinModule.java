@@ -6,13 +6,12 @@ import com.google.inject.Singleton;
 import com.mttch.admin.client.controller.InitController;
 import com.mttch.admin.client.controller.UiController;
 import com.mttch.admin.client.presenter.login.LoginPresenter;
-import com.mttch.admin.client.presenter.main.LeftMenuPresenter;
-import com.mttch.admin.client.presenter.main.MainPanelPresenter;
-import com.mttch.admin.client.presenter.main.TopPanelPresenter;
-import com.mttch.admin.client.presenter.main.UsersPanelPresenter;
+import com.mttch.admin.client.presenter.main.*;
 import com.mttch.admin.client.ui.login.LoginView;
 import com.mttch.admin.client.ui.main.MainPanel;
 import com.mttch.admin.client.ui.main.WebAppRootPanel;
+import com.mttch.admin.client.ui.main.center.administrators.AdministratorsGrid;
+import com.mttch.admin.client.ui.main.center.administrators.AdministratorsPanel;
 import com.mttch.admin.client.ui.main.center.users.UsersGrid;
 import com.mttch.admin.client.ui.main.center.users.UsersPanel;
 import com.mttch.admin.client.ui.main.menu.LeftMenu;
@@ -40,6 +39,9 @@ public class WebAppGinModule extends AbstractGinModule {
         bind(UsersPanel.class).in(Singleton.class);
         bind(UsersGrid.class).in(Singleton.class);
 
+        bind(AdministratorsPanel.class).in(Singleton.class);
+        bind(AdministratorsGrid.class).in(Singleton.class);
+
         bind(WebAppRootPanel.class).in(Singleton.class);
     }
 
@@ -51,6 +53,7 @@ public class WebAppGinModule extends AbstractGinModule {
         bindEagerSingleton(MainPanelPresenter.class);
         bindEagerSingleton(TopPanelPresenter.class);
         bindEagerSingleton(UsersPanelPresenter.class);
+        bindEagerSingleton(AdministratorsPanelPresenter.class);
     }
 
     private void bindSingleton(Class cls) {

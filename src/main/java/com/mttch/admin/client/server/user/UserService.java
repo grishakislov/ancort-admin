@@ -9,7 +9,6 @@ import com.sencha.gxt.data.shared.loader.PagingLoadResult;
 
 
 @RemoteServiceRelativePath("rpc/userService")
-
 public interface UserService extends RemoteService {
     PagingLoadResult<UserModel> listUsers(PagingLoadConfig config);
 

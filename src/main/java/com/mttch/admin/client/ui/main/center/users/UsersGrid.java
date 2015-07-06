@@ -17,14 +17,11 @@ import java.util.List;
 
 public class UsersGrid extends AbstractGrid<UserModel> {
 
-    private final UserProperties userProperties = GWT.create(UserProperties.class);;
-
-    public UsersGrid() {
-        initUi();
-    }
+    private UserProperties userProperties;
 
     @Override
     protected ModelKeyProvider<UserModel> getModelKeyProvider() {
+        userProperties = GWT.create(UserProperties.class);
         return userProperties.key();
     }
 
@@ -60,10 +57,6 @@ public class UsersGrid extends AbstractGrid<UserModel> {
         result.add(licenseCol);
         result.add(linkTableCol);
         return result;
-    }
-
-    private void initUi() {
-        build();
     }
 
 }

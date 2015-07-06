@@ -2,7 +2,6 @@ package com.mttch.admin.client.presenter.main;
 
 import com.google.gwt.event.shared.SimpleEventBus;
 import com.google.inject.Inject;
-import com.mttch.admin.client.AppContext;
 import com.mttch.admin.client.events.LeftMenuToggledEvent;
 import com.mttch.admin.client.events.LoginSucceededEvent;
 import com.mttch.admin.client.presenter.AbstractPresenter;
@@ -46,7 +45,7 @@ public class LeftMenuPresenter extends AbstractPresenter {
         leftMenu.getAdministrationButton().addSelectHandler(new SelectEvent.SelectHandler() {
             @Override
             public void onSelect(SelectEvent event) {
-                eventBus.fireEvent(new LeftMenuToggledEvent(LeftMenuToggledEvent.MenuType.ADMINISTRATION));
+                eventBus.fireEvent(new LeftMenuToggledEvent(LeftMenuToggledEvent.MenuType.ADMINISTRATORS));
             }
         });
 

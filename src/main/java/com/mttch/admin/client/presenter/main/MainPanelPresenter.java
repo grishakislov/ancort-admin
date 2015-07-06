@@ -5,6 +5,7 @@ import com.google.inject.Inject;
 import com.mttch.admin.client.events.LeftMenuToggledEvent;
 import com.mttch.admin.client.presenter.AbstractPresenter;
 import com.mttch.admin.client.ui.main.MainPanel;
+import com.mttch.admin.client.ui.main.center.administrators.AdministratorsPanel;
 import com.mttch.admin.client.ui.main.center.users.UsersPanel;
 import com.sencha.gxt.widget.core.client.ContentPanel;
 
@@ -14,11 +15,17 @@ public class MainPanelPresenter extends AbstractPresenter {
 
     private UsersPanel usersPanel;
 
+    private AdministratorsPanel administratorsPanel;
+
     @Inject
-    public MainPanelPresenter(SimpleEventBus eventBus, MainPanel mainPanel, UsersPanel usersPanel) {
+    public MainPanelPresenter(SimpleEventBus eventBus,
+                              MainPanel mainPanel,
+                              UsersPanel usersPanel,
+                              AdministratorsPanel administratorsPanel) {
         super(eventBus);
         this.mainPanel = mainPanel;
         this.usersPanel = usersPanel;
+        this.administratorsPanel = administratorsPanel;
         bind();
     }
 
@@ -37,6 +44,10 @@ public class MainPanelPresenter extends AbstractPresenter {
             case USERS:
                 mainPanel.addToCenter(usersPanel);
                 break;
+            case ADMINISTRATORS:
+                mainPanel.addToCenter(administratorsPanel);
+                break;
+
             default:
                 ContentPanel contentPanel = new ContentPanel();
                 contentPanel.getHeader().setText("Unimplemented panel: " + menuType.name());
