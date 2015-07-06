@@ -56,7 +56,7 @@ public class UsersPanelPresenter extends AbstractPresenter {
         grid.getGrid().getSelectionModel().addSelectionChangedHandler(new SelectionChangedEvent.SelectionChangedHandler<UserModel>() {
             @Override
             public void onSelectionChanged(SelectionChangedEvent<UserModel> event) {
-                System.out.println(event.getSelection().get(0).getLogin());
+//                System.out.println(event.getSelection().get(0).getLogin());
             }
         });
 

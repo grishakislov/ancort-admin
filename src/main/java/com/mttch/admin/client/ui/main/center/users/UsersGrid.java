@@ -69,9 +69,10 @@ public class UsersGrid extends AbstractGrid<UserModel> {
         };
 
         ColumnConfig<UserModel, String> buttonColumn =
-                new ColumnConfig<>(buttonValue, 60, "X");
+                new ColumnConfig<>(buttonValue, 37, "X");
         deleteButton = new TextButtonCell();
-        deleteButton.setHeight(20);
+        deleteButton.setHeight(18);
+        buttonColumn.setFixed(true);
         buttonColumn.setColumnTextClassName(CommonStyles.get().inlineBlock());
         buttonColumn.setVerticalAlignment(HasVerticalAlignment.ALIGN_MIDDLE);
         buttonColumn.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
