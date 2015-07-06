@@ -1,11 +1,16 @@
 package com.mttch.admin.client.presenter.main;
 
+import com.google.gwt.cell.client.Cell;
 import com.google.gwt.event.shared.SimpleEventBus;
 import com.google.inject.Inject;
+import com.mttch.admin.client.callback.ServerCallback;
 import com.mttch.admin.client.events.LeftMenuToggledEvent;
 import com.mttch.admin.client.presenter.AbstractPresenter;
+import com.mttch.admin.client.server.user.UserService;
+import com.mttch.admin.client.server.user.UserServiceAsync;
 import com.mttch.admin.client.ui.main.center.users.UsersGrid;
 import com.mttch.admin.client.ui.main.center.users.UsersPanel;
+import com.mttch.admin.common.model.grid.AdministratorModel;
 import com.mttch.admin.common.model.grid.UserModel;
 import com.sencha.gxt.widget.core.client.event.SelectEvent;
 import com.sencha.gxt.widget.core.client.selection.SelectionChangedEvent;
@@ -14,6 +19,7 @@ public class UsersPanelPresenter extends AbstractPresenter {
 
     private UsersPanel usersPanel;
     private UsersGrid grid;
+    private UserServiceAsync userService = UserService.ServiceLoader.getInstance();
 
     @Inject
     public UsersPanelPresenter(SimpleEventBus eventBus, UsersPanel usersPanel) {
@@ -25,6 +31,21 @@ public class UsersPanelPresenter extends AbstractPresenter {
 
     @Override
     public void bind() {
+        grid.getDeleteButton().addSelectHandler(new SelectEvent.SelectHandler() {
+            @Override
+            public void onSelect(SelectEvent event) {
+                Cell.Context c = event.getContext();
+                int row = c.getIndex();
+                UserModel model = grid.getGrid().getStore().get(row);
+                userService.deleteUser(model.getLogin(), new ServerCallback<Void>() {
+                    @Override
+                    public void onSuccess(Void result) {
+                        grid.refresh();
+                    }
+                });
+            }
+        });
+
         usersPanel.getLoadLicensesButton().addSelectHandler(new SelectEvent.SelectHandler() {
             @Override
             public void onSelect(SelectEvent event) {

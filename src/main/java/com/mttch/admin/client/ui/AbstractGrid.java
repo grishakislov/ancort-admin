@@ -3,9 +3,10 @@ package com.mttch.admin.client.ui;
 import com.google.gwt.event.logical.shared.SelectionEvent;
 import com.google.gwt.event.logical.shared.SelectionHandler;
 import com.google.gwt.user.client.rpc.AsyncCallback;
+import com.google.gwt.user.client.ui.HasVerticalAlignment;
 import com.mttch.admin.common.StringConstants;
-import com.mttch.admin.common.model.grid.UserModel;
 import com.sencha.gxt.cell.core.client.form.ComboBoxCell;
+import com.sencha.gxt.core.client.ValueProvider;
 import com.sencha.gxt.data.client.loader.RpcProxy;
 import com.sencha.gxt.data.shared.ListStore;
 import com.sencha.gxt.data.shared.ModelKeyProvider;
@@ -70,6 +71,8 @@ public abstract class AbstractGrid<T> extends SimpleContainer {
 
         grid.setLoader(loader);
         grid.getView().setAutoFill(true);
+        grid.getView().setStripeRows(true);
+        grid.getView().setColumnLines(true);
 
 
         toolBar = new ToolBar();
@@ -110,12 +113,18 @@ public abstract class AbstractGrid<T> extends SimpleContainer {
         return combo;
     }
 
+    protected ColumnConfig<T, ?> createColumnConfig(ValueProvider<T, ?> vp, int width, String header) {
+        ColumnConfig<T, ?> config = new ColumnConfig<>(vp, width, header);
+        config.setVerticalAlignment(HasVerticalAlignment.ALIGN_MIDDLE);
+        return config;
+    }
+
     public Grid<T> getGrid() {
         return grid;
     }
 
     public void refresh() {
-        grid.getLoader().load();
+        pagingToolBar.refresh();
     }
 
     public SimpleComboBox<Integer> getComboBox() {

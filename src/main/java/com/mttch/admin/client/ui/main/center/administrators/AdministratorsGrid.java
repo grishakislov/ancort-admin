@@ -39,9 +39,9 @@ public class AdministratorsGrid extends AbstractGrid<AdministratorModel> {
         List<ColumnConfig<AdministratorModel, ?>> result = new ArrayList<>();
         int size = 200;
 
-        result.add(new ColumnConfig<>(administratorProperties.id(), size, StringConstants.AdministratorsGrid.ID));
-        result.add(new ColumnConfig<>(administratorProperties.name(), size, StringConstants.AdministratorsGrid.NAME));
-        result.add(new ColumnConfig<>(administratorProperties.online(), size, StringConstants.AdministratorsGrid.ONLINE));
+        result.add(createColumnConfig(administratorProperties.id(), size, StringConstants.AdministratorsGrid.ID));
+        result.add(createColumnConfig(administratorProperties.name(), size, StringConstants.AdministratorsGrid.NAME));
+        result.add(createColumnConfig(administratorProperties.online(), size, StringConstants.AdministratorsGrid.ONLINE));
 
         ValueProvider<AdministratorModel, String> buttonValue = new ValueProvider<AdministratorModel, String>() {
             @Override

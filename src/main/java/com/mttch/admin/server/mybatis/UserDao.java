@@ -71,6 +71,17 @@ public class UserDao {
     }
 
     public int usersCount() {
-        return TOTAL_USERS;
+        return users.size();
+    }
+
+    public void deleteUser(String login) {
+        int index = -1;
+        for (int i = 0; i < users.size(); i++) {
+            UserModel user = users.get(i);
+            if (user.getLogin().equals(login)) {
+                index = i;
+            }
+        }
+        users.remove(index);
     }
 }

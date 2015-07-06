@@ -10,4 +10,5 @@ import java.util.List;
 
 public interface UserServiceAsync {
     void listUsers(PagingLoadConfig config, AsyncCallback<PagingLoadResult<UserModel>> callback);
+    void deleteUser(String login, AsyncCallback<Void> async);
 }

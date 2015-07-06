@@ -19,5 +19,8 @@ public class UserServiceImpl implements UserService {
         return new ServerPagingLoadResult<>(userDao.listUsers(config.getLimit(), config.getOffset()), userDao.usersCount(), config.getOffset());
     }
 
-
+    @Override
+    public void deleteUser(String login) {
+        userDao.deleteUser(login);
+    }
 }
