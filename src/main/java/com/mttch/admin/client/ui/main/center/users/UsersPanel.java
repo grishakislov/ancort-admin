@@ -24,6 +24,7 @@ public class UsersPanel extends ContentPanel {
     }
 
     private void initUi() {
+        //TODO: Hardcode
         getHeader().setText("Пользователи");
         add(usersGrid);
     }
