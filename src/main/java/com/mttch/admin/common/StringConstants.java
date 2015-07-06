@@ -6,6 +6,8 @@ public class StringConstants {
         public static final String ID = "Id";
         public static final String NAME = "Имя администратора";
         public static final String ONLINE  = "Онлайн";
+        public static final String DELETE_ADMIN = "Удалить администратора";
+        public static final String DELETE = "Удаление";
 
         public static final String ADD_ADMINISTRATOR_BUTTON = "Добавить администратора";
     }
