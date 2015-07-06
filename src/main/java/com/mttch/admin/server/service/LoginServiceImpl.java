@@ -67,6 +67,8 @@ public class LoginServiceImpl implements LoginService {
             result.setAuthenticated(true);
             CorpUser corpUser = userDao.getUser(appPropertiesService.getAutoLoginAccount());
             result.setCorpUser(corpUser);
+            sessionManager.bindSession(corpUser.getLogin());
+            result.setSessionId(sessionManager.getLocalSession());
         } else {
             result.setAuthenticated(false);
         }

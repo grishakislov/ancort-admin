@@ -1,7 +1,7 @@
 package com.mttch.admin.client.ui.main.menu;
 
 import com.google.gwt.user.client.ui.Widget;
-import com.mttch.admin.client.utils.LabelHelper;
+import com.mttch.admin.client.utils.UiFactory;
 import com.mttch.admin.common.StringConstants;
 import com.sencha.gxt.core.client.util.Margins;
 import com.sencha.gxt.core.client.util.Padding;
@@ -44,12 +44,12 @@ public class LeftMenu extends VBoxLayoutContainer {
         add(serversButton, vBoxData);
         add(administrationButton, vBoxData);
         add(createSpacer());
-        add(LabelHelper.createWhiteLabel(StringConstants.LeftMenu.SERVICES));
+        add(UiFactory.createWhiteLabel(StringConstants.LeftMenu.SERVICES));
         add(sipButton, vBoxData);
         add(emailButton, vBoxData);
         add(xmppButton, vBoxData);
         add(createSpacer());
-        add(LabelHelper.createWhiteLabel(StringConstants.LeftMenu.LOGS));
+        add(UiFactory.createWhiteLabel(StringConstants.LeftMenu.LOGS));
         add(eventsButton, vBoxData);
         add(actionsButton, vBoxData);
     }

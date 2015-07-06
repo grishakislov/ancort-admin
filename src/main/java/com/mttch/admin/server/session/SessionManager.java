@@ -1,20 +1,22 @@
 package com.mttch.admin.server.session;
 
+import com.google.common.collect.HashMultimap;
 import com.mttch.admin.server.AppPropertiesService;
 import com.mttch.admin.server.utils.TimeUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
-import java.util.concurrent.ConcurrentHashMap;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
 
 @Service
 public class SessionManager {
 
     private ThreadLocal<String> localSessions = new ThreadLocal<>();
 
-    private ConcurrentHashMap<String, Session> sessionsById = new ConcurrentHashMap<>();
-    private ConcurrentHashMap<String, Session> sessionsByLogin = new ConcurrentHashMap<>();
+    private Map<String, Session> sessionsById = new HashMap<>();
+    private HashMultimap<String, Session> sessionsByLogin = HashMultimap.create();
 
     @Autowired
     private AppPropertiesService appPropertiesService;
@@ -27,7 +29,7 @@ public class SessionManager {
         return localSessions.get();
     }
 
-    public String bindSession(String userName) {
+    public synchronized String bindSession(String userName) {
         String sessionId = getLocalSession();
         Session session = createSession(sessionId, userName);
         sessionsById.put(sessionId, session);
@@ -45,11 +47,20 @@ public class SessionManager {
         }
     }
 
-    public void unbindSession() {
+    public synchronized void unbindSession() {
         String sessionId = getLocalSession();
         String login = sessionsById.get(sessionId).getLogin();
         sessionsById.remove(sessionId);
-        sessionsByLogin.remove(login);
+        Set<Session> sessions = sessionsByLogin.get(login);
+        Session find = null;
+        for (Session s : sessions) {
+            if (s.getId().equals(sessionId)) {
+                find = s;
+            }
+        }
+        if (find != null) {
+            sessions.remove(find);
+        }
     }
 
 
@@ -58,8 +69,8 @@ public class SessionManager {
     }
 
     private Session createSession(String sessionId, String userName) {
-        int sessionExpireSeconds = appPropertiesService.getSessionExpireSeconds();
-        long endTimestamp = TimeUtils.future(sessionExpireSeconds);
+        int sessionTTLSeconds = appPropertiesService.getSessionTTLSeconds();
+        long endTimestamp = TimeUtils.future(sessionTTLSeconds);
         Session session = new Session(sessionId, userName, endTimestamp);
         return session;
     }

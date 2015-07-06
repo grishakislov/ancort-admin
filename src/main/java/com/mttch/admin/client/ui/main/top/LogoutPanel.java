@@ -1,6 +1,6 @@
 package com.mttch.admin.client.ui.main.top;
 
-import com.mttch.admin.client.utils.LabelHelper;
+import com.mttch.admin.client.utils.UiFactory;
 import com.mttch.admin.common.StringConstants;
 import com.sencha.gxt.core.client.util.Margins;
 import com.sencha.gxt.widget.core.client.button.TextButton;
@@ -33,7 +33,7 @@ public class LogoutPanel extends SimpleContainer {
 
     public void setUserName(String name) {
         userNameContainer.clear();
-        userNameContainer.add(LabelHelper.createWhiteLabel(name));
+        userNameContainer.add(UiFactory.createWhiteLabel(name));
     }
 
     public TextButton getLogoutButton() {

@@ -3,6 +3,7 @@ package com.mttch.admin.client.ui.main.center.users;
 import com.google.inject.Inject;
 import com.sencha.gxt.widget.core.client.ContentPanel;
 
+
 public class UsersPanel extends ContentPanel {
 
     UsersGrid usersGrid;

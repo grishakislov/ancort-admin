@@ -4,13 +4,14 @@ import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.rpc.RemoteService;
 import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
 import com.mttch.admin.common.model.grid.UserModel;
+import com.sencha.gxt.data.shared.loader.PagingLoadConfig;
+import com.sencha.gxt.data.shared.loader.PagingLoadResult;
 
-import java.util.List;
 
 @RemoteServiceRelativePath("rpc/userService")
 
 public interface UserService extends RemoteService {
-    List<UserModel> listUsers(int start, int limit);
+    PagingLoadResult<UserModel> listUsers(PagingLoadConfig config);
 
     class ServiceLoader {
         private static UserServiceAsync instance = null;

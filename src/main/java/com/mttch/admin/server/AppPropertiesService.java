@@ -12,8 +12,8 @@ public class AppPropertiesService {
     @Value("${app.autoLoginAccount}")
     private String autoLoginAccount;
 
-    @Value("${app.sessionExpireSeconds}")
-    private int sessionExpireSeconds;
+    @Value("${app.sessionTTLSeconds}")
+    private int sessionTTLSeconds;
 
     public boolean isUseAutoLogin() {
         return useAutoLogin;
@@ -23,7 +23,7 @@ public class AppPropertiesService {
         return autoLoginAccount;
     }
 
-    public int getSessionExpireSeconds() {
-        return sessionExpireSeconds;
+    public int getSessionTTLSeconds() {
+        return sessionTTLSeconds;
     }
 }
