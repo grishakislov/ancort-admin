@@ -19,4 +19,9 @@ public class AdministratorServiceImpl implements AdministratorService {
     public PagingLoadResult<AdministratorModel> listAdministrators(PagingLoadConfig config) {
         return new ServerPagingLoadResult<>(administratorDao.listAdministrators(config.getLimit(), config.getOffset()), administratorDao.administratorsCount(), config.getOffset());
     }
+
+    @Override
+    public void deleteAdministrator(String name) {
+        administratorDao.deleteAdministrator(name);
+    }
 }

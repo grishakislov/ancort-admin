@@ -13,6 +13,7 @@ import com.mttch.admin.client.ui.main.center.users.UsersPanel;
 import com.mttch.admin.common.model.grid.AdministratorModel;
 import com.mttch.admin.common.model.grid.UserModel;
 import com.sencha.gxt.widget.core.client.event.SelectEvent;
+import com.sencha.gxt.widget.core.client.info.Info;
 import com.sencha.gxt.widget.core.client.selection.SelectionChangedEvent;
 
 public class UsersPanelPresenter extends AbstractPresenter {
@@ -36,11 +37,14 @@ public class UsersPanelPresenter extends AbstractPresenter {
             public void onSelect(SelectEvent event) {
                 Cell.Context c = event.getContext();
                 int row = c.getIndex();
-                UserModel model = grid.getGrid().getStore().get(row);
+                final UserModel model = grid.getGrid().getStore().get(row);
+                grid.mask();
                 userService.deleteUser(model.getLogin(), new ServerCallback<Void>() {
                     @Override
                     public void onSuccess(Void result) {
+                        grid.unmask();
                         grid.refresh();
+                        Info.display("Event", model.getLogin() + " deleted");
                     }
                 });
             }

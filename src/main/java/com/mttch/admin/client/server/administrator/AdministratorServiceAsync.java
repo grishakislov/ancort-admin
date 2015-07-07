@@ -6,5 +6,7 @@ import com.sencha.gxt.data.shared.loader.PagingLoadConfig;
 import com.sencha.gxt.data.shared.loader.PagingLoadResult;
 
 public interface AdministratorServiceAsync {
+
     void listAdministrators(PagingLoadConfig config, AsyncCallback<PagingLoadResult<AdministratorModel>> async);
+    void deleteAdministrator(String name, AsyncCallback<Void> async);
 }
