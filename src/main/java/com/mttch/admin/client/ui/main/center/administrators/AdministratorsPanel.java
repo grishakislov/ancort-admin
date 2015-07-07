@@ -9,7 +9,7 @@ import com.sencha.gxt.widget.core.client.button.TextButton;
 public class AdministratorsPanel extends ContentPanel {
 
     private AdministratorsGrid grid;
-    private TextButton loadAdministratorsButton;
+    private TextButton addAdministratorButton;
 
     @Inject
     public AdministratorsPanel(AdministratorsGrid administratorsGrid) {
@@ -18,10 +18,10 @@ public class AdministratorsPanel extends ContentPanel {
     }
 
     private void initUi() {
-        loadAdministratorsButton = new TextButton(StringConstants.AdministratorsGrid.ADD_ADMINISTRATOR_BUTTON);
-        loadAdministratorsButton.setWidth(180);
+        addAdministratorButton = new TextButton(StringConstants.AdministratorsGrid.ADD_ADMINISTRATOR_BUTTON);
+        addAdministratorButton.setWidth(180);
         grid.getToolBar().add(UiFactory.createHorizontalSpacer(30));
-        grid.getToolBar().add(loadAdministratorsButton);
+        grid.getToolBar().add(addAdministratorButton);
 
         //TODO: Hardcode
         getHeader().setText("Администраторы");
@@ -32,7 +32,7 @@ public class AdministratorsPanel extends ContentPanel {
         return grid;
     }
 
-    public TextButton getLoadAdministratorsButton() {
-        return loadAdministratorsButton;
+    public TextButton getAddAdministratorButton() {
+        return addAdministratorButton;
     }
 }

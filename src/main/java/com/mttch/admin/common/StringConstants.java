@@ -42,6 +42,7 @@ public class StringConstants {
 
     public static final String USERNAME = "Логин";
     public static final String PASSWORD = "Пароль";
+    public static final String RETYPE_PASSWORD = "Повторите пароль";
     public static final String LOGIN = "Войти";
 
     public static final String LOGIN_TO_ACCESS_YOUR_ACCOUNT = "Вход в аккаунт";

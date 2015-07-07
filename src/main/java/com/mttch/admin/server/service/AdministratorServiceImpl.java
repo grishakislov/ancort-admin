@@ -24,4 +24,9 @@ public class AdministratorServiceImpl implements AdministratorService {
     public void deleteAdministrator(String name) {
         administratorDao.deleteAdministrator(name);
     }
+
+    @Override
+    public void addAdministrator(String name, String password) {
+        administratorDao.addAdministrator(name, password);
+    }
 }

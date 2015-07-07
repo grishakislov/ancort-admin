@@ -11,6 +11,7 @@ import com.sencha.gxt.data.shared.loader.PagingLoadResult;
 public interface AdministratorService extends RemoteService {
     PagingLoadResult<AdministratorModel> listAdministrators(PagingLoadConfig config);
     void deleteAdministrator(String name);
+    void addAdministrator(String name, String password);
 
     class ServiceLoader {
         private static AdministratorServiceAsync instance = null;

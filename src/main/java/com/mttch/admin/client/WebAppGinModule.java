@@ -10,6 +10,7 @@ import com.mttch.admin.client.presenter.main.*;
 import com.mttch.admin.client.ui.login.LoginView;
 import com.mttch.admin.client.ui.main.MainPanel;
 import com.mttch.admin.client.ui.main.WebAppRootPanel;
+import com.mttch.admin.client.ui.main.center.administrators.AddAdministratorWindow;
 import com.mttch.admin.client.ui.main.center.administrators.AdministratorsGrid;
 import com.mttch.admin.client.ui.main.center.administrators.AdministratorsPanel;
 import com.mttch.admin.client.ui.main.center.users.UsersGrid;
@@ -41,6 +42,7 @@ public class WebAppGinModule extends AbstractGinModule {
 
         bind(AdministratorsPanel.class).in(Singleton.class);
         bind(AdministratorsGrid.class).in(Singleton.class);
+        bind(AddAdministratorWindow.class).in(Singleton.class);
 
         bind(WebAppRootPanel.class).in(Singleton.class);
     }

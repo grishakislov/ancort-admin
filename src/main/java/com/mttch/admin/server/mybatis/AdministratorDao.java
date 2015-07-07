@@ -40,6 +40,15 @@ public class AdministratorDao {
         return model;
     }
 
+    private AdministratorModel createAdministrator(String name, String password) {
+        AdministratorModel model = new AdministratorModel();
+        model.setId(administrators.get(administrators.size() - 1).getId() + 1);
+        model.setName(name);
+        model.setKey(name);
+        model.setOnline("New");
+        return model;
+    }
+
     public int administratorsCount() {
         return administrators.size();
     }
@@ -55,4 +64,7 @@ public class AdministratorDao {
         administrators.remove(index);
     }
 
+    public void addAdministrator(String name, String password) {
+        administrators.add(createAdministrator(name, password));
+    }
 }
