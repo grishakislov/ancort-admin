@@ -74,7 +74,7 @@ public class UserDao {
         return users.size();
     }
 
-    public void deleteUser(String login) {
+    public synchronized void deleteUser(String login) {
         int index = -1;
         for (int i = 0; i < users.size(); i++) {
             UserModel user = users.get(i);

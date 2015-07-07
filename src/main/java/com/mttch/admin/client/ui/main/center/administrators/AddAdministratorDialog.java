@@ -13,7 +13,7 @@ import com.sencha.gxt.widget.core.client.form.FormPanel;
 import com.sencha.gxt.widget.core.client.form.PasswordField;
 import com.sencha.gxt.widget.core.client.form.TextField;
 
-public class AddAdministratorWindow extends Dialog {
+public class AddAdministratorDialog extends Dialog {
 
     //TODO: move to abstract dialog
     private TextButton cancelButton;
@@ -24,7 +24,7 @@ public class AddAdministratorWindow extends Dialog {
     private PasswordField passwordField1;
     private PasswordField passwordField2;
 
-    public AddAdministratorWindow() {
+    public AddAdministratorDialog() {
         initUi();
     }
 

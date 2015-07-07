@@ -8,7 +8,7 @@ import com.mttch.admin.client.events.LeftMenuToggledEvent;
 import com.mttch.admin.client.presenter.AbstractPresenter;
 import com.mttch.admin.client.server.administrator.AdministratorService;
 import com.mttch.admin.client.server.administrator.AdministratorServiceAsync;
-import com.mttch.admin.client.ui.main.center.administrators.AddAdministratorWindow;
+import com.mttch.admin.client.ui.main.center.administrators.AddAdministratorDialog;
 import com.mttch.admin.client.ui.main.center.administrators.AdministratorsGrid;
 import com.mttch.admin.client.ui.main.center.administrators.AdministratorsPanel;
 import com.mttch.admin.common.model.grid.AdministratorModel;
@@ -21,18 +21,18 @@ public class AdministratorsPanelPresenter extends AbstractPresenter {
 
     private AdministratorsPanel administratorsPanel;
     private AdministratorsGrid grid;
-    private AddAdministratorWindow addAdministratorWindow;
+    private AddAdministratorDialog addAdministratorDialog;
 
     private AdministratorServiceAsync administratorService = AdministratorService.ServiceLoader.getInstance();
 
     @Inject
     public AdministratorsPanelPresenter(SimpleEventBus eventBus,
                                         AdministratorsPanel administratorsPanel,
-                                        AddAdministratorWindow addAdministratorWindow) {
+                                        AddAdministratorDialog addAdministratorDialog) {
         super(eventBus);
         this.administratorsPanel = administratorsPanel;
         this.grid = administratorsPanel.getAdministratorsGrid();
-        this.addAdministratorWindow = addAdministratorWindow;
+        this.addAdministratorDialog = addAdministratorDialog;
         bind();
     }
 
@@ -71,18 +71,18 @@ public class AdministratorsPanelPresenter extends AbstractPresenter {
         grid.getGrid().getSelectionModel().addSelectionChangedHandler(new SelectionChangedEvent.SelectionChangedHandler<AdministratorModel>() {
             @Override
             public void onSelectionChanged(SelectionChangedEvent<AdministratorModel> event) {
-                System.out.println(event.getSelection().get(0).getName());
+//                System.out.println(event.getSelection().get(0).getName());
             }
         });
 
         administratorsPanel.getAddAdministratorButton().addSelectHandler(new SelectEvent.SelectHandler() {
             @Override
             public void onSelect(SelectEvent event) {
-                addAdministratorWindow.show();
+                addAdministratorDialog.show();
             }
         });
 
-        addAdministratorWindow.getSaveButton().addSelectHandler(new SelectEvent.SelectHandler() {
+        addAdministratorDialog.getSaveButton().addSelectHandler(new SelectEvent.SelectHandler() {
             @Override
             public void onSelect(SelectEvent event) {
                 handleAddAdministrator();
@@ -93,26 +93,26 @@ public class AdministratorsPanelPresenter extends AbstractPresenter {
     private void handleAddAdministrator() {
         boolean valid = checkForm();
         if (valid) {
-            final String name = addAdministratorWindow.getLoginField().getValue();
-            String password = addAdministratorWindow.getPasswordField1().getValue();
+            final String name = addAdministratorDialog.getLoginField().getValue();
+            String password = addAdministratorDialog.getPasswordField1().getValue();
 
             administratorService.addAdministrator(name, password, new ServerCallback<Void>() {
                 @Override
                 public void onSuccess(Void result) {
-                    addAdministratorWindow.hide();
+                    addAdministratorDialog.hide();
                     grid.refresh();
                     Info.display("Success", name + " added");
                 }
             });
         } else {
-            addAdministratorWindow.getElement().<FxElement>cast().blink();
+            addAdministratorDialog.getElement().<FxElement>cast().blink();
         }
     }
 
     private boolean checkForm() {
-        String name = addAdministratorWindow.getLoginField().getValue();
-        String p1 = addAdministratorWindow.getPasswordField1().getValue();
-        String p2 = addAdministratorWindow.getPasswordField2().getValue();
+        String name = addAdministratorDialog.getLoginField().getValue();
+        String p1 = addAdministratorDialog.getPasswordField1().getValue();
+        String p2 = addAdministratorDialog.getPasswordField2().getValue();
         return name != null && p1 != null && p2 != null && p1.equals(p2);
     }
 }

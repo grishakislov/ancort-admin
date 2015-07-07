@@ -1,7 +1,6 @@
 package com.mttch.admin.server.mybatis;
 
 import com.mttch.admin.common.model.grid.AdministratorModel;
-import com.mttch.admin.common.model.grid.UserModel;
 import org.springframework.stereotype.Repository;
 
 import javax.annotation.PostConstruct;
@@ -53,7 +52,7 @@ public class AdministratorDao {
         return administrators.size();
     }
 
-    public void deleteAdministrator(String name) {
+    public synchronized void deleteAdministrator(String name) {
         int index = -1;
         for (int i = 0; i < administrators.size(); i++) {
             AdministratorModel administrator = administrators.get(i);
