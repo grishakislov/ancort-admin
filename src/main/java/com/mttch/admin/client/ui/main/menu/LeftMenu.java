@@ -57,6 +57,7 @@ public class LeftMenu extends VBoxLayoutContainer {
     private ToggleButton createToggleButton(String name) {
         ToggleButton button = new ToggleButton(name);
         button.setWidth(150);
+        button.setAllowDepress(false);
         toggleGroup.add(button);
         return button;
     }

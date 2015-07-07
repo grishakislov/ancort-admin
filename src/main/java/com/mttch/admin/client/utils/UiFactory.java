@@ -1,10 +1,21 @@
 package com.mttch.admin.client.utils;
 
 import com.google.gwt.user.client.ui.HTML;
+import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.Widget;
+import com.sencha.gxt.core.client.Style;
+import com.sencha.gxt.fx.client.FxElement;
+import com.sencha.gxt.widget.core.client.ContentPanel;
 import com.sencha.gxt.widget.core.client.container.SimpleContainer;
 
 public class UiFactory {
+
+    public static void showInfo(String heading, String text) {
+        ContentPanel cp = new ContentPanel();
+        cp.getHeader().setText(heading);
+        RootPanel.get().add(cp);
+        cp.getElement().<FxElement>cast().slideOut(Style.Direction.UP);
+    }
 
     public static Widget createHorizontalSpacer(int width) {
         SimpleContainer simpleContainer = new SimpleContainer();

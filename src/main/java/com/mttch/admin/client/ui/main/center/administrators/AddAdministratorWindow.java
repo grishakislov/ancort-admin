@@ -1,10 +1,12 @@
 package com.mttch.admin.client.ui.main.center.administrators;
 
 import com.google.gwt.user.client.ui.IsWidget;
+import com.mttch.admin.client.utils.UiFactory;
 import com.mttch.admin.common.StringConstants;
 import com.sencha.gxt.widget.core.client.Dialog;
 import com.sencha.gxt.widget.core.client.button.TextButton;
-import com.sencha.gxt.widget.core.client.container.*;
+import com.sencha.gxt.widget.core.client.container.MarginData;
+import com.sencha.gxt.widget.core.client.container.VerticalLayoutContainer;
 import com.sencha.gxt.widget.core.client.event.SelectEvent;
 import com.sencha.gxt.widget.core.client.form.FieldLabel;
 import com.sencha.gxt.widget.core.client.form.FormPanel;
@@ -59,22 +61,21 @@ public class AddAdministratorWindow extends Dialog {
         passwordField1.setAllowBlank(false);
         passwordField2 = new PasswordField();
         passwordField2.setAllowBlank(false);
-
-        add(createForm());
+        add(createForm(), new MarginData(0, 0, 0, 50));
+        forceLayout();
     }
 
     private FormPanel createForm() {
         VerticalLayoutContainer container = new VerticalLayoutContainer();
+        container.add(UiFactory.createVerticalSpacer(10));
         container.add(createFieldLabel(loginField, StringConstants.USERNAME), new VerticalLayoutContainer.VerticalLayoutData(35, -1));
         container.add(createFieldLabel(passwordField1, StringConstants.PASSWORD), new VerticalLayoutContainer.VerticalLayoutData(35, -1));
         container.add(createFieldLabel(passwordField2, StringConstants.RETYPE_PASSWORD), new VerticalLayoutContainer.VerticalLayoutData(35, -1));
-        FormPanel result = new FormPanel();
 
-        CenterLayoutContainer centerLayoutContainer = new CenterLayoutContainer();
-
-        centerLayoutContainer.add(container);
-        result.add(centerLayoutContainer, new MarginData(10));
-        return result;
+        FormPanel form = new FormPanel();
+        form.add(container);
+        form.setResize(false);
+        return form;
     }
 
     private FieldLabel createFieldLabel(IsWidget textField, String label) {
