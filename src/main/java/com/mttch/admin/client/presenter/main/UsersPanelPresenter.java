@@ -10,7 +10,6 @@ import com.mttch.admin.client.server.user.UserService;
 import com.mttch.admin.client.server.user.UserServiceAsync;
 import com.mttch.admin.client.ui.main.center.users.UsersGrid;
 import com.mttch.admin.client.ui.main.center.users.UsersPanel;
-import com.mttch.admin.common.model.grid.AdministratorModel;
 import com.mttch.admin.common.model.grid.UserModel;
 import com.sencha.gxt.widget.core.client.event.SelectEvent;
 import com.sencha.gxt.widget.core.client.info.Info;

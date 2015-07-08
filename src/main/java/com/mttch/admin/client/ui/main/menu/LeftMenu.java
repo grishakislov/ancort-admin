@@ -1,13 +1,11 @@
 package com.mttch.admin.client.ui.main.menu;
 
-import com.google.gwt.user.client.ui.Widget;
 import com.mttch.admin.client.utils.UiFactory;
 import com.mttch.admin.common.StringConstants;
 import com.sencha.gxt.core.client.util.Margins;
 import com.sencha.gxt.core.client.util.Padding;
 import com.sencha.gxt.core.client.util.ToggleGroup;
 import com.sencha.gxt.widget.core.client.button.ToggleButton;
-import com.sencha.gxt.widget.core.client.container.SimpleContainer;
 import com.sencha.gxt.widget.core.client.container.VBoxLayoutContainer;
 
 public class LeftMenu extends VBoxLayoutContainer {

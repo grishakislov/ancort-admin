@@ -2,11 +2,10 @@ package com.mttch.admin.client.events;
 
 import com.google.gwt.event.shared.EventHandler;
 import com.google.gwt.event.shared.GwtEvent;
-import com.mttch.admin.common.model.CorpUser;
 
 public class LoginSucceededEvent extends GwtEvent<LoginSucceededEvent.Handler> {
 
-    public static Type<Handler> TYPE = new Type<Handler>();
+    public static Type<Handler> TYPE = new Type<>();
 
     public LoginSucceededEvent() {
     }

@@ -16,8 +16,8 @@ import com.mttch.admin.client.ui.main.center.administrators.AdministratorsPanel;
 import com.mttch.admin.client.ui.main.center.users.UsersGrid;
 import com.mttch.admin.client.ui.main.center.users.UsersPanel;
 import com.mttch.admin.client.ui.main.menu.LeftMenu;
-import com.mttch.admin.client.ui.main.top.TopPanel;
 import com.mttch.admin.client.ui.main.top.LogoutPanel;
+import com.mttch.admin.client.ui.main.top.TopPanel;
 
 public class WebAppGinModule extends AbstractGinModule {
 

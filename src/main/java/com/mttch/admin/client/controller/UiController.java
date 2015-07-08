@@ -2,15 +2,13 @@ package com.mttch.admin.client.controller;
 
 import com.google.gwt.event.shared.SimpleEventBus;
 import com.google.inject.Inject;
-import com.mttch.admin.client.AppContext;
+import com.mttch.admin.client.events.LoginNeededEvent;
 import com.mttch.admin.client.events.LoginSucceededEvent;
 import com.mttch.admin.client.events.LogoutEvent;
-import com.mttch.admin.client.events.LoginNeededEvent;
 import com.mttch.admin.client.presenter.AbstractPresenter;
 import com.mttch.admin.client.ui.login.LoginView;
 import com.mttch.admin.client.ui.main.MainPanel;
 import com.mttch.admin.client.ui.main.WebAppRootPanel;
-import com.mttch.admin.common.model.InitData;
 import com.sencha.gxt.widget.core.client.ContentPanel;
 
 public class UiController extends AbstractPresenter {
