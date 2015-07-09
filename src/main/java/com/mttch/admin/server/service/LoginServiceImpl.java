@@ -21,8 +21,14 @@ public class LoginServiceImpl implements LoginService {
     @Autowired
     private AppPropertiesService appPropertiesService;
 
+    @Autowired
+    private AdministratorServiceImpl administratorService;
+
     public AuthenticationResult authenticate(String login, String password) {
         AuthenticationResult response = new AuthenticationResult();
+
+//        boolean result = administratorService.authenticate(login, password);
+
         //TODO: usersDao.checkPassword(login, password);
         if (!login.equals("admin")) {
             response.setAuthenticated(false);

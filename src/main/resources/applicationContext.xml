@@ -23,7 +23,6 @@
         <entry key="/administratorService" value-ref="administratorService"/>
     </util:map>
 
-
     <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
         <property name="driverClassName" value="${app.db.driver}"/>
         <property name="url" value="${app.db.url}"/>
@@ -39,21 +38,12 @@
 
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="dataSource" ref="dataSource" />
-        <property name="typeAliasesPackage" value="com.mttch.billing.mybatis.entity" />
+        <property name="typeAliasesPackage" value="com.mttch.admin.server.mybatis.entity" />
     </bean>
 
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-        <property name="basePackage" value="com.mttch.billing.mybatis.mapper" />
+        <property name="basePackage" value="com.mttch.admin.server.mybatis.mapper" />
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
     </bean>
-
-<!--
-    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-        <property name="basePackage" value="com.example.mapper.local" />
-        <property name="annotationClass" value="com.example.mapper.LocalRepository" />
-        <property name="sqlSessionFactoryBeanName" ref="sqlSessionFactory1" />
-    </bean>
--->
-
-
 
 </beans>
