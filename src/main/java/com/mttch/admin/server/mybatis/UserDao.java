@@ -58,7 +58,7 @@ public class UserDao {
         UserModel model = new UserModel();
         model.setCreateDate(createDate);
         model.setReceiveDate(receiveDate);
-        model.setFirstQueryDate(fqDate);
+        model.setFirstRequestDate(fqDate);
         model.setCryptoNumber(79);
         model.setLogin("Login " + num);
         model.setKey("Login " + num);

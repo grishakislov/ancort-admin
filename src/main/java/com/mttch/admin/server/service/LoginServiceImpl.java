@@ -4,7 +4,6 @@ import com.mttch.admin.client.server.login.LoginService;
 import com.mttch.admin.common.model.AuthenticationResult;
 import com.mttch.admin.common.model.CorpUser;
 import com.mttch.admin.server.AppPropertiesService;
-import com.mttch.admin.server.mybatis.UserDao;
 import com.mttch.admin.server.session.SessionManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,9 +15,6 @@ public class LoginServiceImpl implements LoginService {
     private SessionManager sessionManager;
 
     @Autowired
-    private UserDao userDao;
-
-    @Autowired
     private AppPropertiesService appPropertiesService;
 
     @Autowired
@@ -27,15 +23,14 @@ public class LoginServiceImpl implements LoginService {
     public AuthenticationResult authenticate(String login, String password) {
         AuthenticationResult response = new AuthenticationResult();
 
-//        boolean result = administratorService.authenticate(login, password);
+        boolean result = administratorService.authenticate(login, password);
 
-        //TODO: usersDao.checkPassword(login, password);
-        if (!login.equals("admin")) {
+        if (!result) {
             response.setAuthenticated(false);
             return response;
         }
 
-        CorpUser user = userDao.getUser(login);
+        CorpUser user = administratorService.getCorpUser(login);
         response.setAuthenticated(true);
         response.setCorpUser(user);
 
@@ -55,7 +50,7 @@ public class LoginServiceImpl implements LoginService {
             } else {
                 user = sessionManager.sessionToUser(sessionId);
             }
-            CorpUser corpUser = userDao.getUser(user);
+            CorpUser corpUser = administratorService.getCorpUser(user);
             response.setAuthenticated(true);
             response.setSessionId(sessionId);
             response.setCorpUser(corpUser);
@@ -71,7 +66,7 @@ public class LoginServiceImpl implements LoginService {
         AuthenticationResult result = new AuthenticationResult();
         if (appPropertiesService.isUseAutoLogin()) {
             result.setAuthenticated(true);
-            CorpUser corpUser = userDao.getUser(appPropertiesService.getAutoLoginAccount());
+            CorpUser corpUser = administratorService.getCorpUser(appPropertiesService.getAutoLoginAccount());
             result.setCorpUser(corpUser);
             sessionManager.bindSession(corpUser.getLogin());
             result.setSessionId(sessionManager.getLocalSession());

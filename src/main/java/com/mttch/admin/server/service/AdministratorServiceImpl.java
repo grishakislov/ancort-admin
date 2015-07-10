@@ -1,6 +1,7 @@
 package com.mttch.admin.server.service;
 
 import com.mttch.admin.client.server.administrator.AdministratorService;
+import com.mttch.admin.common.model.CorpUser;
 import com.mttch.admin.common.model.grid.AdministratorModel;
 import com.mttch.admin.common.model.grid.ServerPagingLoadResult;
 import com.mttch.admin.server.mybatis.entity.AdminUserEntity;
@@ -35,6 +36,21 @@ public class AdministratorServiceImpl implements AdministratorService {
     @Override
     public void addAdministrator(String name, String password) {
         adminUsersDao.save(createAdministrator(name, password));
+    }
+
+    public AdminUserEntity getUser(String login) {
+        return adminUsersDao.getAdminUser(login);
+    }
+
+    public CorpUser getCorpUser(String login) {
+        return entityToCorpUser(adminUsersDao.getAdminUser(login));
+    }
+
+    private CorpUser entityToCorpUser(AdminUserEntity adminUser) {
+        CorpUser user = new CorpUser();
+        user.setLogin(adminUser.getLogin());
+        //TODO: Complete
+        return user;
     }
 
     private AdminUserEntity createAdministrator(String name, String password) {

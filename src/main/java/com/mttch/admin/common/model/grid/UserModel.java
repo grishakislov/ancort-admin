@@ -8,7 +8,7 @@ public class UserModel implements Serializable {
 
     private String createDate;
     private String receiveDate;
-    private String firstQueryDate;
+    private String firstRequestDate;
     private int cryptoNumber;
     private String login;
     private String deviceId;
@@ -35,12 +35,12 @@ public class UserModel implements Serializable {
         this.receiveDate = receiveDate;
     }
 
-    public String getFirstQueryDate() {
-        return firstQueryDate;
+    public String getFirstRequestDate() {
+        return firstRequestDate;
     }
 
-    public void setFirstQueryDate(String firstQueryDate) {
-        this.firstQueryDate = firstQueryDate;
+    public void setFirstRequestDate(String firstRequestDate) {
+        this.firstRequestDate = firstRequestDate;
     }
 
     public int getCryptoNumber() {

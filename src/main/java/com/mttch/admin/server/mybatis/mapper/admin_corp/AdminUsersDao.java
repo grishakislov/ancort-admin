@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface AdminUsersDao {
 
-    @Select("select * from admin_corp.admin_users where login = {login}")
+    @Select("select * from admin_corp.admin_users where login = #{login}")
     @ResultMap("listAll-void")
     AdminUserEntity getAdminUser(@Param("login") String login);
 
@@ -25,6 +25,7 @@ public interface AdminUsersDao {
 
     @Select("select * from admin_corp.admin_users " +
             "limit #{limit} offset #{offset}")
+    @ResultMap("listAll-void")
     List<AdminUserEntity> list(@Param("limit") int limit, @Param("offset") int offset);
 
     @Select("select count(1) from admin_corp.admin_users")
