@@ -6,7 +6,6 @@ import com.mttch.admin.client.server.log.LogService;
 import com.mttch.admin.client.server.log.LogServiceAsync;
 import com.mttch.admin.client.ui.AbstractGrid;
 import com.mttch.admin.common.StringConstants;
-import com.mttch.admin.common.model.grid.AdministratorModel;
 import com.mttch.admin.common.model.grid.log.LicenseLogModel;
 import com.sencha.gxt.data.shared.ModelKeyProvider;
 import com.sencha.gxt.data.shared.loader.PagingLoadConfig;

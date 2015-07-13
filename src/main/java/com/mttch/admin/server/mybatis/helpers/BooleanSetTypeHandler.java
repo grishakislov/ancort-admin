@@ -1,6 +1,5 @@
 package com.mttch.admin.server.mybatis.helpers;
 
-import com.mttch.admin.server.mybatis.entity.LicenseEntity;
 import org.apache.ibatis.type.EnumTypeHandler;
 import org.apache.ibatis.type.JdbcType;
 

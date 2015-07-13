@@ -2,9 +2,6 @@ package com.mttch.admin.server.mybatis.entity;
 
 import com.mttch.admin.server.mybatis.helpers.BooleanSetEnum;
 
-import java.util.HashMap;
-import java.util.Map;
-
 public class LicenseEntity {
 
     private long id;
