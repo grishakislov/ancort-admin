@@ -35,7 +35,13 @@ public abstract class AbstractGrid<T> extends SimpleContainer {
 
     private ToolBar toolBar;
 
-    private SimpleComboBox<Integer> comboBox = new SimpleComboBox<>(new StringLabelProvider<Integer>());
+    private SimpleComboBox<Integer> gridLimitComboBox = new SimpleComboBox<>(new StringLabelProvider<Integer>());
+
+    protected abstract void handleRpc(PagingLoadConfig loadConfig, AsyncCallback<PagingLoadResult<T>> callback);
+
+    protected abstract List<ColumnConfig<T, ?>> getColumnConfigs();
+
+    protected abstract ModelKeyProvider<T> getModelKeyProvider();
 
     public AbstractGrid() {
         build();
@@ -49,7 +55,7 @@ public abstract class AbstractGrid<T> extends SimpleContainer {
             }
         };
 
-        comboBox = createGridLimitCombobox(new SelectionHandler<Integer>() {
+        gridLimitComboBox = createGridLimitComboBox(new SelectionHandler<Integer>() {
             @Override
             public void onSelection(SelectionEvent<Integer> event) {
                 setLimit(event.getSelectedItem());
@@ -66,7 +72,6 @@ public abstract class AbstractGrid<T> extends SimpleContainer {
         pagingToolBar = new PagingToolBar(50);
         pagingToolBar.bind(loader);
 
-
         grid = new Grid<>(listStore, new ColumnModel<>(getColumnConfigs()));
 
         grid.setLoader(loader);
@@ -75,10 +80,9 @@ public abstract class AbstractGrid<T> extends SimpleContainer {
         grid.getView().setStripeRows(true);
         grid.getView().setColumnLines(true);
 
-
         toolBar = new ToolBar();
         toolBar.add(new LabelToolItem(StringConstants.ROWS_PER_PAGE));
-        toolBar.add(comboBox);
+        toolBar.add(gridLimitComboBox);
 
         VerticalLayoutContainer verticalLayoutContainer = new VerticalLayoutContainer();
 
@@ -86,21 +90,9 @@ public abstract class AbstractGrid<T> extends SimpleContainer {
         verticalLayoutContainer.add(grid, new VerticalLayoutContainer.VerticalLayoutData(1, 1));
         verticalLayoutContainer.add(pagingToolBar, new VerticalLayoutContainer.VerticalLayoutData(1, -1));
         add(verticalLayoutContainer);
-
     }
 
-    protected abstract void handleRpc(PagingLoadConfig loadConfig, AsyncCallback<PagingLoadResult<T>> callback);
-
-    protected abstract List<ColumnConfig<T, ?>> getColumnConfigs();
-
-    protected abstract ModelKeyProvider<T> getModelKeyProvider();
-
-    public void setLimit(int value) {
-        pagingToolBar.setPageSize(value);
-        pagingToolBar.refresh();
-    }
-
-    private SimpleComboBox<Integer> createGridLimitCombobox(SelectionHandler<Integer> selectionHandler) {
+    private SimpleComboBox<Integer> createGridLimitComboBox(SelectionHandler<Integer> selectionHandler) {
         SimpleComboBox<Integer> combo = new SimpleComboBox<>(new StringLabelProvider<Integer>());
         combo.setTriggerAction(ComboBoxCell.TriggerAction.ALL);
         combo.setEditable(false);
@@ -120,6 +112,11 @@ public abstract class AbstractGrid<T> extends SimpleContainer {
         return config;
     }
 
+    public void setLimit(int value) {
+        pagingToolBar.setPageSize(value);
+        pagingToolBar.refresh();
+    }
+
     public Grid<T> getGrid() {
         return grid;
     }
@@ -128,8 +125,8 @@ public abstract class AbstractGrid<T> extends SimpleContainer {
         pagingToolBar.refresh();
     }
 
-    public SimpleComboBox<Integer> getComboBox() {
-        return comboBox;
+    public SimpleComboBox<Integer> getGridLimitComboBox() {
+        return gridLimitComboBox;
     }
 
     public ToolBar getToolBar() {
