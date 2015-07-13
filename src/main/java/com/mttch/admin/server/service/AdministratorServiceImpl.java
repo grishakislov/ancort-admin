@@ -24,7 +24,15 @@ public class AdministratorServiceImpl implements AdministratorService {
 
     @Override
     public PagingLoadResult<AdministratorModel> listAdministrators(PagingLoadConfig config) {
-        List<AdministratorModel> models = entitiesToModels(adminUsersDao.list(config.getLimit(), config.getOffset()));
+        List<AdminUserEntity> entities = adminUsersDao.list(config.getLimit(), config.getOffset());
+        List<AdministratorModel> models = new ArrayList<>();
+        entities.forEach((entity -> {
+            AdministratorModel model = new AdministratorModel();
+            model.setId(entity.getId());
+            model.setKey(entity.getLogin());
+            model.setName(entity.getLogin());
+            models.add(model);
+        }));
         return new ServerPagingLoadResult<>(models, adminUsersDao.count(), config.getOffset());
     }
 
@@ -61,22 +69,6 @@ public class AdministratorServiceImpl implements AdministratorService {
         entity.setStatus(true);
         entity.setPub(true);
         return entity;
-    }
-
-    private List<AdministratorModel> entitiesToModels(List<AdminUserEntity> entities) {
-        List<AdministratorModel> result = new ArrayList<>();
-        for (AdminUserEntity entity : entities) {
-            result.add(entityToModel(entity));
-        }
-        return result;
-    }
-
-    private AdministratorModel entityToModel(AdminUserEntity entity) {
-        AdministratorModel model = new AdministratorModel();
-        model.setId(entity.getId());
-        model.setKey(entity.getLogin());
-        model.setName(entity.getLogin());
-        return model;
     }
 
     public boolean authenticate(String login, String password) {

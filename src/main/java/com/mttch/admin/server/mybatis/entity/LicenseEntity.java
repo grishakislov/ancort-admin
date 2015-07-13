@@ -1,5 +1,7 @@
 package com.mttch.admin.server.mybatis.entity;
 
+import com.mttch.admin.server.mybatis.helpers.BooleanSetEnum;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -24,7 +26,7 @@ public class LicenseEntity {
     private String deviceToken;
     private String singleToken;
 
-    private Sub sub;
+    private BooleanSetEnum sub;
 
     private long subtime;
     private long asteriskId;
@@ -102,10 +104,6 @@ public class LicenseEntity {
         return singleToken;
     }
 
-    public Sub getSub() {
-        return sub;
-    }
-
     public long getSubtime() {
         return subtime;
     }
@@ -150,32 +148,12 @@ public class LicenseEntity {
         return timeRequest;
     }
 
+    public BooleanSetEnum getSub() {
+        return sub;
+    }
+
     public enum Platform {
         ios, android, windowsphone, officegate
     }
 
-    public enum Sub {
-        s0("0"),
-        s1("1");
-
-        private String def;
-
-        Sub(String def) {
-            this.def = def;
-        }
-
-        public String getDef() {
-            return def;
-        }
-
-        public static Sub getByString(String value) {
-            for (int i = 0; i < Sub.values().length; i++) {
-                Sub current = Sub.values()[i];
-                if (current.getDef().equals(value)) {
-                    return current;
-                }
-            }
-            return null;
-        }
-    }
 }

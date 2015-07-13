@@ -80,7 +80,7 @@ public class UsersGrid extends AbstractGrid<UserModel> {
         result.add(createColumnConfig(userProperties.login(), size, StringConstants.UserGrid.LOGIN));
         result.add(createColumnConfig(userProperties.createDate(), size, StringConstants.UserGrid.CREATE_DATE));
         result.add(createColumnConfig(userProperties.receiveDate(), size, StringConstants.UserGrid.RECEIVE_DATE));
-        result.add(createColumnConfig(userProperties.firstQueryDate(), size, StringConstants.UserGrid.FIRST_QUERY_DATE));
+        result.add(createColumnConfig(userProperties.firstRequestDate(), size, StringConstants.UserGrid.FIRST_QUERY_DATE));
         result.add(createColumnConfig(userProperties.cryptoNumber(), size, StringConstants.UserGrid.CRYPTO_NUMBER));
         result.add(createColumnConfig(userProperties.deviceId(), size, StringConstants.UserGrid.DEVICE_ID));
         result.add(createColumnConfig(userProperties.platform(), size, StringConstants.UserGrid.PLATFORM));

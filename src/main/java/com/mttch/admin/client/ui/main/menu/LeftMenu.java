@@ -35,8 +35,8 @@ public class LeftMenu extends VBoxLayoutContainer {
         xmppButton = createToggleButton(StringConstants.LeftMenu.XMPP);
         serversButton = createToggleButton(StringConstants.LeftMenu.SERVERS);
         administrationButton = createToggleButton(StringConstants.LeftMenu.ADMINISTRATION);
-        eventsButton = createToggleButton(StringConstants.LeftMenu.EVENTS);
-        actionsButton = createToggleButton(StringConstants.LeftMenu.ACTIONS);
+        eventsButton = createToggleButton(StringConstants.LeftMenu.LICENSE_LOG);
+        actionsButton = createToggleButton(StringConstants.LeftMenu.ADMIN_LOG);
 
         add(usersButton, topVBoxData);
         add(serversButton, vBoxData);

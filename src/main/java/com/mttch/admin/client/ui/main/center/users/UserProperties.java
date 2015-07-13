@@ -10,7 +10,7 @@ public interface UserProperties extends PropertyAccess<UserModel> {
 
     ValueProvider<UserModel, String> createDate();
     ValueProvider<UserModel, String> receiveDate();
-    ValueProvider<UserModel, String> firstQueryDate();
+    ValueProvider<UserModel, String> firstRequestDate();
     ValueProvider<UserModel, Integer> cryptoNumber();
 
 

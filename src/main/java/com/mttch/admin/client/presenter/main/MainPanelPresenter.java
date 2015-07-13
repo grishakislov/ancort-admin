@@ -6,6 +6,7 @@ import com.mttch.admin.client.events.LeftMenuToggledEvent;
 import com.mttch.admin.client.presenter.AbstractPresenter;
 import com.mttch.admin.client.ui.main.MainPanel;
 import com.mttch.admin.client.ui.main.center.administrators.AdministratorsPanel;
+import com.mttch.admin.client.ui.main.center.logs.LicenseEventsPanel;
 import com.mttch.admin.client.ui.main.center.users.UsersPanel;
 import com.sencha.gxt.widget.core.client.ContentPanel;
 
@@ -17,15 +18,19 @@ public class MainPanelPresenter extends AbstractPresenter {
 
     private AdministratorsPanel administratorsPanel;
 
+    private LicenseEventsPanel licenseEventsPanel;
+
     @Inject
     public MainPanelPresenter(SimpleEventBus eventBus,
                               MainPanel mainPanel,
                               UsersPanel usersPanel,
-                              AdministratorsPanel administratorsPanel) {
+                              AdministratorsPanel administratorsPanel,
+                              LicenseEventsPanel licenseEventsPanel) {
         super(eventBus);
         this.mainPanel = mainPanel;
         this.usersPanel = usersPanel;
         this.administratorsPanel = administratorsPanel;
+        this.licenseEventsPanel = licenseEventsPanel;
         bind();
     }
 
@@ -46,6 +51,10 @@ public class MainPanelPresenter extends AbstractPresenter {
                 break;
             case ADMINISTRATORS:
                 mainPanel.addToCenter(administratorsPanel);
+                break;
+
+            case EVENTS:
+                mainPanel.addToCenter(licenseEventsPanel);
                 break;
 
             default:

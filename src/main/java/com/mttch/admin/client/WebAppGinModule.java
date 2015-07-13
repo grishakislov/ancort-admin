@@ -13,6 +13,8 @@ import com.mttch.admin.client.ui.main.WebAppRootPanel;
 import com.mttch.admin.client.ui.main.center.administrators.AddAdministratorDialog;
 import com.mttch.admin.client.ui.main.center.administrators.AdministratorsGrid;
 import com.mttch.admin.client.ui.main.center.administrators.AdministratorsPanel;
+import com.mttch.admin.client.ui.main.center.logs.LicenseEventsGrid;
+import com.mttch.admin.client.ui.main.center.logs.LicenseEventsPanel;
 import com.mttch.admin.client.ui.main.center.users.UsersGrid;
 import com.mttch.admin.client.ui.main.center.users.UsersPanel;
 import com.mttch.admin.client.ui.main.menu.LeftMenu;
@@ -44,6 +46,9 @@ public class WebAppGinModule extends AbstractGinModule {
         bind(AdministratorsGrid.class).in(Singleton.class);
         bind(AddAdministratorDialog.class).in(Singleton.class);
 
+        bind(LicenseEventsGrid.class).in(Singleton.class);
+        bind(LicenseEventsPanel.class).in(Singleton.class);
+
         bind(WebAppRootPanel.class).in(Singleton.class);
     }
 
@@ -55,6 +60,7 @@ public class WebAppGinModule extends AbstractGinModule {
         bindEagerSingleton(MainPanelPresenter.class);
         bindEagerSingleton(TopPanelPresenter.class);
         bindEagerSingleton(UsersPanelPresenter.class);
+        bindEagerSingleton(LicenseEventsPanelPresenter.class);
         bindEagerSingleton(AdministratorsPanelPresenter.class);
     }
 

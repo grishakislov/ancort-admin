@@ -1,7 +1,8 @@
 package com.mttch.admin.server.mybatis.mapper.aaa_cts_corp;
 
 import com.mttch.admin.server.mybatis.entity.LicenseEntity;
-import com.mttch.admin.server.mybatis.helpers.SubTypeHandler;
+import com.mttch.admin.server.mybatis.helpers.BooleanSetEnum;
+import com.mttch.admin.server.mybatis.helpers.BooleanSetTypeHandler;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;
@@ -31,7 +32,7 @@ public interface LicenseDao {
             @Result(property = "asteriskId", column = "asterisk_id"),
             @Result(property = "unixTimeBlock", column = "unixtime_block"),
             @Result(property = "timeCreate", column = "time_create"),
-            @Result(property = "sub", column = "sub", javaType = LicenseEntity.Sub.class, typeHandler = SubTypeHandler.class),
+            @Result(property = "sub", column = "sub", javaType = BooleanSetEnum.class, typeHandler = BooleanSetTypeHandler.class),
             @Result(property = "timeLicenseStart", column = "time_license_start"),
             @Result(property = "timeLicenseEnd", column = "time_license_end"),
             @Result(property = "timeRequest", column = "time_request")

@@ -22,35 +22,25 @@ public class UserServiceImpl implements UserService {
 
     public PagingLoadResult<UserModel> listUsers(PagingLoadConfig config) {
         List<LicenseEntity> licenses = licenseDao.list(config.getLimit(), config.getOffset());
-        List<UserModel> models = licenseEntitiesToModels(licenses);
+        List<UserModel> models = new ArrayList<>();
+        licenses.forEach((entity) -> {
+            UserModel result = new UserModel();
+
+            result.setCreateDate(TimeUtils.unixTimestampToDate(entity.getTimeCreate()));
+            result.setReceiveDate(TimeUtils.unixTimestampToDate(entity.getTimeLicenseStart()));
+            result.setFirstRequestDate(TimeUtils.unixTimestampToDate(entity.getTimeLicenseStart()));
+            result.setCryptoNumber(entity.getCryptonumber());
+            result.setLogin(entity.getSiplogin());
+            result.setKey(entity.getSiplogin());
+            result.setDeviceId(entity.getDevice());
+            result.setPlatform(entity.getPlatform().name());
+            result.setPushToken(entity.getDeviceToken());
+            result.setLicense(entity.getVersion());
+            result.setLinkTable(79); //TODO
+
+            models.add(result);
+        });
         return new ServerPagingLoadResult<>(models, licenseDao.count(), config.getOffset());
-    }
-
-    private List<UserModel> licenseEntitiesToModels(List<LicenseEntity> licenses) {
-        List<UserModel> result = new ArrayList<>();
-        for (LicenseEntity entity : licenses) {
-            result.add(licenseEntityToModel(entity));
-        }
-        return result;
-    }
-
-
-    private UserModel licenseEntityToModel(LicenseEntity entity) {
-        UserModel result = new UserModel();
-
-        result.setCreateDate(TimeUtils.unixTimestampToDate(entity.getTimeCreate()));
-        result.setReceiveDate(TimeUtils.unixTimestampToDate(entity.getTimeLicenseStart()));
-        result.setFirstRequestDate(TimeUtils.unixTimestampToDate(entity.getTimeLicenseStart()));
-        result.setCryptoNumber(entity.getCryptonumber());
-        result.setLogin(entity.getSiplogin());
-        result.setKey(entity.getSiplogin());
-        result.setDeviceId(entity.getDevice());
-        result.setPlatform(entity.getPlatform().name());
-        result.setPushToken(entity.getDeviceToken());
-        result.setLicense(entity.getVersion());
-        result.setLinkTable(79); //TODO
-
-        return result;
     }
 
     @Override
