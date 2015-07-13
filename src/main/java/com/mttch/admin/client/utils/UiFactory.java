@@ -67,12 +67,6 @@ public class UiFactory {
     }
 
     public static Widget createWhiteLabel(String text) {
-        String style =
-                "color: white; " +
-                        "font-family: helvetica,arial,verdana,sans-serif;" +
-                        "font-weight: bold" +
-                        "font-size: 12px";
-        HTML htmlLabel = new HTML("<span style='" + style + "'>" + text + "</span>");
-        return htmlLabel;
+        return createWhiteLabel(text, 12);
     }
 }
