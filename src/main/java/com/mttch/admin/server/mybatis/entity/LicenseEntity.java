@@ -1,7 +1,5 @@
 package com.mttch.admin.server.mybatis.entity;
 
-import com.mttch.admin.server.mybatis.helpers.DatabaseValue;
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -157,9 +155,27 @@ public class LicenseEntity {
     }
 
     public enum Sub {
-        @DatabaseValue(stringValue = "0")
-        s0,
-        @DatabaseValue(stringValue = "1")
-        s1;
+        s0("0"),
+        s1("1");
+
+        private String def;
+
+        Sub(String def) {
+            this.def = def;
+        }
+
+        public String getDef() {
+            return def;
+        }
+
+        public static Sub getByString(String value) {
+            for (int i = 0; i < Sub.values().length; i++) {
+                Sub current = Sub.values()[i];
+                if (current.getDef().equals(value)) {
+                    return current;
+                }
+            }
+            return null;
+        }
     }
 }
