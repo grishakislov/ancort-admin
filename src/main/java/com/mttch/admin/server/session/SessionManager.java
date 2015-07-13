@@ -9,13 +9,14 @@ import org.springframework.stereotype.Service;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
 
 @Service
 public class SessionManager {
 
     private ThreadLocal<String> localSessions = new ThreadLocal<>();
 
-    private Map<String, Session> sessionsById = new HashMap<>();
+    private ConcurrentHashMap<String, Session> sessionsById = new ConcurrentHashMap<>();
     private HashMultimap<String, Session> sessionsByLogin = HashMultimap.create();
 
     @Autowired
@@ -37,19 +38,27 @@ public class SessionManager {
         return sessionId;
     }
 
-    public boolean isSessionActive(String sessionId) {
+    public synchronized boolean isSessionActive(String sessionId) {
         if (sessionsById.containsKey(sessionId)) {
             Session session = sessionsById.get(sessionId);
             boolean past = TimeUtils.isPast(session.getExpireTimestamp());
+            if (past) {
+                unbindSession(sessionId);
+            }
             return !past;
         } else {
             return false;
         }
     }
 
-    public synchronized void unbindSession() {
+    public void unbindSession() {
         String sessionId = getLocalSession();
-        String login = sessionsById.get(sessionId).getLogin();
+        unbindSession(sessionId);
+    }
+
+    public synchronized void unbindSession(String sessionId) {
+        Session session = sessionsById.get(sessionId);
+        String login = session.getLogin();
         sessionsById.remove(sessionId);
         Set<Session> sessions = sessionsByLogin.get(login);
         Session find = null;
