@@ -45,6 +45,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void deleteUser(String login) {
-//        userDao.deleteUser(login);
+        //TODO: check authorization
+        licenseDao.deleteLicense(login);
     }
 }

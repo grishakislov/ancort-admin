@@ -55,11 +55,9 @@ public class AdministratorsPanelPresenter extends AbstractPresenter {
                 Cell.Context c = event.getContext();
                 int row = c.getIndex();
                 final AdministratorModel model = grid.getGrid().getStore().get(row);
-                grid.mask();
                 administratorService.deleteAdministrator(model.getName(), new ServerCallback<Void>() {
                     @Override
                     public void onSuccess(Void result) {
-                        grid.unmask();
                         grid.refresh();
                         Info.display("Event", model.getName() + " deleted");
                     }

@@ -70,6 +70,7 @@ public abstract class AbstractGrid<T> extends SimpleContainer {
         grid = new Grid<>(listStore, new ColumnModel<>(getColumnConfigs()));
 
         grid.setLoader(loader);
+        grid.setLoadMask(true);
         grid.getView().setAutoFill(true);
         grid.getView().setStripeRows(true);
         grid.getView().setColumnLines(true);

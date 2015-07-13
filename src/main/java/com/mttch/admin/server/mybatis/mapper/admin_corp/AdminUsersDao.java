@@ -18,7 +18,7 @@ public interface AdminUsersDao {
     @Options(useGeneratedKeys = true, keyProperty = "id", keyColumn = "id")
     void save(AdminUserEntity user);
 
-    @Delete("delete * from admin_corp.admin_users " +
+    @Delete("delete from admin_corp.admin_users " +
             "where " +
             "login = #{login}")
     void delete(@Param("login") String login);

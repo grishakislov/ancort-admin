@@ -39,4 +39,7 @@ public interface LicenseDao {
     })
     List<LicenseEntity> listAll();
 
+    @Delete("delete from aaa_cts_corp.license " +
+            "where siplogin = #{login}")
+    void deleteLicense(@Param("login") String login);
 }

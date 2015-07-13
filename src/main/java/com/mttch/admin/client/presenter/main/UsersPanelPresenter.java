@@ -37,11 +37,9 @@ public class UsersPanelPresenter extends AbstractPresenter {
                 Cell.Context c = event.getContext();
                 int row = c.getIndex();
                 final UserModel model = grid.getGrid().getStore().get(row);
-                grid.mask();
                 userService.deleteUser(model.getLogin(), new ServerCallback<Void>() {
                     @Override
                     public void onSuccess(Void result) {
-                        grid.unmask();
                         grid.refresh();
                         Info.display("Event", model.getLogin() + " deleted");
                     }
