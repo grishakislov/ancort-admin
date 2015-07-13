@@ -1,14 +1,41 @@
 package com.mttch.admin.client.utils;
 
-import com.google.gwt.user.client.ui.HTML;
-import com.google.gwt.user.client.ui.RootPanel;
-import com.google.gwt.user.client.ui.Widget;
+import com.google.gwt.user.client.ui.*;
+import com.sencha.gxt.cell.core.client.TextButtonCell;
 import com.sencha.gxt.core.client.Style;
+import com.sencha.gxt.core.client.ValueProvider;
+import com.sencha.gxt.core.client.resources.CommonStyles;
 import com.sencha.gxt.fx.client.FxElement;
 import com.sencha.gxt.widget.core.client.ContentPanel;
 import com.sencha.gxt.widget.core.client.container.SimpleContainer;
+import com.sencha.gxt.widget.core.client.grid.ColumnConfig;
+
 
 public class UiFactory {
+
+    public static <T> ColumnConfig <T, String> createDeleteButtonColumn(Class<T> model, TextButtonCell button) {
+        ValueProvider<T, String> buttonValue = new ValueProvider<T, String>() {
+            @Override
+            public String getValue(T object) {
+                return "x";
+            }
+            @Override
+            public void setValue(T object, String value) {}
+
+            @Override
+            public String getPath() {return null;}
+        };
+
+        ColumnConfig<T, String> buttonColumn =
+                new ColumnConfig<>(buttonValue, 37, "X");
+        button.setHeight(18);
+        buttonColumn.setFixed(true);
+        buttonColumn.setColumnTextClassName(CommonStyles.get().inlineBlock());
+        buttonColumn.setVerticalAlignment(HasVerticalAlignment.ALIGN_MIDDLE);
+        buttonColumn.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
+        buttonColumn.setCell(button);
+        return buttonColumn;
+    }
 
     public static void showInfo(String heading, String text) {
         ContentPanel cp = new ContentPanel();

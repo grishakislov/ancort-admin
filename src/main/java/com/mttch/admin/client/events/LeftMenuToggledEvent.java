@@ -5,7 +5,7 @@ import com.google.gwt.event.shared.GwtEvent;
 
 public class LeftMenuToggledEvent extends GwtEvent<LeftMenuToggledEvent.Handler> {
 
-    public static Type<Handler> TYPE = new Type<Handler>();
+    public static Type<Handler> TYPE = new Type<>();
 
     public enum MenuType {
         USERS,
@@ -15,7 +15,7 @@ public class LeftMenuToggledEvent extends GwtEvent<LeftMenuToggledEvent.Handler>
         EMAIL,
         XMPP,
         EVENTS,
-        ACTIONS;
+        ACTIONS
     }
 
     private MenuType menuType;

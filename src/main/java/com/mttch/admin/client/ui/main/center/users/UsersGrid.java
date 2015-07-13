@@ -2,23 +2,17 @@ package com.mttch.admin.client.ui.main.center.users;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.rpc.AsyncCallback;
-import com.google.gwt.user.client.ui.HasHorizontalAlignment;
-import com.google.gwt.user.client.ui.HasVerticalAlignment;
 import com.mttch.admin.client.server.user.UserService;
 import com.mttch.admin.client.server.user.UserServiceAsync;
 import com.mttch.admin.client.ui.AbstractGrid;
+import com.mttch.admin.client.utils.UiFactory;
 import com.mttch.admin.common.StringConstants;
 import com.mttch.admin.common.model.grid.UserModel;
 import com.sencha.gxt.cell.core.client.TextButtonCell;
-import com.sencha.gxt.core.client.ValueProvider;
-import com.sencha.gxt.core.client.resources.CommonStyles;
 import com.sencha.gxt.data.shared.ModelKeyProvider;
 import com.sencha.gxt.data.shared.loader.PagingLoadConfig;
 import com.sencha.gxt.data.shared.loader.PagingLoadResult;
 import com.sencha.gxt.widget.core.client.grid.ColumnConfig;
-import com.sencha.gxt.widget.core.client.grid.Grid;
-import com.sencha.gxt.widget.core.client.grid.editing.GridEditing;
-import com.sencha.gxt.widget.core.client.grid.editing.GridRowEditing;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,39 +38,13 @@ public class UsersGrid extends AbstractGrid<UserModel> {
         service.listUsers(loadConfig, callback);
     }
 
-    protected GridEditing<UserModel> createGridEditing(Grid<UserModel> editableGrid) {
-        GridRowEditing<UserModel> rowEditing = new GridRowEditing<UserModel>(editableGrid);
-        return rowEditing;
-    }
-
-
     @Override
     protected List<ColumnConfig<UserModel, ?>> getColumnConfigs() {
         int size = 200;
-        ValueProvider<UserModel, String> buttonValue = new ValueProvider<UserModel, String>() {
-            @Override
-            public String getValue(UserModel object) {
-                return "x";
-            }
-            @Override
-            public void setValue(UserModel object, String value) {}
-
-            @Override
-            public String getPath() {return null;}
-        };
-
-        ColumnConfig<UserModel, String> buttonColumn =
-                new ColumnConfig<>(buttonValue, 37, "X");
-        deleteButton = new TextButtonCell();
-        deleteButton.setHeight(18);
-        buttonColumn.setFixed(true);
-        buttonColumn.setColumnTextClassName(CommonStyles.get().inlineBlock());
-        buttonColumn.setVerticalAlignment(HasVerticalAlignment.ALIGN_MIDDLE);
-        buttonColumn.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
-        buttonColumn.setCell(deleteButton);
 
         List<ColumnConfig<UserModel, ?>> result = new ArrayList<>();
-        result.add(buttonColumn);
+        deleteButton = new TextButtonCell();
+        result.add(UiFactory.createDeleteButtonColumn(UserModel.class, deleteButton));
         result.add(createColumnConfig(userProperties.login(), size, StringConstants.UserGrid.LOGIN));
         result.add(createColumnConfig(userProperties.createDate(), size, StringConstants.UserGrid.CREATE_DATE));
         result.add(createColumnConfig(userProperties.receiveDate(), size, StringConstants.UserGrid.RECEIVE_DATE));
