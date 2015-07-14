@@ -36,7 +36,7 @@ public class LogServiceImpl implements LogService {
             model.setUseragent(entity.getUseragent());
             model.setCryptonumber(entity.getCryptonumber());
             model.setUser(entity.getUser());
-            model.setDt(entity.getDt());
+            model.setDt(TimeUtils.unixTimestampToDate(entity.getDt()));
             model.setText(entity.getText());
             model.setIp(entity.getIp());
             result.add(model);

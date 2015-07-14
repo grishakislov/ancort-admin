@@ -11,7 +11,7 @@ public class AdminLogModel implements Serializable {
     private String useragent;
     private int cryptonumber;
     private String user;
-    private int dt;
+    private String dt;
     private String text;
     private String ip;
 
@@ -45,7 +45,7 @@ public class AdminLogModel implements Serializable {
         this.user = user;
     }
 
-    public void setDt(int dt) {
+    public void setDt(String dt) {
         this.dt = dt;
     }
 
@@ -77,7 +77,7 @@ public class AdminLogModel implements Serializable {
         return user;
     }
 
-    public int getDt() {
+    public String getDt() {
         return dt;
     }
 

@@ -2,6 +2,16 @@ package com.mttch.admin.common;
 
 public class StringConstants {
 
+    public static class AdminLogGrid {
+        public static final String ID = "Id";
+        public static final String CRYPTO_NUMBER = "Крипто-номер";
+        public static final String DATE_TIME = "Время";
+        public static final String ADMIN = "Администратор";
+        public static final String USER_AGENT = "User Agent";
+        public static final String EVENT = "Событие";
+        public static final String IP = "IP-адрес";
+    }
+
     public static class LicenseEventsGrid {
         public static final String ID = "Id";
         public static final String TIME = "Время";
