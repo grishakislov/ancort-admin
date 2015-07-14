@@ -2,6 +2,7 @@ package com.mttch.admin.client.ui;
 
 import com.google.gwt.event.logical.shared.SelectionEvent;
 import com.google.gwt.event.logical.shared.SelectionHandler;
+import com.google.gwt.safecss.shared.SafeStyles;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.HasVerticalAlignment;
 import com.mttch.admin.common.StringConstants;
@@ -47,7 +48,7 @@ public abstract class AbstractGrid<T> extends SimpleContainer {
         build();
     }
 
-    public void build() {
+    protected void build() {
         RpcProxy<PagingLoadConfig, PagingLoadResult<T>> rpxProxy = new RpcProxy<PagingLoadConfig, PagingLoadResult<T>>() {
             @Override
             public void load(PagingLoadConfig loadConfig, AsyncCallback<PagingLoadResult<T>> callback) {
@@ -106,6 +107,22 @@ public abstract class AbstractGrid<T> extends SimpleContainer {
         return combo;
     }
 
+/*
+    protected ColumnConfig<T, ?> createColumnConfig(ValueProvider<T, ?> vp, int width, String header, boolean wordWrap) {
+        ColumnConfig<T, ?> columnConfig = createColumnConfig(vp, width, header);
+        if (wordWrap) {
+            SafeStyles s = new SafeStyles() {
+                @Override
+                public String asString() {
+                    return "white-space:normal";
+                }
+            };
+            columnConfig.setColumnStyle(s);
+        }
+        return columnConfig;
+    }
+*/
+
     protected ColumnConfig<T, ?> createColumnConfig(ValueProvider<T, ?> vp, int width, String header) {
         ColumnConfig<T, ?> config = new ColumnConfig<>(vp, width, header);
         config.setVerticalAlignment(HasVerticalAlignment.ALIGN_MIDDLE);
@@ -132,6 +149,4 @@ public abstract class AbstractGrid<T> extends SimpleContainer {
     public ToolBar getToolBar() {
         return toolBar;
     }
-
-
 }

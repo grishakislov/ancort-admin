@@ -36,7 +36,7 @@ public class AdminLogGrid extends AbstractGrid<AdminLogModel> {
         result.add(createColumnConfig(adminLogProperties.dt(), 100, StringConstants.AdminLogGrid.DATE_TIME));
         result.add(createColumnConfig(adminLogProperties.user(), 90, StringConstants.AdminLogGrid.ADMIN));
         result.add(createColumnConfig(adminLogProperties.useragent(), 430, StringConstants.AdminLogGrid.USER_AGENT));
-        result.add(createColumnConfig(adminLogProperties.event(), 70, StringConstants.AdminLogGrid.EVENT));
+        result.add(createColumnConfig(adminLogProperties.text(), 70, StringConstants.AdminLogGrid.EVENT));
         result.add(createColumnConfig(adminLogProperties.ip(), 90, StringConstants.AdminLogGrid.IP));
 
         return result;
