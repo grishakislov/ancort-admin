@@ -12,9 +12,11 @@ public interface AdminUsersDao {
     AdminUserEntity getAdminUser(@Param("login") String login);
 
     @Insert("insert into admin_corp.admin_users " +
-            "(id, login, password, site, name, surname, email, desc, time, status, access_tech, access_server, access_sipserver_edit, access_iddevice_edit, access_push_edit, access_server_test, access_delete, access_support, access_block, pub) " +
+//            "(id, login, password, site, name, surname, email, desc, time, status, access_tech, access_server, access_sipserver_edit, access_iddevice_edit, access_push_edit, access_server_test, access_delete, access_support, access_block, pub) " +
             "values " +
-            "(#{id}, #{login}, #{password}, #{site}, #{name}, #{surname}, #{email}, #{desc}, #{time}, #{status}, #{access_tech}, #{access_server}, #{access_sipserver_edit}, #{access_iddevice_edit}, #{access_push_edit}, #{access_server_test}, #{access_delete}, #{access_support}, #{access_block}, #{pub})")
+            "(#{id}, #{login}, #{password}, #{site}, #{name}, #{surname}, #{email}, #{desc}, #{time}, #{status}, #{accessTech}, " +
+            " #{accessServer}, #{accessSipserverEdit}, #{accessIddeviceEdit}, #{accessPushEdit}, #{accessServerTest}, " +
+            " #{accessDelete}, #{accessSupport}, #{accessBlock}, #{pub})")
     @Options(useGeneratedKeys = true, keyProperty = "id", keyColumn = "id")
     void save(AdminUserEntity user);
 

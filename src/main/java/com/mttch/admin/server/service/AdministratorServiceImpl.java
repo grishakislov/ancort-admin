@@ -63,8 +63,14 @@ public class AdministratorServiceImpl implements AdministratorService {
 
     private AdminUserEntity createAdministrator(String name, String password) {
         AdminUserEntity entity = new AdminUserEntity();
+        //TODO: fill it
         entity.setLogin(name);
         entity.setPassword(PasswordUtil.hash(password));
+        entity.setSite(0);
+        entity.setName("Set me!");
+        entity.setSurname("Set me!");
+        entity.setEmail("Set me!");
+        entity.setDesc("Set me!");
         entity.setTime(TimeUtils.getUnixSeconds());
         entity.setStatus(true);
         entity.setPub(true);

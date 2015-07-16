@@ -78,6 +78,9 @@ public class LoginServiceImpl implements LoginService {
 
     @Override
     public void logout(String login) {
+        if (appPropertiesService.isUseAutoLogin()) {
+            return;
+        }
         sessionManager.unbindSession();
     }
 
