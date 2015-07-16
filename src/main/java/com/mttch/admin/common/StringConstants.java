@@ -2,6 +2,14 @@ package com.mttch.admin.common;
 
 public class StringConstants {
 
+    public static class EmailServiceGrid {
+        public static final String LOGIN = "Логин";
+        public static final String MAILBOX = "Почтовый адрес";
+        public static final String PASSWORD = "Пароль";
+        public static final String QUOTA = "Квота";
+        public static final String STORAGE = "Хранилище";
+    }
+
     public static class AdminLogGrid {
         public static final String ID = "Id";
         public static final String CRYPTO_NUMBER = "Крипто-номер";

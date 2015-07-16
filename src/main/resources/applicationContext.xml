@@ -16,6 +16,7 @@
     <bean id="userService" class="com.mttch.admin.server.service.UserServiceImpl"/>
     <bean id="administratorService" class="com.mttch.admin.server.service.AdministratorServiceImpl"/>
     <bean id="logService" class="com.mttch.admin.server.service.LogServiceImpl"/>
+    <bean id="mailboxService" class="com.mttch.admin.server.service.MailboxServiceImpl"/>
 
     <bean id="sessionManager" class="com.mttch.admin.server.session.SessionManager"/>
 
@@ -24,6 +25,7 @@
         <entry key="/userService" value-ref="userService"/>
         <entry key="/administratorService" value-ref="administratorService"/>
         <entry key="/logService" value-ref="logService"/>
+        <entry key="/mailboxService" value-ref="mailboxService"/>
     </util:map>
 
     <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">

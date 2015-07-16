@@ -8,20 +8,18 @@ import com.mttch.admin.client.ui.main.MainPanel;
 import com.mttch.admin.client.ui.main.center.administrators.AdministratorsPanel;
 import com.mttch.admin.client.ui.main.center.logs.AdminLogPanel;
 import com.mttch.admin.client.ui.main.center.logs.LicenseEventsPanel;
+import com.mttch.admin.client.ui.main.center.services.EmailServicePanel;
 import com.mttch.admin.client.ui.main.center.users.UsersPanel;
 import com.sencha.gxt.widget.core.client.ContentPanel;
 
 public class MainPanelPresenter extends AbstractPresenter {
 
     private MainPanel mainPanel;
-
     private UsersPanel usersPanel;
-
     private AdministratorsPanel administratorsPanel;
-
     private LicenseEventsPanel licenseEventsPanel;
-
     private AdminLogPanel adminLogPanel;
+    private EmailServicePanel emailServicePanel;
 
     @Inject
     public MainPanelPresenter(SimpleEventBus eventBus,
@@ -29,13 +27,15 @@ public class MainPanelPresenter extends AbstractPresenter {
                               UsersPanel usersPanel,
                               AdministratorsPanel administratorsPanel,
                               LicenseEventsPanel licenseEventsPanel,
-                              AdminLogPanel adminLogPanel) {
+                              AdminLogPanel adminLogPanel,
+                              EmailServicePanel emailServicePanel) {
         super(eventBus);
         this.mainPanel = mainPanel;
         this.usersPanel = usersPanel;
         this.administratorsPanel = administratorsPanel;
         this.licenseEventsPanel = licenseEventsPanel;
         this.adminLogPanel = adminLogPanel;
+        this.emailServicePanel = emailServicePanel;
         bind();
     }
 
@@ -64,6 +64,10 @@ public class MainPanelPresenter extends AbstractPresenter {
 
             case ACTIONS:
                 mainPanel.addToCenter(adminLogPanel);
+                break;
+
+            case EMAIL:
+                mainPanel.addToCenter(emailServicePanel);
                 break;
 
             default:
