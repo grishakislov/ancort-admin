@@ -10,6 +10,7 @@ import com.mttch.admin.client.ui.main.center.logs.AdminLogPanel;
 import com.mttch.admin.client.ui.main.center.logs.LicenseEventsPanel;
 import com.mttch.admin.client.ui.main.center.services.EmailServicePanel;
 import com.mttch.admin.client.ui.main.center.users.UsersPanel;
+import com.mttch.admin.client.ui.main.center.services.XmppServicePanel;
 import com.sencha.gxt.widget.core.client.ContentPanel;
 
 public class MainPanelPresenter extends AbstractPresenter {
@@ -20,6 +21,7 @@ public class MainPanelPresenter extends AbstractPresenter {
     private LicenseEventsPanel licenseEventsPanel;
     private AdminLogPanel adminLogPanel;
     private EmailServicePanel emailServicePanel;
+    private XmppServicePanel xmppServicePanel;
 
     @Inject
     public MainPanelPresenter(SimpleEventBus eventBus,
@@ -28,7 +30,8 @@ public class MainPanelPresenter extends AbstractPresenter {
                               AdministratorsPanel administratorsPanel,
                               LicenseEventsPanel licenseEventsPanel,
                               AdminLogPanel adminLogPanel,
-                              EmailServicePanel emailServicePanel) {
+                              EmailServicePanel emailServicePanel,
+                              XmppServicePanel xmppServicePanel) {
         super(eventBus);
         this.mainPanel = mainPanel;
         this.usersPanel = usersPanel;
@@ -36,6 +39,7 @@ public class MainPanelPresenter extends AbstractPresenter {
         this.licenseEventsPanel = licenseEventsPanel;
         this.adminLogPanel = adminLogPanel;
         this.emailServicePanel = emailServicePanel;
+        this.xmppServicePanel = xmppServicePanel;
         bind();
     }
 
@@ -54,6 +58,7 @@ public class MainPanelPresenter extends AbstractPresenter {
             case USERS:
                 mainPanel.addToCenter(usersPanel);
                 break;
+
             case ADMINISTRATORS:
                 mainPanel.addToCenter(administratorsPanel);
                 break;
@@ -68,6 +73,10 @@ public class MainPanelPresenter extends AbstractPresenter {
 
             case EMAIL:
                 mainPanel.addToCenter(emailServicePanel);
+                break;
+
+            case XMPP:
+                mainPanel.addToCenter(xmppServicePanel);
                 break;
 
             default:

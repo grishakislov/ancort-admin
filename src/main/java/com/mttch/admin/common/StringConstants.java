@@ -2,6 +2,13 @@ package com.mttch.admin.common;
 
 public class StringConstants {
 
+    public static class XmppGrid {
+        public static final String USERNAME = "Имя пользователя";
+        public static final String NAME = "Имя";
+        public static final String EMAIL = "Почтовый адрес";
+    }
+
+
     public static class EmailServiceGrid {
         public static final String LOGIN = "Логин";
         public static final String MAILBOX = "Почтовый адрес";

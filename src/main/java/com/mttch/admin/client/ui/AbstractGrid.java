@@ -2,7 +2,6 @@ package com.mttch.admin.client.ui;
 
 import com.google.gwt.event.logical.shared.SelectionEvent;
 import com.google.gwt.event.logical.shared.SelectionHandler;
-import com.google.gwt.safecss.shared.SafeStyles;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.HasVerticalAlignment;
 import com.mttch.admin.common.StringConstants;

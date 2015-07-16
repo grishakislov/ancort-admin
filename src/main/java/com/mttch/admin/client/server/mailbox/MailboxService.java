@@ -22,6 +22,4 @@ public interface MailboxService extends RemoteService {
             return instance;
         }
     }
-
-
 }
