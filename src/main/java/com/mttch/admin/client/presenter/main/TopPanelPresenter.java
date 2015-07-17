@@ -45,7 +45,7 @@ public class TopPanelPresenter extends AbstractPresenter {
         loginService.logout(AppContext.getUser().getLogin(), new ServerCallback<Void>() {
             @Override
             public void onSuccess(Void result) {
-                AppContext.logout();
+                AppContext.onLogout();
                 eventBus.fireEvent(new LogoutEvent());
             }
         });

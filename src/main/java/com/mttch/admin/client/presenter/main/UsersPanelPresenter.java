@@ -10,9 +10,9 @@ import com.mttch.admin.client.server.user.UserService;
 import com.mttch.admin.client.server.user.UserServiceAsync;
 import com.mttch.admin.client.ui.main.center.users.UsersGrid;
 import com.mttch.admin.client.ui.main.center.users.UsersPanel;
+import com.mttch.admin.client.utils.UiFactory;
 import com.mttch.admin.common.model.grid.UserModel;
 import com.sencha.gxt.widget.core.client.event.SelectEvent;
-import com.sencha.gxt.widget.core.client.info.Info;
 import com.sencha.gxt.widget.core.client.selection.SelectionChangedEvent;
 
 public class UsersPanelPresenter extends AbstractPresenter {
@@ -41,7 +41,7 @@ public class UsersPanelPresenter extends AbstractPresenter {
                     @Override
                     public void onSuccess(Void result) {
                         grid.refresh();
-                        Info.display("Event", model.getLogin() + " deleted");
+                        UiFactory.showInfo("Event", model.getLogin() + " deleted");
                     }
                 });
             }

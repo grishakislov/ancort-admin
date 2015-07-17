@@ -9,9 +9,14 @@ import com.sencha.gxt.fx.client.FxElement;
 import com.sencha.gxt.widget.core.client.ContentPanel;
 import com.sencha.gxt.widget.core.client.container.SimpleContainer;
 import com.sencha.gxt.widget.core.client.grid.ColumnConfig;
+import com.sencha.gxt.widget.core.client.info.Info;
 
 
 public class UiFactory {
+
+    public static void displayInfo(String head, String msg) {
+        Info.display(head, msg);
+    }
 
     public static <T> ColumnConfig <T, String> createDeleteButtonColumn(Class<T> model, TextButtonCell button) {
         ValueProvider<T, String> buttonValue = new ValueProvider<T, String>() {

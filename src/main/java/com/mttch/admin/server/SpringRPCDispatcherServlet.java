@@ -6,6 +6,8 @@ import com.google.gwt.user.client.rpc.SerializationException;
 import com.google.gwt.user.server.rpc.RPC;
 import com.google.gwt.user.server.rpc.RPCRequest;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
+import com.mttch.admin.common.exception.SessionExpiredException;
+import com.mttch.admin.server.session.Session;
 import com.mttch.admin.server.session.SessionManager;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
@@ -62,12 +64,21 @@ public class SpringRPCDispatcherServlet extends RemoteServiceServlet {
         } catch (IncompatibleRemoteServiceException ex) {
             logger.error("An IncompatibleRemoteServiceException was thrown while processing this call.", ex);
             return RPC.encodeResponseForFailure(null, ex);
+        } catch (SessionExpiredException sessionExpiredException) {
+            return RPC.encodeResponseForFailure(null, sessionExpiredException);
         }
     }
 
-    private void storeSession() {
+    private void storeSession() throws SessionExpiredException{
         SessionManager sessionManager = (SessionManager) applicationContext.getBean("sessionManager");
-        sessionManager.addLocalSession(getThreadLocalRequest().getSession().getId());
+        String sessionId = getThreadLocalRequest().getSession().getId();
+        if (sessionManager.sessionExists(sessionId)) {
+            if (!sessionManager.isSessionActive(sessionId)) {
+                throw new SessionExpiredException();
+            }
+        } else {
+            sessionManager.addLocalSession(sessionId);
+        }
     }
 
     protected RemoteService retrieveSpringBean(HttpServletRequest request) {

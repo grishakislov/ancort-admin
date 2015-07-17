@@ -15,6 +15,13 @@ public class WebAppEntryPoint implements EntryPoint {
     public void onModuleLoad() {
         System.out.println("Module loaded");
         InitController initController = injector.getInitController();
+        AppContext.setEventBus(injector.getEventBus());
+        GWT.setUncaughtExceptionHandler(new GWT.UncaughtExceptionHandler() {
+            @Override
+            public void onUncaughtException(Throwable e) {
+                System.out.println();
+            }
+        });
 
         WebAppRootPanel webAppRootPanel = injector.getRootPanel();
 
