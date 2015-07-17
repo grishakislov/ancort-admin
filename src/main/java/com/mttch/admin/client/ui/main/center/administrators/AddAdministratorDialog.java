@@ -101,4 +101,15 @@ public class AddAdministratorDialog extends Dialog {
     public PasswordField getPasswordField2() {
         return passwordField2;
     }
+
+    public void reset() {
+        //TODO: fix it
+        loginField.clear();
+        loginField.setWidth(180);
+        passwordField1.clear();
+        passwordField1.setWidth(180);
+        passwordField2.clear();
+        passwordField2.setWidth(180);
+        forceLayout();
+    }
 }

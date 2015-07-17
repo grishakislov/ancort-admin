@@ -76,6 +76,7 @@ public class AdministratorsPanelPresenter extends AbstractPresenter {
         administratorsPanel.getAddAdministratorButton().addSelectHandler(new SelectEvent.SelectHandler() {
             @Override
             public void onSelect(SelectEvent event) {
+                addAdministratorDialog.reset();
                 addAdministratorDialog.show();
             }
         });
@@ -111,6 +112,9 @@ public class AdministratorsPanelPresenter extends AbstractPresenter {
         String name = addAdministratorDialog.getLoginField().getValue();
         String p1 = addAdministratorDialog.getPasswordField1().getValue();
         String p2 = addAdministratorDialog.getPasswordField2().getValue();
-        return name != null && p1 != null && p2 != null && p1.equals(p2);
+        return name != null && p1 != null && p2 != null &&
+                p1.equals(p2) &&
+                p1.length() > 3 &&
+                name.length() > 3;
     }
 }

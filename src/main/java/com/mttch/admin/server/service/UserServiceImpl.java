@@ -3,6 +3,7 @@ package com.mttch.admin.server.service;
 import com.mttch.admin.client.server.user.UserService;
 import com.mttch.admin.common.model.grid.ServerPagingLoadResult;
 import com.mttch.admin.common.model.grid.UserModel;
+import com.mttch.admin.common.exception.BusinessException;
 import com.mttch.admin.server.mybatis.entity.LicenseEntity;
 import com.mttch.admin.server.mybatis.mapper.aaa_cts_corp.LicenseDao;
 import com.mttch.admin.server.utils.TimeUtils;
@@ -44,7 +45,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void deleteUser(String login) {
+    public synchronized void deleteUser(String login) throws BusinessException {
         //TODO: check authorization
         licenseDao.deleteLicense(login);
     }

@@ -4,8 +4,11 @@ import com.mttch.admin.client.server.administrator.AdministratorService;
 import com.mttch.admin.common.model.CorpUser;
 import com.mttch.admin.common.model.grid.AdministratorModel;
 import com.mttch.admin.common.model.grid.ServerPagingLoadResult;
+import com.mttch.admin.common.exception.BusinessException;
 import com.mttch.admin.server.mybatis.entity.AdminUserEntity;
 import com.mttch.admin.server.mybatis.mapper.admin_corp.AdminUsersDao;
+import com.mttch.admin.server.session.SessionManager;
+import com.mttch.admin.server.utils.ExceptionFactory;
 import com.mttch.admin.server.utils.PasswordUtil;
 import com.mttch.admin.server.utils.TimeUtils;
 import com.sencha.gxt.data.shared.loader.PagingLoadConfig;
@@ -22,6 +25,9 @@ public class AdministratorServiceImpl implements AdministratorService {
     @Autowired
     private AdminUsersDao adminUsersDao;
 
+    @Autowired
+    private SessionManager sessionManager;
+
     @Override
     public PagingLoadResult<AdministratorModel> listAdministrators(PagingLoadConfig config) {
         List<AdminUserEntity> entities = adminUsersDao.list(config.getLimit(), config.getOffset());
@@ -37,12 +43,25 @@ public class AdministratorServiceImpl implements AdministratorService {
     }
 
     @Override
-    public void deleteAdministrator(String login) {
+    public synchronized void deleteAdministrator(String login) throws BusinessException {
+        String currentUserLogin = sessionManager.currentUserLogin();
+        if (login.equals(currentUserLogin)) {
+            throw ExceptionFactory.cannotDeleteCurrentAccount(login);
+        }
+        int count = adminUsersDao.count();
+        if (count == 1) {
+            throw ExceptionFactory.cannotDeleteLastAccount(login);
+        }
+
         adminUsersDao.delete(login);
     }
 
     @Override
-    public void addAdministrator(String name, String password) {
+    public void addAdministrator(String name, String password) throws BusinessException {
+        AdminUserEntity entity = adminUsersDao.getAdminUser(name);
+        if (entity != null) {
+            throw ExceptionFactory.administratorAlreadyExists(name);
+        }
         adminUsersDao.save(createAdministrator(name, password));
     }
 

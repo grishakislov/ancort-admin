@@ -36,6 +36,10 @@ public class SessionManager {
         return sessionId;
     }
 
+    public String currentUserLogin() {
+        return sessionToUser(getLocalSession());
+    }
+
     public synchronized boolean isSessionActive(String sessionId) {
         if (sessionsById.containsKey(sessionId)) {
             Session session = sessionsById.get(sessionId);

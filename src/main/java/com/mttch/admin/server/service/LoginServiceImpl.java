@@ -47,6 +47,7 @@ public class LoginServiceImpl implements LoginService {
             String user;
             if (appPropertiesService.isUseAutoLogin()) {
                 user = appPropertiesService.getAutoLoginAccount();
+                sessionManager.bindSession(user);
             } else {
                 user = sessionManager.sessionToUser(sessionId);
             }
@@ -78,9 +79,6 @@ public class LoginServiceImpl implements LoginService {
 
     @Override
     public void logout(String login) {
-        if (appPropertiesService.isUseAutoLogin()) {
-            return;
-        }
         sessionManager.unbindSession();
     }
 
