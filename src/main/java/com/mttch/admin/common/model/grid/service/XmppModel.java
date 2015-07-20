@@ -1,24 +1,14 @@
 package com.mttch.admin.common.model.grid.service;
 
-import java.io.Serializable;
+import com.mttch.admin.common.model.grid.BaseGridModel;
 
-public class XmppModel implements Serializable {
+public class XmppModel extends BaseGridModel {
 
     private static final long serialVersionUID = 5828432709190949547L;
 
     private String username;
     private String name;
     private String email;
-
-    private String key;
-
-    public String getKey() {
-        return key;
-    }
-
-    public void setKey(String key) {
-        this.key = key;
-    }
 
     public String getUsername() {
         return username;

@@ -40,7 +40,6 @@ public class TimeUtils {
     }
 
     public static boolean isPast(long timeStamp) {
-        long a = timeStamp - getUnixSeconds();
         return getUnixSeconds() > timeStamp;
     }
 }

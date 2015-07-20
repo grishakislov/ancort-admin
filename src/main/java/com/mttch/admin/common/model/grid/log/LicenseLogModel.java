@@ -1,9 +1,8 @@
 package com.mttch.admin.common.model.grid.log;
 
-import java.io.Serializable;
+import com.mttch.admin.common.model.grid.BaseGridModel;
 
-//TODO: extend AbstractGridModel with key
-public class LicenseLogModel implements Serializable {
+public class LicenseLogModel extends BaseGridModel {
 
     private static final long serialVersionUID = 8728798839460012541L;
 
@@ -17,16 +16,6 @@ public class LicenseLogModel implements Serializable {
     private String server;
     private boolean active;
     private long user;
-
-    private String key;
-
-    public String getKey() {
-        return key;
-    }
-
-    public void setKey(String key) {
-        this.key = key;
-    }
 
     public long getId() {
         return id;

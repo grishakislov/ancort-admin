@@ -2,7 +2,7 @@ package com.mttch.admin.common.model.grid;
 
 import java.io.Serializable;
 
-public class UserModel implements Serializable {
+public class UserModel extends BaseGridModel {
 
     private static final long serialVersionUID = -1731350507643733467L;
 
@@ -16,8 +16,6 @@ public class UserModel implements Serializable {
     private String pushToken;
     private int license;
     private int linkTable;
-
-    private String key;
 
     public String getCreateDate() {
         return createDate;
@@ -99,11 +97,4 @@ public class UserModel implements Serializable {
         this.linkTable = linkTable;
     }
 
-    public String getKey() {
-        return key;
-    }
-
-    public void setKey(String key) {
-        this.key = key;
-    }
 }

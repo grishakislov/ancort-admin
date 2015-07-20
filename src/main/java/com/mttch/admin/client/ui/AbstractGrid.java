@@ -5,6 +5,7 @@ import com.google.gwt.event.logical.shared.SelectionHandler;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.HasVerticalAlignment;
 import com.mttch.admin.common.StringConstants;
+import com.mttch.admin.common.model.grid.BaseGridModel;
 import com.sencha.gxt.cell.core.client.form.ComboBoxCell;
 import com.sencha.gxt.core.client.ValueProvider;
 import com.sencha.gxt.data.client.loader.RpcProxy;
@@ -27,7 +28,7 @@ import com.sencha.gxt.widget.core.client.toolbar.ToolBar;
 
 import java.util.List;
 
-public abstract class AbstractGrid<T> extends SimpleContainer {
+public abstract class AbstractGrid<T extends BaseGridModel> extends SimpleContainer {
 
     private Grid<T> grid;
 

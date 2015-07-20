@@ -1,16 +1,12 @@
 package com.mttch.admin.common.model.grid;
 
-import java.io.Serializable;
-
-public class AdministratorModel implements Serializable {
+public class AdministratorModel extends BaseGridModel {
 
     private static final long serialVersionUID = -737466183525227584L;
 
     private int id;
     private String name;
     private String online;
-
-    private String key;
 
     public int getId() {
         return id;
@@ -36,11 +32,4 @@ public class AdministratorModel implements Serializable {
         this.online = online;
     }
 
-    public String getKey() {
-        return key;
-    }
-
-    public void setKey(String key) {
-        this.key = key;
-    }
 }

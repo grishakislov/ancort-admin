@@ -1,8 +1,8 @@
 package com.mttch.admin.common.model.grid.log;
 
-import java.io.Serializable;
+import com.mttch.admin.common.model.grid.BaseGridModel;
 
-public class AdminLogModel implements Serializable {
+public class AdminLogModel extends BaseGridModel {
 
     private static final long serialVersionUID = 6543189921667643056L;
 
@@ -14,16 +14,6 @@ public class AdminLogModel implements Serializable {
     private String dt;
     private String text;
     private String ip;
-
-    private String key;
-
-    public String getKey() {
-        return key;
-    }
-
-    public void setKey(String key) {
-        this.key = key;
-    }
 
     public void setId(long id) {
         this.id = id;

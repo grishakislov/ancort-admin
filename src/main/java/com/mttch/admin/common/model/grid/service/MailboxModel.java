@@ -1,8 +1,8 @@
 package com.mttch.admin.common.model.grid.service;
 
-import java.io.Serializable;
+import com.mttch.admin.common.model.grid.BaseGridModel;
 
-public class MailboxModel implements Serializable {
+public class MailboxModel extends BaseGridModel {
 
     private static final long serialVersionUID = -6469746734793266224L;
 
@@ -11,8 +11,6 @@ public class MailboxModel implements Serializable {
     private String password;
     private long quota;
     private String maildir;
-
-    private String key;
 
     public String getUsername() {
         return username;
@@ -54,11 +52,4 @@ public class MailboxModel implements Serializable {
         this.quota = quota;
     }
 
-    public String getKey() {
-        return key;
-    }
-
-    public void setKey(String key) {
-        this.key = key;
-    }
 }
