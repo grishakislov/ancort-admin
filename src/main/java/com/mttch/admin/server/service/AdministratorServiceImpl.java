@@ -1,10 +1,9 @@
 package com.mttch.admin.server.service;
 
 import com.mttch.admin.client.server.administrator.AdministratorService;
-import com.mttch.admin.common.model.CorpUser;
+import com.mttch.admin.common.exception.BusinessException;
 import com.mttch.admin.common.model.grid.AdministratorModel;
 import com.mttch.admin.common.model.grid.ServerPagingLoadResult;
-import com.mttch.admin.common.exception.BusinessException;
 import com.mttch.admin.server.aop.annotation.AuthenticationNeeded;
 import com.mttch.admin.server.mybatis.entity.AdminUserEntity;
 import com.mttch.admin.server.mybatis.mapper.admin_corp.AdminUsersDao;
@@ -67,20 +66,7 @@ public class AdministratorServiceImpl implements AdministratorService {
         adminUsersDao.save(createAdministrator(name, password));
     }
 
-    public AdminUserEntity getUser(String login) {
-        return adminUsersDao.getAdminUser(login);
-    }
 
-    public CorpUser getCorpUser(String login) {
-        return entityToCorpUser(adminUsersDao.getAdminUser(login));
-    }
-
-    private CorpUser entityToCorpUser(AdminUserEntity adminUser) {
-        CorpUser user = new CorpUser();
-        user.setLogin(adminUser.getLogin());
-        //TODO: Complete
-        return user;
-    }
 
     private AdminUserEntity createAdministrator(String name, String password) {
         AdminUserEntity entity = new AdminUserEntity();
@@ -98,15 +84,4 @@ public class AdministratorServiceImpl implements AdministratorService {
         return entity;
     }
 
-    public boolean authenticate(String login, String password) {
-        AdminUserEntity entity = adminUsersDao.getAdminUser(login);
-        if (entity == null) {
-            return false;
-        }
-        String hash = PasswordUtil.hash(password);
-        if (!entity.getPassword().equals(hash)) {
-            return false;
-        }
-        return true;
-    }
 }

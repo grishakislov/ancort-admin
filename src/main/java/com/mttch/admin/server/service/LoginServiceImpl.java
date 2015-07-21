@@ -8,6 +8,8 @@ import com.mttch.admin.server.session.SessionManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.PostConstruct;
+
 @Service("loginService")
 public class LoginServiceImpl implements LoginService {
 
@@ -18,19 +20,25 @@ public class LoginServiceImpl implements LoginService {
     private AppPropertiesService appPropertiesService;
 
     @Autowired
-    private AdministratorServiceImpl administratorService;
+    private AuthenticationService authenticationService;
+
+    @PostConstruct
+    private void init() {
+        System.out.println();
+    }
+
 
     public AuthenticationResult authenticate(String login, String password) {
         AuthenticationResult response = new AuthenticationResult();
 
-        boolean result = administratorService.authenticate(login, password);
+        boolean result = authenticationService.authenticate(login, password);
 
         if (!result) {
             response.setAuthenticated(false);
             return response;
         }
 
-        CorpUser user = administratorService.getCorpUser(login);
+        CorpUser user = authenticationService.getCorpUser(login);
         response.setAuthenticated(true);
         response.setCorpUser(user);
 
@@ -51,7 +59,7 @@ public class LoginServiceImpl implements LoginService {
             } else {
                 user = sessionManager.sessionToUser(sessionId);
             }
-            CorpUser corpUser = administratorService.getCorpUser(user);
+            CorpUser corpUser = authenticationService.getCorpUser(user);
             response.setAuthenticated(true);
             response.setSessionId(sessionId);
             response.setCorpUser(corpUser);
@@ -67,7 +75,7 @@ public class LoginServiceImpl implements LoginService {
         AuthenticationResult result = new AuthenticationResult();
         if (appPropertiesService.isUseAutoLogin()) {
             result.setAuthenticated(true);
-            CorpUser corpUser = administratorService.getCorpUser(appPropertiesService.getAutoLoginAccount());
+            CorpUser corpUser = authenticationService.getCorpUser(appPropertiesService.getAutoLoginAccount());
             result.setCorpUser(corpUser);
             sessionManager.bindSession(corpUser.getLogin());
             result.setSessionId(sessionManager.getLocalSession());

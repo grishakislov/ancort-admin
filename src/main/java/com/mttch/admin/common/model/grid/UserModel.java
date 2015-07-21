@@ -1,7 +1,5 @@
 package com.mttch.admin.common.model.grid;
 
-import java.io.Serializable;
-
 public class UserModel extends BaseGridModel {
 
     private static final long serialVersionUID = -1731350507643733467L;
