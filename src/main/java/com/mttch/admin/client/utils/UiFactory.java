@@ -9,11 +9,18 @@ import com.sencha.gxt.fx.client.FxElement;
 import com.sencha.gxt.widget.core.client.ContentPanel;
 import com.sencha.gxt.widget.core.client.box.AlertMessageBox;
 import com.sencha.gxt.widget.core.client.container.SimpleContainer;
+import com.sencha.gxt.widget.core.client.event.DialogHideEvent;
 import com.sencha.gxt.widget.core.client.grid.ColumnConfig;
 import com.sencha.gxt.widget.core.client.info.Info;
 
 
 public class UiFactory {
+
+    public static void alert(String head, String message, DialogHideEvent.DialogHideHandler handler) {
+        AlertMessageBox messageBox = new AlertMessageBox(head, message);
+        messageBox.addDialogHideHandler(handler);
+        messageBox.show();
+    }
 
     public static void alert(String head, String message) {
         AlertMessageBox messageBox = new AlertMessageBox(head, message);

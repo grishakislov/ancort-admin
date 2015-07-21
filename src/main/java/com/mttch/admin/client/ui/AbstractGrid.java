@@ -59,9 +59,8 @@ public abstract class AbstractGrid<T extends BaseGridModel> extends SimpleContai
                     public void onFailure(Throwable caught) {
                         if (caught instanceof BusinessException) {
                             AppContext.handleBusinessException((BusinessException) caught);
-                        } else {
-                            callback.onFailure(caught);
                         }
+                        callback.onFailure(caught);
                     }
 
                     @Override

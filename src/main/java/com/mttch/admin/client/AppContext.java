@@ -8,6 +8,7 @@ import com.mttch.admin.common.exception.OperationResult;
 import com.mttch.admin.common.model.AuthenticationResult;
 import com.mttch.admin.common.model.CorpUser;
 import com.mttch.admin.common.model.InitData;
+import com.sencha.gxt.widget.core.client.event.DialogHideEvent;
 
 public class AppContext {
 
@@ -26,8 +27,13 @@ public class AppContext {
     public static void handleBusinessException(BusinessException e) {
         if (e.getCode() == OperationResult.SESSION_EXPIRED ||
                 e.getCode() == OperationResult.NOT_AUTHENTICATED) {
-            doLogout();
-            UiFactory.alert("Error", "Session expired, please log in");
+
+            UiFactory.alert("Error", "Session expired, please log in", new DialogHideEvent.DialogHideHandler() {
+                @Override
+                public void onDialogHide(DialogHideEvent event) {
+                    doLogout();
+                }
+            });
         } else {
             UiFactory.alert("Error", e.getMessage());
         }
