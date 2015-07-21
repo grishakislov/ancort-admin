@@ -3,19 +3,16 @@ package com.mttch.admin.client.callback;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.mttch.admin.client.AppContext;
 import com.mttch.admin.client.utils.UiFactory;
-import com.mttch.admin.common.exception.SessionExpiredException;
-import com.sencha.gxt.widget.core.client.box.AlertMessageBox;
+import com.mttch.admin.common.exception.BusinessException;
 
 public abstract class ServerCallback<T> implements AsyncCallback<T> {
 
     @Override
     public void onFailure(Throwable caught) {
-        if (caught.getCause() instanceof SessionExpiredException) {
-            AppContext.doLogout();
-            UiFactory.showInfo("Error", "Session expired, please log in");
+        if (caught instanceof BusinessException) {
+            AppContext.handleBusinessException((BusinessException) caught);
         } else {
-            AlertMessageBox messageBox = new AlertMessageBox("Server Error", caught.getMessage());
-            messageBox.show();
+            UiFactory.alert("Server Error", caught.getMessage());
         }
     }
 

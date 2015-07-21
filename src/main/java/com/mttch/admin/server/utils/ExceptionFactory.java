@@ -20,4 +20,11 @@ public class ExceptionFactory {
                 "Cannot delete last administrator account: " + login);
     }
 
+    public static BusinessException sessionExpired() {
+        return new BusinessException(OperationResult.SESSION_EXPIRED, "Session expired, please login");
+    }
+
+    public static BusinessException notAuthenticated() {
+        return new BusinessException(OperationResult.NOT_AUTHENTICATED, "Authentication needed, please login");
+    }
 }

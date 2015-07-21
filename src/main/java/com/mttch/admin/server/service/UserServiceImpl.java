@@ -4,6 +4,7 @@ import com.mttch.admin.client.server.user.UserService;
 import com.mttch.admin.common.model.grid.ServerPagingLoadResult;
 import com.mttch.admin.common.model.grid.UserModel;
 import com.mttch.admin.common.exception.BusinessException;
+import com.mttch.admin.server.aop.annotation.AuthenticationNeeded;
 import com.mttch.admin.server.mybatis.entity.LicenseEntity;
 import com.mttch.admin.server.mybatis.mapper.aaa_cts_corp.LicenseDao;
 import com.mttch.admin.server.utils.TimeUtils;
@@ -16,12 +17,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service("userService")
+@AuthenticationNeeded
 public class UserServiceImpl implements UserService {
 
     @Autowired
     private LicenseDao licenseDao;
 
-    public PagingLoadResult<UserModel> listUsers(PagingLoadConfig config) {
+    public PagingLoadResult<UserModel> listUsers(PagingLoadConfig config) throws BusinessException {
         List<LicenseEntity> licenses = licenseDao.list(config.getLimit(), config.getOffset());
         List<UserModel> models = new ArrayList<>();
         licenses.forEach((entity) -> {

@@ -49,7 +49,6 @@ public class UiController extends AbstractPresenter {
                 setScreen(loginView);
             }
         });
-
     }
 
     private void setScreen(ContentPanel screen) {

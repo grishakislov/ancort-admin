@@ -10,7 +10,7 @@ import com.sencha.gxt.data.shared.loader.PagingLoadResult;
 
 @RemoteServiceRelativePath("rpc/administratorService")
 public interface AdministratorService extends RemoteService {
-    PagingLoadResult<AdministratorModel> listAdministrators(PagingLoadConfig config);
+    PagingLoadResult<AdministratorModel> listAdministrators(PagingLoadConfig config) throws BusinessException;
     void deleteAdministrator(String name) throws BusinessException;
     void addAdministrator(String name, String password) throws BusinessException;
 

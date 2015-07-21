@@ -12,6 +12,8 @@
 
     <context:annotation-config />
 
+    <aop:aspectj-autoproxy/>
+
     <bean id="loginService" class="com.mttch.admin.server.service.LoginServiceImpl"/>
     <bean id="userService" class="com.mttch.admin.server.service.UserServiceImpl"/>
     <bean id="administratorService" class="com.mttch.admin.server.service.AdministratorServiceImpl"/>

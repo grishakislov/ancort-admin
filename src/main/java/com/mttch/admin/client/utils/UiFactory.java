@@ -7,12 +7,18 @@ import com.sencha.gxt.core.client.ValueProvider;
 import com.sencha.gxt.core.client.resources.CommonStyles;
 import com.sencha.gxt.fx.client.FxElement;
 import com.sencha.gxt.widget.core.client.ContentPanel;
+import com.sencha.gxt.widget.core.client.box.AlertMessageBox;
 import com.sencha.gxt.widget.core.client.container.SimpleContainer;
 import com.sencha.gxt.widget.core.client.grid.ColumnConfig;
 import com.sencha.gxt.widget.core.client.info.Info;
 
 
 public class UiFactory {
+
+    public static void alert(String head, String message) {
+        AlertMessageBox messageBox = new AlertMessageBox(head, message);
+        messageBox.show();
+    }
 
     public static void displayInfo(String head, String msg) {
         Info.display(head, msg);

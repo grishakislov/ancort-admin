@@ -1,9 +1,11 @@
 package com.mttch.admin.server.service;
 
 import com.mttch.admin.client.server.log.LogService;
+import com.mttch.admin.common.exception.BusinessException;
 import com.mttch.admin.common.model.grid.ServerPagingLoadResult;
 import com.mttch.admin.common.model.grid.log.AdminLogModel;
 import com.mttch.admin.common.model.grid.log.LicenseLogModel;
+import com.mttch.admin.server.aop.annotation.AuthenticationNeeded;
 import com.mttch.admin.server.mybatis.entity.EventEntity;
 import com.mttch.admin.server.mybatis.entity.LogEntity;
 import com.mttch.admin.server.mybatis.helpers.BooleanSetEnum;
@@ -18,13 +20,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service("logService")
+@AuthenticationNeeded
 public class LogServiceImpl implements LogService {
 
     @Autowired
     private LogRepository logRepository;
 
     @Override
-    public PagingLoadResult<AdminLogModel> listAdminLogs(PagingLoadConfig config) {
+    public PagingLoadResult<AdminLogModel> listAdminLogs(PagingLoadConfig config) throws BusinessException {
         List<EventEntity> entities = logRepository.listEvents(config.getLimit(), config.getOffset());
         List<AdminLogModel> result = new ArrayList<>();
 
@@ -45,7 +48,7 @@ public class LogServiceImpl implements LogService {
     }
 
     @Override
-    public PagingLoadResult<LicenseLogModel> listLicenseLogs(PagingLoadConfig config) {
+    public PagingLoadResult<LicenseLogModel> listLicenseLogs(PagingLoadConfig config) throws BusinessException {
         List<LogEntity> entities = logRepository.listLogs(config.getLimit(), config.getOffset());
         List<LicenseLogModel> models = new ArrayList<>();
         entities.forEach((entity) -> {

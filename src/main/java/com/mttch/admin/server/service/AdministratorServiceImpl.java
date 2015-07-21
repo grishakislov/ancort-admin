@@ -5,6 +5,7 @@ import com.mttch.admin.common.model.CorpUser;
 import com.mttch.admin.common.model.grid.AdministratorModel;
 import com.mttch.admin.common.model.grid.ServerPagingLoadResult;
 import com.mttch.admin.common.exception.BusinessException;
+import com.mttch.admin.server.aop.annotation.AuthenticationNeeded;
 import com.mttch.admin.server.mybatis.entity.AdminUserEntity;
 import com.mttch.admin.server.mybatis.mapper.admin_corp.AdminUsersDao;
 import com.mttch.admin.server.session.SessionManager;
@@ -20,6 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service("administratorService")
+@AuthenticationNeeded
 public class AdministratorServiceImpl implements AdministratorService {
 
     @Autowired
@@ -29,7 +31,7 @@ public class AdministratorServiceImpl implements AdministratorService {
     private SessionManager sessionManager;
 
     @Override
-    public PagingLoadResult<AdministratorModel> listAdministrators(PagingLoadConfig config) {
+    public PagingLoadResult<AdministratorModel> listAdministrators(PagingLoadConfig config) throws BusinessException {
         List<AdminUserEntity> entities = adminUsersDao.list(config.getLimit(), config.getOffset());
         List<AdministratorModel> models = new ArrayList<>();
         entities.forEach((entity -> {

@@ -4,7 +4,9 @@ import com.google.gwt.event.logical.shared.SelectionEvent;
 import com.google.gwt.event.logical.shared.SelectionHandler;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.HasVerticalAlignment;
+import com.mttch.admin.client.AppContext;
 import com.mttch.admin.common.StringConstants;
+import com.mttch.admin.common.exception.BusinessException;
 import com.mttch.admin.common.model.grid.BaseGridModel;
 import com.sencha.gxt.cell.core.client.form.ComboBoxCell;
 import com.sencha.gxt.core.client.ValueProvider;
@@ -51,8 +53,22 @@ public abstract class AbstractGrid<T extends BaseGridModel> extends SimpleContai
     protected void build() {
         RpcProxy<PagingLoadConfig, PagingLoadResult<T>> rpxProxy = new RpcProxy<PagingLoadConfig, PagingLoadResult<T>>() {
             @Override
-            public void load(PagingLoadConfig loadConfig, AsyncCallback<PagingLoadResult<T>> callback) {
-                handleRpc(loadConfig, callback);
+            public void load(PagingLoadConfig loadConfig, final AsyncCallback<PagingLoadResult<T>> callback) {
+                handleRpc(loadConfig, new AsyncCallback<PagingLoadResult<T>>() {
+                    @Override
+                    public void onFailure(Throwable caught) {
+                        if (caught instanceof BusinessException) {
+                            AppContext.handleBusinessException((BusinessException) caught);
+                        } else {
+                            callback.onFailure(caught);
+                        }
+                    }
+
+                    @Override
+                    public void onSuccess(PagingLoadResult<T> result) {
+                        callback.onSuccess(result);
+                    }
+                });
             }
         };
 
