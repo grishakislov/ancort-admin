@@ -9,9 +9,12 @@ import com.mttch.admin.client.events.AuthenticationCompletedEvent;
 import com.mttch.admin.client.events.LoginNeededEvent;
 import com.mttch.admin.client.events.LoginSucceededEvent;
 import com.mttch.admin.client.events.SetUserEvent;
+import com.mttch.admin.client.server.init.InitService;
+import com.mttch.admin.client.server.init.InitServiceAsync;
 import com.mttch.admin.client.server.login.LoginService;
 import com.mttch.admin.client.server.login.LoginServiceAsync;
 import com.mttch.admin.common.model.AuthenticationResult;
+import com.mttch.admin.common.model.InitData;
 
 public class InitController {
 
@@ -66,11 +69,19 @@ public class InitController {
         });
     }
 
-    private void handleAuthentication(AuthenticationResult result) {
-        Cookies.setCookie("sessionId", result.getSessionId());
-        AppContext.setAuthenticationResult(result);
-        eventBus.fireEvent(new SetUserEvent(result.getCorpUser()));
-        eventBus.fireEvent(new LoginSucceededEvent());
+    private void handleAuthentication(final AuthenticationResult result) {
+        InitServiceAsync initService = InitService.ServiceLoader.getInstance();
+        initService.init(new ServerCallback<InitData>() {
+            @Override
+            public void onSuccess(InitData initData) {
+                Cookies.setCookie("sessionId", result.getSessionId());
+                AppContext.setAuthenticationResult(result);
+                AppContext.setInitData(initData);
+                eventBus.fireEvent(new SetUserEvent(result.getCorpUser()));
+                eventBus.fireEvent(new LoginSucceededEvent());
+            }
+        });
+
     }
 
     private void handleCookieAuthenticationFailed() {

@@ -18,6 +18,7 @@
     <bean id="logService" class="com.mttch.admin.server.service.LogServiceImpl"/>
     <bean id="mailboxService" class="com.mttch.admin.server.service.MailboxServiceImpl"/>
     <bean id="xmppService" class="com.mttch.admin.server.service.XmppServiceImpl"/>
+    <bean id="initService" class="com.mttch.admin.server.service.InitServiceImpl"/>
 
     <bean id="sessionManager" class="com.mttch.admin.server.session.SessionManager"/>
 
@@ -28,6 +29,7 @@
         <entry key="/logService" value-ref="logService"/>
         <entry key="/mailboxService" value-ref="mailboxService"/>
         <entry key="/xmppService" value-ref="xmppService"/>
+        <entry key="/initService" value-ref="initService"/>
     </util:map>
 
     <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">

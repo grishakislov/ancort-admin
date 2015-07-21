@@ -5,6 +5,7 @@ import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.mttch.admin.client.controller.InitController;
 import com.mttch.admin.client.ui.main.WebAppRootPanel;
+import com.mttch.admin.client.utils.UiFactory;
 import com.sencha.gxt.widget.core.client.container.Viewport;
 
 public class WebAppEntryPoint implements EntryPoint {
@@ -19,7 +20,7 @@ public class WebAppEntryPoint implements EntryPoint {
         GWT.setUncaughtExceptionHandler(new GWT.UncaughtExceptionHandler() {
             @Override
             public void onUncaughtException(Throwable e) {
-                System.out.println();
+                UiFactory.showInfo("Error", e.getMessage());
             }
         });
 
