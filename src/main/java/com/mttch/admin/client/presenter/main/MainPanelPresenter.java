@@ -8,6 +8,7 @@ import com.mttch.admin.client.ui.main.MainPanel;
 import com.mttch.admin.client.ui.main.center.administrators.AdministratorsPanel;
 import com.mttch.admin.client.ui.main.center.logs.AdminLogPanel;
 import com.mttch.admin.client.ui.main.center.logs.LicenseEventsPanel;
+import com.mttch.admin.client.ui.main.center.servers.ServersPanel;
 import com.mttch.admin.client.ui.main.center.services.EmailServicePanel;
 import com.mttch.admin.client.ui.main.center.services.XmppServicePanel;
 import com.mttch.admin.client.ui.main.center.users.UsersPanel;
@@ -22,6 +23,7 @@ public class MainPanelPresenter extends AbstractPresenter {
     private AdminLogPanel adminLogPanel;
     private EmailServicePanel emailServicePanel;
     private XmppServicePanel xmppServicePanel;
+    private ServersPanel serversPanel;
 
     @Inject
     public MainPanelPresenter(SimpleEventBus eventBus,
@@ -31,7 +33,8 @@ public class MainPanelPresenter extends AbstractPresenter {
                               LicenseEventsPanel licenseEventsPanel,
                               AdminLogPanel adminLogPanel,
                               EmailServicePanel emailServicePanel,
-                              XmppServicePanel xmppServicePanel) {
+                              XmppServicePanel xmppServicePanel,
+                              ServersPanel serversPanel) {
         super(eventBus);
         this.mainPanel = mainPanel;
         this.usersPanel = usersPanel;
@@ -40,6 +43,7 @@ public class MainPanelPresenter extends AbstractPresenter {
         this.adminLogPanel = adminLogPanel;
         this.emailServicePanel = emailServicePanel;
         this.xmppServicePanel = xmppServicePanel;
+        this.serversPanel = serversPanel;
         bind();
     }
 
@@ -77,6 +81,10 @@ public class MainPanelPresenter extends AbstractPresenter {
 
             case XMPP:
                 mainPanel.addToCenter(xmppServicePanel);
+                break;
+
+            case SERVERS:
+                mainPanel.addToCenter(serversPanel);
                 break;
 
             default:

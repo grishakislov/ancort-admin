@@ -17,6 +17,8 @@ import com.mttch.admin.client.ui.main.center.logs.AdminLogGrid;
 import com.mttch.admin.client.ui.main.center.logs.AdminLogPanel;
 import com.mttch.admin.client.ui.main.center.logs.LicenseEventsGrid;
 import com.mttch.admin.client.ui.main.center.logs.LicenseEventsPanel;
+import com.mttch.admin.client.ui.main.center.servers.MailServersGrid;
+import com.mttch.admin.client.ui.main.center.servers.ServersPanel;
 import com.mttch.admin.client.ui.main.center.services.EmailServiceGrid;
 import com.mttch.admin.client.ui.main.center.services.EmailServicePanel;
 import com.mttch.admin.client.ui.main.center.services.XmppServiceGrid;
@@ -64,6 +66,9 @@ public class WebAppGinModule extends AbstractGinModule {
         bind(XmppServiceGrid.class).in(Singleton.class);
         bind(XmppServicePanel.class).in(Singleton.class);
 
+        bind(MailServersGrid.class).in(Singleton.class);
+        bind(ServersPanel.class).in(Singleton.class);
+
         bind(WebAppRootPanel.class).in(Singleton.class);
     }
 
@@ -81,6 +86,7 @@ public class WebAppGinModule extends AbstractGinModule {
         bindEagerSingleton(AdministratorsPanelPresenter.class);
         bindEagerSingleton(EmailServicePresenter.class);
         bindEagerSingleton(XmppPanelPresenter.class);
+        bindEagerSingleton(ServersPanelPresenter.class);
     }
 
     private void bindSingleton(Class cls) {

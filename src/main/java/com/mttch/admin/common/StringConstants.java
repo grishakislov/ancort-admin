@@ -2,6 +2,18 @@ package com.mttch.admin.common;
 
 public class StringConstants {
 
+    public static class MailServersGrid {
+        public static final String HOSTNAME = "Имя сервера";
+        public static final String POP_PORT = "POP-порт";
+        public static final String POP_SECURITY = "POP-security";
+        public static final String SMTP_PORT = "SMTP-порт";
+        public static final String SMTP_SECURITY = "SMTP-security";
+        public static final String IP = "IP-порт";
+        public static final String BASE_DIR = "Рабочая директория";
+        public static final String STORAGE_NODE = "Хранилище";
+        public static final String MAX_MAILBOXES = "Максимальный объём";
+    }
+
     public static class XmppGrid {
         public static final String USERNAME = "Имя пользователя";
         public static final String NAME = "Имя";
