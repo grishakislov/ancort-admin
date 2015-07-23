@@ -1,12 +1,10 @@
 package com.mttch.admin.client.ui.main.center.servers;
 
-import com.google.gwt.editor.client.Editor;
+import com.mttch.admin.client.ui.grid.BaseProperties;
 import com.mttch.admin.common.model.grid.servers.MailServerModel;
 import com.sencha.gxt.core.client.ValueProvider;
-import com.sencha.gxt.data.shared.ModelKeyProvider;
-import com.sencha.gxt.data.shared.PropertyAccess;
 
-public interface MailServersProperties extends PropertyAccess<MailServerModel> {
+public interface MailServersProperties extends BaseProperties<MailServerModel> {
 
     ValueProvider<MailServerModel, String> hostName();
 
@@ -27,8 +25,5 @@ public interface MailServersProperties extends PropertyAccess<MailServerModel> {
     ValueProvider<MailServerModel, Integer> maxMailboxes();
 
     ValueProvider<MailServerModel, Integer> maxUse();
-
-    @Editor.Path("key")
-    ModelKeyProvider<MailServerModel> key();
 
 }
