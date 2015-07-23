@@ -8,7 +8,7 @@ public class JabberServerEntity {
     private String description;
     private int jabberport;
     private int jabberportssl;
-    private int act;
+    private boolean act;
 
     public int getId() {
         return id;
@@ -34,7 +34,7 @@ public class JabberServerEntity {
         return jabberportssl;
     }
 
-    public int getAct() {
+    public boolean isAct() {
         return act;
     }
 }

@@ -1,11 +1,13 @@
 package com.mttch.admin.server.mybatis.entity;
 
+import com.mttch.admin.server.mybatis.helpers.BooleanSetEnum;
+
 public class SipServerEntity {
 
     private int id;
     private String server;
     private String description;
-    private boolean active;
+    private BooleanSetEnum active;
 
     public int getId() {
         return id;
@@ -19,7 +21,7 @@ public class SipServerEntity {
         return description;
     }
 
-    public boolean isActive() {
+    public BooleanSetEnum getActive() {
         return active;
     }
 }

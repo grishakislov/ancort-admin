@@ -74,17 +74,25 @@ public class UiFactory {
         return simpleContainer;
     }
 
+    public static Widget createBlackLabel(String text, int sizePx) {
+        return createLabel(text, sizePx, "black");
+    }
+
+    public static Widget createWhiteLabel(String text) {
+        return createWhiteLabel(text, 12);
+    }
+
     public static Widget createWhiteLabel(String text, int sizePx) {
+        return createLabel(text, sizePx, "white");
+    }
+
+    public static Widget createLabel(String text, int sizePx, String color) {
         String style =
-                "color: white; " +
+                "color: " + color + "; " +
                         "font-family: helvetica,arial,verdana,sans-serif;" +
                         "font-weight: bold" +
                         "font-size: " + sizePx + "px";
         HTML htmlLabel = new HTML("<span style='" + style + "'>" + text + "</span>");
         return htmlLabel;
-    }
-
-    public static Widget createWhiteLabel(String text) {
-        return createWhiteLabel(text, 12);
     }
 }

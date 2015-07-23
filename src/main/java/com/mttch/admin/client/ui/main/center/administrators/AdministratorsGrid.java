@@ -4,7 +4,7 @@ import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.mttch.admin.client.server.administrator.AdministratorService;
 import com.mttch.admin.client.server.administrator.AdministratorServiceAsync;
-import com.mttch.admin.client.ui.AbstractGrid;
+import com.mttch.admin.client.ui.grid.AbstractGrid;
 import com.mttch.admin.client.utils.UiFactory;
 import com.mttch.admin.common.StringConstants;
 import com.mttch.admin.common.model.grid.AdministratorModel;

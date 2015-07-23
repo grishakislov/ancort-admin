@@ -17,8 +17,10 @@ import com.mttch.admin.client.ui.main.center.logs.AdminLogGrid;
 import com.mttch.admin.client.ui.main.center.logs.AdminLogPanel;
 import com.mttch.admin.client.ui.main.center.logs.LicenseEventsGrid;
 import com.mttch.admin.client.ui.main.center.logs.LicenseEventsPanel;
+import com.mttch.admin.client.ui.main.center.servers.JabberServersGrid;
 import com.mttch.admin.client.ui.main.center.servers.MailServersGrid;
 import com.mttch.admin.client.ui.main.center.servers.ServersPanel;
+import com.mttch.admin.client.ui.main.center.servers.SipServersGrid;
 import com.mttch.admin.client.ui.main.center.services.EmailServiceGrid;
 import com.mttch.admin.client.ui.main.center.services.EmailServicePanel;
 import com.mttch.admin.client.ui.main.center.services.XmppServiceGrid;
@@ -33,43 +35,45 @@ public class WebAppGinModule extends AbstractGinModule {
 
     @Override
     protected void configure() {
-        bind(SimpleEventBus.class).in(Singleton.class);
+        bindSingleton(SimpleEventBus.class);
 
         bindView();
         bindPresenters();
     }
 
     private void bindView() {
-        bind(LoginView.class).in(Singleton.class);
+        bindSingleton(LoginView.class);
 
         //Main panel
-        bind(LogoutPanel.class).in(Singleton.class);
-        bind(TopPanel.class).in(Singleton.class);
-        bind(LeftMenu.class).in(Singleton.class);
-        bind(MainPanel.class).in(Singleton.class);
-        bind(UsersPanel.class).in(Singleton.class);
-        bind(UsersGrid.class).in(Singleton.class);
+        bindSingleton(LogoutPanel.class);
+        bindSingleton(TopPanel.class);
+        bindSingleton(LeftMenu.class);
+        bindSingleton(MainPanel.class);
+        bindSingleton(UsersPanel.class);
+        bindSingleton(UsersGrid.class);
 
-        bind(AdministratorsPanel.class).in(Singleton.class);
-        bind(AdministratorsGrid.class).in(Singleton.class);
-        bind(AddAdministratorDialog.class).in(Singleton.class);
+        bindSingleton(AdministratorsPanel.class);
+        bindSingleton(AdministratorsGrid.class);
+        bindSingleton(AddAdministratorDialog.class);
 
-        bind(LicenseEventsGrid.class).in(Singleton.class);
-        bind(LicenseEventsPanel.class).in(Singleton.class);
+        bindSingleton(LicenseEventsGrid.class);
+        bindSingleton(LicenseEventsPanel.class);
 
-        bind(AdminLogGrid.class).in(Singleton.class);
-        bind(AdminLogPanel.class).in(Singleton.class);
+        bindSingleton(AdminLogGrid.class);
+        bindSingleton(AdminLogPanel.class);
 
-        bind(EmailServiceGrid.class).in(Singleton.class);
-        bind(EmailServicePanel.class).in(Singleton.class);
+        bindSingleton(EmailServiceGrid.class);
+        bindSingleton(EmailServicePanel.class);
 
-        bind(XmppServiceGrid.class).in(Singleton.class);
-        bind(XmppServicePanel.class).in(Singleton.class);
+        bindSingleton(XmppServiceGrid.class);
+        bindSingleton(XmppServicePanel.class);
 
-        bind(MailServersGrid.class).in(Singleton.class);
-        bind(ServersPanel.class).in(Singleton.class);
+        bindSingleton(MailServersGrid.class);
+        bindSingleton(SipServersGrid.class);
+        bindSingleton(JabberServersGrid.class);
+        bindSingleton(ServersPanel.class);
 
-        bind(WebAppRootPanel.class).in(Singleton.class);
+        bindSingleton(WebAppRootPanel.class);
     }
 
     //TODO: refactoring

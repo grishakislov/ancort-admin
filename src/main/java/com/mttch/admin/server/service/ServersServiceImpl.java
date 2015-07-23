@@ -10,6 +10,7 @@ import com.mttch.admin.server.aop.annotation.AuthenticationNeeded;
 import com.mttch.admin.server.mybatis.entity.JabberServerEntity;
 import com.mttch.admin.server.mybatis.entity.MailServerEntity;
 import com.mttch.admin.server.mybatis.entity.SipServerEntity;
+import com.mttch.admin.server.mybatis.helpers.BooleanSetEnum;
 import com.mttch.admin.server.mybatis.mapper.aaa_cts_corp.ServersRepository;
 import com.mttch.admin.server.mybatis.mapper.mail_cts_corp.MailServersDao;
 import com.sencha.gxt.data.shared.loader.PagingLoadConfig;
@@ -33,8 +34,16 @@ public class ServersServiceImpl implements ServersService {
     @Override
     public PagingLoadResult<SipServerModel> listSipServers(PagingLoadConfig config) throws BusinessException {
         List<SipServerEntity> entities = serversRepository.listSipServers(config.getLimit(), config.getOffset());
-        System.out.println();
-        return null;
+        List<SipServerModel> models = new ArrayList<>();
+        entities.forEach((e) -> {
+            SipServerModel model = new SipServerModel();
+            model.setKey(String.valueOf(e.getId()));
+            model.setServer(e.getServer());
+            model.setDescription(e.getDescription());
+            model.setActive(e.getActive() == BooleanSetEnum.s1);
+            models.add(model);
+        });
+        return new ServerPagingLoadResult<>(models, serversRepository.countSipServers(), config.getOffset());
     }
 
     @Override
@@ -43,6 +52,7 @@ public class ServersServiceImpl implements ServersService {
         List<MailServerModel> models = new ArrayList<>();
         entities.forEach((e) -> {
             MailServerModel model = new MailServerModel();
+            model.setKey(String.valueOf(e.getId()));
             model.setId(e.getId());
             model.setIp(e.getIp());
             model.setHostName(e.getHostName());
@@ -65,7 +75,19 @@ public class ServersServiceImpl implements ServersService {
     @Override
     public PagingLoadResult<JabberServerModel> listJabberServers(PagingLoadConfig config) throws BusinessException {
         List<JabberServerEntity> entities = serversRepository.listJabberServers(config.getLimit(), config.getOffset());
-        System.out.println();
-        return null;
+        List<JabberServerModel> models = new ArrayList<>();
+        entities.forEach((e) -> {
+            JabberServerModel model = new JabberServerModel();
+            model.setKey(String.valueOf(e.getId()));
+            model.setId(e.getId());
+            model.setAct(e.isAct());
+            model.setDescription(e.getDescription());
+            model.setJabberport(e.getJabberport());
+            model.setJabberserver(e.getJabberserver());
+            model.setJabberportssl(e.getJabberportssl());
+            model.setJabberserverconf(e.getJabberserverconf());
+            models.add(model);
+        });
+        return new ServerPagingLoadResult<>(models, serversRepository.countJabberServers(), config.getOffset());
     }
 }

@@ -2,6 +2,21 @@ package com.mttch.admin.common;
 
 public class StringConstants {
 
+    public static class JabberServersGrid {
+        public static final String DESCRIPTION = "Описание";
+        public static final String SERVER = "Сервер";
+        public static final String DNS = "DNS";
+        public static final String PORT = "Порт";
+        public static final String SSL_PORT = "SSL-Порт";
+        public static final String ACTIVE = "Активен";
+    }
+
+    public static class SipServersGrid {
+        public static final String SERVER = "Сервер";
+        public static final String DESCRIPTION = "Описание";
+        public static final String ACTIVE = "Активен";
+    }
+
     public static class MailServersGrid {
         public static final String HOSTNAME = "Имя сервера";
         public static final String POP_PORT = "POP-порт";

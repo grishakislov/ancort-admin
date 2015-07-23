@@ -4,7 +4,8 @@ import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.mttch.admin.client.server.servers.ServersService;
 import com.mttch.admin.client.server.servers.ServersServiceAsync;
-import com.mttch.admin.client.ui.AbstractGrid;
+import com.mttch.admin.client.ui.grid.AbstractGrid;
+import com.mttch.admin.client.ui.grid.GridProperties;
 import com.mttch.admin.common.StringConstants;
 import com.mttch.admin.common.model.grid.servers.MailServerModel;
 import com.sencha.gxt.data.shared.ModelKeyProvider;
@@ -48,5 +49,10 @@ public class MailServersGrid extends AbstractGrid<MailServerModel> {
     protected ModelKeyProvider<MailServerModel> getModelKeyProvider() {
         mailServersProperties = GWT.create(MailServersProperties.class);
         return mailServersProperties.key();
+    }
+
+    @Override
+    protected GridProperties getGridProperties() {
+        return new GridProperties(false, false);
     }
 }
