@@ -3,8 +3,10 @@ package com.mttch.admin.server.mybatis.mapper.mail_cts_corp;
 import com.mttch.admin.server.mybatis.entity.MailServerEntity;
 import com.mttch.admin.server.mybatis.helpers.PopSecurityEnumHandler;
 import com.mttch.admin.server.mybatis.helpers.SmtpSecurityEnumHandler;
-import org.apache.ibatis.annotations.*;
-import org.apache.ibatis.mapping.FetchType;
+import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Result;
+import org.apache.ibatis.annotations.Results;
+import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
 
