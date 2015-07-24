@@ -15,6 +15,7 @@ public class AppContext {
     private static AuthenticationResult authenticationResult;
     private static InitData initData;
     private static SimpleEventBus eventBus;
+    private static volatile boolean exceptionDialogShowed;
 
     public static void setEventBus(SimpleEventBus eventBus) {
         AppContext.eventBus = eventBus;
@@ -25,15 +26,19 @@ public class AppContext {
     }
 
     public static void handleBusinessException(BusinessException e) {
+
         if (e.getCode() == OperationResult.SESSION_EXPIRED ||
                 e.getCode() == OperationResult.NOT_AUTHENTICATED) {
-
-            UiFactory.alert("Error", "Session expired, please log in", new DialogHideEvent.DialogHideHandler() {
-                @Override
-                public void onDialogHide(DialogHideEvent event) {
-                    doLogout();
-                }
-            });
+            if (!exceptionDialogShowed) {
+                exceptionDialogShowed = true;
+                UiFactory.alert("Error", "Session expired, please log in", new DialogHideEvent.DialogHideHandler() {
+                    @Override
+                    public void onDialogHide(DialogHideEvent event) {
+                        exceptionDialogShowed = false;
+                        doLogout();
+                    }
+                });
+            }
         } else {
             UiFactory.alert("Error", e.getMessage());
         }
