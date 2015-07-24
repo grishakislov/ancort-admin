@@ -5,13 +5,13 @@ import com.google.inject.Inject;
 import com.mttch.admin.client.events.LeftMenuToggledEvent;
 import com.mttch.admin.client.presenter.AbstractPresenter;
 import com.mttch.admin.client.ui.main.MainPanel;
-import com.mttch.admin.client.ui.main.center.administrators.AdministratorsPanel;
-import com.mttch.admin.client.ui.main.center.logs.AdminLogPanel;
-import com.mttch.admin.client.ui.main.center.logs.LicenseEventsPanel;
-import com.mttch.admin.client.ui.main.center.servers.ServersPanel;
-import com.mttch.admin.client.ui.main.center.services.EmailServicePanel;
-import com.mttch.admin.client.ui.main.center.services.XmppServicePanel;
-import com.mttch.admin.client.ui.main.center.users.UsersPanel;
+import com.mttch.admin.client.ui.grid.administrators.AdministratorsPanel;
+import com.mttch.admin.client.ui.grid.logs.AdminLogPanel;
+import com.mttch.admin.client.ui.grid.logs.LicenseEventsPanel;
+import com.mttch.admin.client.ui.grid.servers.ServersPanel;
+import com.mttch.admin.client.ui.grid.services.EmailServicePanel;
+import com.mttch.admin.client.ui.grid.services.XmppServicePanel;
+import com.mttch.admin.client.ui.grid.users.UsersPanel;
 import com.sencha.gxt.widget.core.client.ContentPanel;
 
 public class MainPanelPresenter extends AbstractPresenter {

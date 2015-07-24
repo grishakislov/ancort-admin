@@ -1,4 +1,4 @@
-package com.mttch.admin.client.ui.main.center.logs;
+package com.mttch.admin.client.ui.grid.logs;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.rpc.AsyncCallback;

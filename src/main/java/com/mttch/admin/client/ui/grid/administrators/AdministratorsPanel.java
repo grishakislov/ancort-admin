@@ -1,4 +1,4 @@
-package com.mttch.admin.client.ui.main.center.administrators;
+package com.mttch.admin.client.ui.grid.administrators;
 
 import com.google.inject.Inject;
 import com.mttch.admin.client.utils.UiFactory;

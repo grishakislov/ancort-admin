@@ -4,8 +4,8 @@ import com.google.gwt.event.shared.SimpleEventBus;
 import com.google.inject.Inject;
 import com.mttch.admin.client.events.LeftMenuToggledEvent;
 import com.mttch.admin.client.presenter.AbstractPresenter;
-import com.mttch.admin.client.ui.main.center.logs.AdminLogGrid;
-import com.mttch.admin.client.ui.main.center.logs.AdminLogPanel;
+import com.mttch.admin.client.ui.grid.logs.AdminLogGrid;
+import com.mttch.admin.client.ui.grid.logs.AdminLogPanel;
 
 public class AdminLogPanelPresenter extends AbstractPresenter {
 

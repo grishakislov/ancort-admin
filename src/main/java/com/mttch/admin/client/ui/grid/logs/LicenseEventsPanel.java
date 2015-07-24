@@ -1,4 +1,4 @@
-package com.mttch.admin.client.ui.main.center.logs;
+package com.mttch.admin.client.ui.grid.logs;
 
 import com.google.inject.Inject;
 import com.sencha.gxt.widget.core.client.ContentPanel;

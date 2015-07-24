@@ -1,4 +1,4 @@
-package com.mttch.admin.client.ui.main.center.logs;
+package com.mttch.admin.client.ui.grid.logs;
 
 import com.mttch.admin.client.ui.grid.BaseProperties;
 import com.mttch.admin.common.model.grid.log.LicenseLogModel;

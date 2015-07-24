@@ -4,8 +4,8 @@ import com.google.gwt.event.shared.SimpleEventBus;
 import com.google.inject.Inject;
 import com.mttch.admin.client.events.LeftMenuToggledEvent;
 import com.mttch.admin.client.presenter.AbstractPresenter;
-import com.mttch.admin.client.ui.main.center.logs.LicenseEventsGrid;
-import com.mttch.admin.client.ui.main.center.logs.LicenseEventsPanel;
+import com.mttch.admin.client.ui.grid.logs.LicenseEventsGrid;
+import com.mttch.admin.client.ui.grid.logs.LicenseEventsPanel;
 
 public class LicenseEventsPanelPresenter extends AbstractPresenter {
 

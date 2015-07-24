@@ -1,4 +1,4 @@
-package com.mttch.admin.client.ui.main.center.administrators;
+package com.mttch.admin.client.ui.grid.administrators;
 
 import com.mttch.admin.client.ui.grid.BaseProperties;
 import com.mttch.admin.common.model.grid.AdministratorModel;

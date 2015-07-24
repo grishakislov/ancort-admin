@@ -4,8 +4,8 @@ import com.google.gwt.event.shared.SimpleEventBus;
 import com.google.inject.Inject;
 import com.mttch.admin.client.events.LeftMenuToggledEvent;
 import com.mttch.admin.client.presenter.AbstractPresenter;
-import com.mttch.admin.client.ui.main.center.services.XmppServiceGrid;
-import com.mttch.admin.client.ui.main.center.services.XmppServicePanel;
+import com.mttch.admin.client.ui.grid.services.XmppServiceGrid;
+import com.mttch.admin.client.ui.grid.services.XmppServicePanel;
 
 public class XmppPanelPresenter extends AbstractPresenter {
 

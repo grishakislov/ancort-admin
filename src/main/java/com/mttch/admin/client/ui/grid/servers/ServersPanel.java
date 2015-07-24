@@ -1,4 +1,4 @@
-package com.mttch.admin.client.ui.main.center.servers;
+package com.mttch.admin.client.ui.grid.servers;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.inject.Inject;

@@ -4,7 +4,7 @@ import com.google.gwt.event.shared.SimpleEventBus;
 import com.google.inject.Inject;
 import com.mttch.admin.client.events.LeftMenuToggledEvent;
 import com.mttch.admin.client.presenter.AbstractPresenter;
-import com.mttch.admin.client.ui.main.center.servers.ServersPanel;
+import com.mttch.admin.client.ui.grid.servers.ServersPanel;
 
 public class ServersPanelPresenter extends AbstractPresenter {
 

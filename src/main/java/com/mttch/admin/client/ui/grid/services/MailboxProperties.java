@@ -1,4 +1,4 @@
-package com.mttch.admin.client.ui.main.center.services;
+package com.mttch.admin.client.ui.grid.services;
 
 import com.mttch.admin.client.ui.grid.BaseProperties;
 import com.mttch.admin.common.model.grid.service.MailboxModel;
