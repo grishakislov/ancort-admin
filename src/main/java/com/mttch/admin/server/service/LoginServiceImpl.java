@@ -27,7 +27,6 @@ public class LoginServiceImpl implements LoginService {
         System.out.println();
     }
 
-
     public AuthenticationResult authenticate(String login, String password) {
         AuthenticationResult response = new AuthenticationResult();
 

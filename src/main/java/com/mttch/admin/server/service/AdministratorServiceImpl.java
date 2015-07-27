@@ -66,8 +66,6 @@ public class AdministratorServiceImpl implements AdministratorService {
         adminUsersDao.save(createAdministrator(name, password));
     }
 
-
-
     private AdminUserEntity createAdministrator(String name, String password) {
         AdminUserEntity entity = new AdminUserEntity();
         //TODO: fill it

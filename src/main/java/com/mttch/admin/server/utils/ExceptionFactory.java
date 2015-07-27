@@ -1,7 +1,10 @@
 package com.mttch.admin.server.utils;
 
+import com.mttch.admin.common.authorization.Role;
 import com.mttch.admin.common.exception.BusinessException;
 import com.mttch.admin.common.exception.OperationResult;
+
+import java.util.List;
 
 public class ExceptionFactory {
 
@@ -26,5 +29,9 @@ public class ExceptionFactory {
 
     public static BusinessException notAuthenticated() {
         return new BusinessException(OperationResult.NOT_AUTHENTICATED, "Authentication needed, please login");
+    }
+
+    public static BusinessException notAuthorized(List<Role> roles) {
+        return new BusinessException(OperationResult.ACCESS_DENIED, "Access denied");
     }
 }
