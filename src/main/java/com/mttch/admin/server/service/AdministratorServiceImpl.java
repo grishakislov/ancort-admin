@@ -33,11 +33,11 @@ public class AdministratorServiceImpl implements AdministratorService {
     public PagingLoadResult<AdministratorModel> listAdministrators(PagingLoadConfig config) throws BusinessException {
         List<AdminUserEntity> entities = adminUsersDao.list(config.getLimit(), config.getOffset());
         List<AdministratorModel> models = new ArrayList<>();
-        entities.forEach((entity -> {
+        entities.forEach((e -> {
             AdministratorModel model = new AdministratorModel();
-            model.setId(entity.getId());
-            model.setKey(entity.getLogin());
-            model.setName(entity.getLogin());
+            model.setId(e.getId());
+            model.setKey(e.getLogin());
+            model.setName(e.getLogin());
             models.add(model);
         }));
         return new ServerPagingLoadResult<>(models, adminUsersDao.count(), config.getOffset());

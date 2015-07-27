@@ -22,7 +22,7 @@ public class AuthenticationAspect {
 
     @Before(value = "@within(com.mttch.admin.server.aop.annotation.AuthenticationNeeded) || " +
             "@annotation(com.mttch.admin.server.aop.annotation.AuthenticationNeeded)")
-    public void checkDisallowedRunMode(JoinPoint joinPoint) throws BusinessException {
+    public void checkAuthentication(JoinPoint joinPoint) throws BusinessException {
         if (appPropertiesService.isUseAutoLogin()) {
             return;
         }

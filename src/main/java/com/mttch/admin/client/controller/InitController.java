@@ -10,7 +10,6 @@ import com.mttch.admin.client.events.LoginNeededEvent;
 import com.mttch.admin.client.events.LoginSucceededEvent;
 import com.mttch.admin.client.events.SetUserEvent;
 import com.mttch.admin.client.server.init.InitService;
-import com.mttch.admin.client.server.init.InitServiceAsync;
 import com.mttch.admin.client.server.login.LoginService;
 import com.mttch.admin.client.server.login.LoginServiceAsync;
 import com.mttch.admin.common.model.AuthenticationResult;
@@ -20,34 +19,35 @@ public class InitController {
 
     private SimpleEventBus eventBus;
 
+    private LoginServiceAsync loginService;
+
     @Inject
     public InitController(SimpleEventBus eventBus) {
         this.eventBus = eventBus;
+        loginService = LoginService.ServiceLoader.getInstance();
         eventBus.addHandler(AuthenticationCompletedEvent.TYPE, new AuthenticationCompletedEvent.Handler() {
             @Override
             public void onAuthenticationCompleted(AuthenticationResult authenticationResult) {
-                handleAuthentication(authenticationResult);
+                handleAuthenticationCompleted(authenticationResult);
             }
         });
     }
 
     public void go() {
         String cookie = Cookies.getCookie("sessionId");
-        if (cookie != null && !cookie.equals("null")) {
-            handleSessionCookie(cookie);
-        } else {
+        if (cookie == null || cookie.equals("null")) {
             handleNullSessionCookie();
+        } else {
+            handleSessionCookie(cookie);
         }
     }
 
     private void handleSessionCookie(String cookie) {
-        LoginServiceAsync loginService = LoginService.ServiceLoader.getInstance();
-
         loginService.authenticate(cookie, new ServerCallback<AuthenticationResult>() {
             @Override
             public void onSuccess(AuthenticationResult result) {
                 if (result.isAuthenticated()) {
-                    handleAuthentication(result);
+                    handleAuthenticationCompleted(result);
                 } else {
                     handleCookieAuthenticationFailed();
                 }
@@ -56,12 +56,11 @@ public class InitController {
     }
 
     private void handleNullSessionCookie() {
-        LoginServiceAsync loginService = LoginService.ServiceLoader.getInstance();
         loginService.autoAuthenticate(new ServerCallback<AuthenticationResult>() {
             @Override
             public void onSuccess(AuthenticationResult result) {
                 if (result.isAuthenticated()) {
-                    handleAuthentication(result);
+                    handleAuthenticationCompleted(result);
                 } else {
                     handleCookieAuthenticationFailed();
                 }
@@ -69,9 +68,8 @@ public class InitController {
         });
     }
 
-    private void handleAuthentication(final AuthenticationResult result) {
-        InitServiceAsync initService = InitService.ServiceLoader.getInstance();
-        initService.init(new ServerCallback<InitData>() {
+    private void handleAuthenticationCompleted(final AuthenticationResult result) {
+        InitService.ServiceLoader.getInstance().init(new ServerCallback<InitData>() {
             @Override
             public void onSuccess(InitData initData) {
                 Cookies.setCookie("sessionId", result.getSessionId());
@@ -81,7 +79,6 @@ public class InitController {
                 eventBus.fireEvent(new LoginSucceededEvent());
             }
         });
-
     }
 
     private void handleCookieAuthenticationFailed() {

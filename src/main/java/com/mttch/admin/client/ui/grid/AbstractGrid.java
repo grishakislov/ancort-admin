@@ -46,8 +46,8 @@ public abstract class AbstractGrid<T extends BaseGridModel> extends SimpleContai
 
     protected abstract ModelKeyProvider<T> getModelKeyProvider();
 
-    protected GridProperties getGridProperties() {
-        return new GridProperties(true, true);
+    protected GridSettings getGridSettings() {
+        return new GridSettings(true, true);
     }
 
     public AbstractGrid() {
@@ -106,13 +106,13 @@ public abstract class AbstractGrid<T extends BaseGridModel> extends SimpleContai
 
         VerticalLayoutContainer verticalLayoutContainer = new VerticalLayoutContainer();
 
-        if (getGridProperties().isShowGridLimitComboBox()) {
+        if (getGridSettings().isShowGridLimitComboBox()) {
             verticalLayoutContainer.add(toolBar, new VerticalLayoutContainer.VerticalLayoutData(1, -1));
         }
 
         verticalLayoutContainer.add(grid, new VerticalLayoutContainer.VerticalLayoutData(1, 1));
 
-        if (getGridProperties().isShowPagingToolbar()) {
+        if (getGridSettings().isShowPagingToolbar()) {
             verticalLayoutContainer.add(pagingToolBar, new VerticalLayoutContainer.VerticalLayoutData(1, -1));
         }
 

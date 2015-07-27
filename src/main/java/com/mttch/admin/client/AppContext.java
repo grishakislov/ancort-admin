@@ -26,7 +26,6 @@ public class AppContext {
     }
 
     public static void handleBusinessException(BusinessException e) {
-
         if (e.getCode() == OperationResult.SESSION_EXPIRED ||
                 e.getCode() == OperationResult.NOT_AUTHENTICATED) {
             if (!exceptionDialogShowed) {

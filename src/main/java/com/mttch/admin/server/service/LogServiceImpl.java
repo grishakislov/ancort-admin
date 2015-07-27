@@ -31,17 +31,17 @@ public class LogServiceImpl implements LogService {
         List<EventEntity> entities = logRepository.listEvents(config.getLimit(), config.getOffset());
         List<AdminLogModel> result = new ArrayList<>();
 
-        entities.forEach((entity) -> {
+        entities.forEach((e) -> {
             AdminLogModel model = new AdminLogModel();
-            model.setId(entity.getId());
-            model.setKey(Long.toString(entity.getId()));
-            model.setEvent(entity.getEvent());
-            model.setUseragent(entity.getUseragent());
-            model.setCryptonumber(entity.getCryptonumber());
-            model.setUser(entity.getUser());
-            model.setDt(TimeUtils.unixTimestampToDate(entity.getDt()));
-            model.setText(entity.getText());
-            model.setIp(entity.getIp());
+            model.setId(e.getId());
+            model.setKey(Long.toString(e.getId()));
+            model.setEvent(e.getEvent());
+            model.setUseragent(e.getUseragent());
+            model.setCryptonumber(e.getCryptonumber());
+            model.setUser(e.getUser());
+            model.setDt(TimeUtils.unixTimestampToDate(e.getDt()));
+            model.setText(e.getText());
+            model.setIp(e.getIp());
             result.add(model);
         });
         return new ServerPagingLoadResult<>(result, logRepository.countEvents(), config.getOffset());
@@ -51,19 +51,19 @@ public class LogServiceImpl implements LogService {
     public PagingLoadResult<LicenseLogModel> listLicenseLogs(PagingLoadConfig config) throws BusinessException {
         List<LogEntity> entities = logRepository.listLogs(config.getLimit(), config.getOffset());
         List<LicenseLogModel> models = new ArrayList<>();
-        entities.forEach((entity) -> {
+        entities.forEach((e) -> {
             LicenseLogModel model = new LicenseLogModel();
-            model.setId(entity.getId());
-            model.setKey(Long.toString(entity.getId()));
-            model.setMethod(entity.getMethod());
-            model.setCryptonumber(entity.getCryptonumber());
-            model.setEvent(entity.getEvent());
-            model.setText(entity.getText());
-            model.setDt(TimeUtils.unixTimestampToDate(entity.getDt()));
-            model.setIp(entity.getIp());
-            model.setServer(entity.getServer());
-            model.setActive(entity.getActive() == BooleanSetEnum.s1);
-            model.setUser(entity.getUser());
+            model.setId(e.getId());
+            model.setKey(Long.toString(e.getId()));
+            model.setMethod(e.getMethod());
+            model.setCryptonumber(e.getCryptonumber());
+            model.setEvent(e.getEvent());
+            model.setText(e.getText());
+            model.setDt(TimeUtils.unixTimestampToDate(e.getDt()));
+            model.setIp(e.getIp());
+            model.setServer(e.getServer());
+            model.setActive(e.getActive() == BooleanSetEnum.s1);
+            model.setUser(e.getUser());
             models.add(model);
         });
         return new ServerPagingLoadResult<>(models, logRepository.countLogs(), config.getOffset());

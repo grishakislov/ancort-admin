@@ -51,7 +51,6 @@ public class AdministratorsPanelPresenter extends AbstractPresenter {
         grid.getDeleteButton().addSelectHandler(new SelectEvent.SelectHandler() {
             @Override
             public void onSelect(SelectEvent event) {
-                //TODO: Implement
                 Cell.Context c = event.getContext();
                 int row = c.getIndex();
                 final AdministratorModel model = grid.getGrid().getStore().get(row);

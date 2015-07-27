@@ -27,14 +27,14 @@ public class MailboxServiceImpl implements MailboxService {
     public PagingLoadResult<MailboxModel> listMailboxes(PagingLoadConfig config) throws BusinessException {
         List<MailboxEntity> entities = mailboxDao.list(config.getLimit(), config.getOffset());
         List<MailboxModel> result = new ArrayList<>();
-        entities.forEach((entity) -> {
+        entities.forEach((e) -> {
             MailboxModel model = new MailboxModel();
-            model.setKey(entity.getUsername());
-            model.setLogin(entity.getSiplogin());
-            model.setUsername(entity.getUsername());
-            model.setPassword(entity.getPassword());
-            model.setQuota(entity.getQuota());
-            model.setMaildir(entity.getMaildir());
+            model.setKey(e.getUsername());
+            model.setLogin(e.getSiplogin());
+            model.setUsername(e.getUsername());
+            model.setPassword(e.getPassword());
+            model.setQuota(e.getQuota());
+            model.setMaildir(e.getMaildir());
             result.add(model);
         });
         return new ServerPagingLoadResult<>(result, mailboxDao.count(), config.getOffset());

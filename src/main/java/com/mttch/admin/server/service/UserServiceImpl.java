@@ -26,19 +26,19 @@ public class UserServiceImpl implements UserService {
     public PagingLoadResult<UserModel> listUsers(PagingLoadConfig config) throws BusinessException {
         List<LicenseEntity> licenses = licenseDao.list(config.getLimit(), config.getOffset());
         List<UserModel> models = new ArrayList<>();
-        licenses.forEach((entity) -> {
+        licenses.forEach((e) -> {
             UserModel result = new UserModel();
 
-            result.setCreateDate(TimeUtils.unixTimestampToDate(entity.getTimeCreate()));
-            result.setReceiveDate(TimeUtils.unixTimestampToDate(entity.getTimeLicenseStart()));
-            result.setFirstRequestDate(TimeUtils.unixTimestampToDate(entity.getTimeLicenseStart()));
-            result.setCryptoNumber(entity.getCryptonumber());
-            result.setLogin(entity.getSiplogin());
-            result.setKey(entity.getSiplogin());
-            result.setDeviceId(entity.getDevice());
-            result.setPlatform(entity.getPlatform().name());
-            result.setPushToken(entity.getDeviceToken());
-            result.setLicense(entity.getVersion());
+            result.setCreateDate(TimeUtils.unixTimestampToDate(e.getTimeCreate()));
+            result.setReceiveDate(TimeUtils.unixTimestampToDate(e.getTimeLicenseStart()));
+            result.setFirstRequestDate(TimeUtils.unixTimestampToDate(e.getTimeLicenseStart()));
+            result.setCryptoNumber(e.getCryptonumber());
+            result.setLogin(e.getSiplogin());
+            result.setKey(e.getSiplogin());
+            result.setDeviceId(e.getDevice());
+            result.setPlatform(e.getPlatform().name());
+            result.setPushToken(e.getDeviceToken());
+            result.setLicense(e.getVersion());
             result.setLinkTable(79); //TODO
 
             models.add(result);

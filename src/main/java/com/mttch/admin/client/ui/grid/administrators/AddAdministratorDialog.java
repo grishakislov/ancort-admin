@@ -1,22 +1,21 @@
 package com.mttch.admin.client.ui.grid.administrators;
 
 import com.google.gwt.user.client.ui.IsWidget;
+import com.mttch.admin.client.ui.CancellableDialog;
 import com.mttch.admin.client.utils.UiFactory;
 import com.mttch.admin.common.StringConstants;
-import com.sencha.gxt.widget.core.client.Dialog;
 import com.sencha.gxt.widget.core.client.button.TextButton;
 import com.sencha.gxt.widget.core.client.container.MarginData;
 import com.sencha.gxt.widget.core.client.container.VerticalLayoutContainer;
-import com.sencha.gxt.widget.core.client.event.SelectEvent;
 import com.sencha.gxt.widget.core.client.form.FieldLabel;
 import com.sencha.gxt.widget.core.client.form.FormPanel;
 import com.sencha.gxt.widget.core.client.form.PasswordField;
 import com.sencha.gxt.widget.core.client.form.TextField;
 
-public class AddAdministratorDialog extends Dialog {
+import java.util.ArrayList;
+import java.util.List;
 
-    //TODO: move to abstract dialog
-    private TextButton cancelButton;
+public class AddAdministratorDialog extends CancellableDialog {
 
     private TextButton saveButton;
 
@@ -36,23 +35,6 @@ public class AddAdministratorDialog extends Dialog {
         setWidth(425);
         setResizable(false);
         setModal(true);
-        getButtonBar().clear();
-
-        saveButton = new TextButton("Сохранить");
-        saveButton.setWidth(80);
-
-        cancelButton = new TextButton("Отмена");
-        cancelButton.setWidth(80);
-
-        cancelButton.addSelectHandler(new SelectEvent.SelectHandler() {
-            @Override
-            public void onSelect(SelectEvent event) {
-                hide();
-            }
-        });
-
-        getButtonBar().add(saveButton);
-        getButtonBar().add(cancelButton);
 
         //Form
         loginField = new TextField();
@@ -63,6 +45,15 @@ public class AddAdministratorDialog extends Dialog {
         passwordField2.setAllowBlank(false);
         add(createForm(), new MarginData(0, 0, 0, 50));
         forceLayout();
+    }
+
+    @Override
+    protected List<TextButton> getButtons() {
+        List<TextButton> result = new ArrayList<>();
+        saveButton = new TextButton("Сохранить");
+        saveButton.setWidth(80);
+        result.add(saveButton);
+        return result;
     }
 
     private FormPanel createForm() {
