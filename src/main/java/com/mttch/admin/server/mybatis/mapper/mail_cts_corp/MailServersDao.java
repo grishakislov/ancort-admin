@@ -42,7 +42,7 @@ public interface MailServersDao {
     })
     List<MailServerEntity> listMailServers(@Param("limit") int limit, @Param("offset") int offset);
 
-    @Select("select count(1) from mail_cts_corp.mailservers")
+    @Select("select count(*) from mail_cts_corp.mailservers")
     int count();
 
 }

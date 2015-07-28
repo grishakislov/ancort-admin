@@ -20,14 +20,14 @@ public interface ServersRepository {
     })
     List<SipServerEntity> listSipServers(@Param("limit") int limit, @Param("offset") int offset);
 
-    @Select("select count(1) from aaa_cts_corp.sipserver")
+    @Select("select count(*) from aaa_cts_corp.sipserver")
     int countSipServers();
 
     @Select("select * from aaa_cts_corp.jabberserver " +
             "limit #{limit} offset #{offset}")
     List<JabberServerEntity> listJabberServers(@Param("limit") int limit, @Param("offset") int offset);
 
-    @Select("select count(1) from aaa_cts_corp.jabberserver")
+    @Select("select count(*) from aaa_cts_corp.jabberserver")
     int countJabberServers();
 
 

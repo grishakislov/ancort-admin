@@ -17,7 +17,7 @@ public interface LogRepository {
             "limit #{limit} offset #{offset}")
     List<EventEntity> listEvents(@Param("limit") int limit, @Param("offset") int offset);
 
-    @Select("select count(1) from aaa_cts_corp.event")
+    @Select("select count(*) from aaa_cts_corp.event")
     int countEvents();
 
     @Select("select * from aaa_cts_corp.log_file " +
@@ -27,7 +27,7 @@ public interface LogRepository {
     })
     List<LogEntity> listLogs(@Param("limit") int limit, @Param("offset") int offset);
 
-    @Select("select count(1) from aaa_cts_corp.log_file")
+    @Select("select count(*) from aaa_cts_corp.log_file")
     int countLogs();
 
 }

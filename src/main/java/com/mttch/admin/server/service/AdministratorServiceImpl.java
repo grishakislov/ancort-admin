@@ -4,7 +4,7 @@ import com.mttch.admin.client.server.administrator.AdministratorService;
 import com.mttch.admin.common.exception.BusinessException;
 import com.mttch.admin.common.model.grid.AdministratorModel;
 import com.mttch.admin.common.model.grid.ServerPagingLoadResult;
-import com.mttch.admin.server.aop.annotation.AuthenticationNeeded;
+import com.mttch.admin.server.aop.annotation.Secured;
 import com.mttch.admin.server.mybatis.entity.AdminUserEntity;
 import com.mttch.admin.server.mybatis.mapper.admin_corp.AdminUsersDao;
 import com.mttch.admin.server.session.SessionManager;
@@ -20,7 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service("administratorService")
-@AuthenticationNeeded
+@Secured
 public class AdministratorServiceImpl implements AdministratorService {
 
     @Autowired

@@ -1,7 +1,7 @@
 package com.mttch.admin.server.session;
 
 import com.google.common.collect.HashMultimap;
-import com.mttch.admin.server.AppPropertiesService;
+import com.mttch.admin.server.conf.AppPropertiesService;
 import com.mttch.admin.server.utils.TimeUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

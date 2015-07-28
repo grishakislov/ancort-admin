@@ -30,7 +30,7 @@ public interface AdminUsersDao {
     @ResultMap("listAll-void")
     List<AdminUserEntity> list(@Param("limit") int limit, @Param("offset") int offset);
 
-    @Select("select count(1) from admin_corp.admin_users")
+    @Select("select count(*) from admin_corp.admin_users")
     int count();
 
     @Select("select * from admin_corp.admin_users")

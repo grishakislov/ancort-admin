@@ -4,7 +4,7 @@ import com.mttch.admin.client.server.mailbox.MailboxService;
 import com.mttch.admin.common.exception.BusinessException;
 import com.mttch.admin.common.model.grid.ServerPagingLoadResult;
 import com.mttch.admin.common.model.grid.service.MailboxModel;
-import com.mttch.admin.server.aop.annotation.AuthenticationNeeded;
+import com.mttch.admin.server.aop.annotation.Secured;
 import com.mttch.admin.server.mybatis.entity.MailboxEntity;
 import com.mttch.admin.server.mybatis.mapper.mail_cts_corp.MailboxDao;
 import com.sencha.gxt.data.shared.loader.PagingLoadConfig;
@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service("mailboxService")
-@AuthenticationNeeded
+@Secured
 public class MailboxServiceImpl implements MailboxService {
 
     @Autowired

@@ -1,7 +1,7 @@
 package com.mttch.admin.server.aop.aspect;
 
 import com.mttch.admin.common.exception.BusinessException;
-import com.mttch.admin.server.AppPropertiesService;
+import com.mttch.admin.server.conf.AppPropertiesService;
 import com.mttch.admin.server.session.SessionManager;
 import com.mttch.admin.server.utils.ExceptionFactory;
 import org.aspectj.lang.JoinPoint;
@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 
 @Aspect
 @Component
-public class AuthenticationAspect {
+public class SecuredAspect {
 
     @Autowired
     private SessionManager sessionManager;
@@ -20,8 +20,8 @@ public class AuthenticationAspect {
     @Autowired
     private AppPropertiesService appPropertiesService;
 
-    @Before(value = "@within(com.mttch.admin.server.aop.annotation.AuthenticationNeeded) || " +
-            "@annotation(com.mttch.admin.server.aop.annotation.AuthenticationNeeded)")
+    @Before(value = "@within(com.mttch.admin.server.aop.annotation.Secured) || " +
+            "@annotation(com.mttch.admin.server.aop.annotation.Secured)")
     public void checkAuthentication(JoinPoint joinPoint) throws BusinessException {
         if (appPropertiesService.isUseAutoLogin()) {
             return;

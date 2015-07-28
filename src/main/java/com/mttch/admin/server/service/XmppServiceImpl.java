@@ -4,7 +4,7 @@ import com.mttch.admin.client.server.xmpp.XmppService;
 import com.mttch.admin.common.exception.BusinessException;
 import com.mttch.admin.common.model.grid.ServerPagingLoadResult;
 import com.mttch.admin.common.model.grid.service.XmppModel;
-import com.mttch.admin.server.aop.annotation.AuthenticationNeeded;
+import com.mttch.admin.server.aop.annotation.Secured;
 import com.mttch.admin.server.mybatis.entity.XmppEntity;
 import com.mttch.admin.server.mybatis.mapper.openfire_corp.OpenfireDao;
 import com.sencha.gxt.data.shared.loader.PagingLoadConfig;
@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service("xmppService")
-@AuthenticationNeeded
+@Secured
 public class XmppServiceImpl implements XmppService {
 
     @Autowired

@@ -1,4 +1,4 @@
-package com.mttch.admin.server.service;
+package com.mttch.admin.server.service.auth;
 
 import com.mttch.admin.common.model.CorpUser;
 import com.mttch.admin.server.mybatis.entity.AdminUserEntity;
@@ -36,7 +36,7 @@ public class AuthenticationService {
     private CorpUser entityToCorpUser(AdminUserEntity adminUser) {
         CorpUser user = new CorpUser();
         user.setLogin(adminUser.getLogin());
-        //TODO: Complete
+        //TODO: Complete, set roles
         return user;
     }
 

@@ -4,7 +4,7 @@ import com.mttch.admin.common.authorization.Role;
 import com.mttch.admin.common.exception.BusinessException;
 import com.mttch.admin.common.model.CorpUser;
 import com.mttch.admin.server.aop.annotation.AllowedRole;
-import com.mttch.admin.server.service.AuthenticationService;
+import com.mttch.admin.server.service.auth.AuthenticationService;
 import com.mttch.admin.server.session.SessionManager;
 import com.mttch.admin.server.utils.ExceptionFactory;
 import org.aspectj.lang.annotation.Aspect;
@@ -33,5 +33,4 @@ public class AuthorizationAspect {
             throw ExceptionFactory.notAuthorized(roles);
         }
     }
-
 }

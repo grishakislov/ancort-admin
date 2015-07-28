@@ -1,4 +1,4 @@
-package com.mttch.admin.server;
+package com.mttch.admin.server.conf;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;

@@ -1,9 +1,9 @@
-package com.mttch.admin.server.service;
+package com.mttch.admin.server.service.auth;
 
 import com.mttch.admin.client.server.login.LoginService;
 import com.mttch.admin.common.model.AuthenticationResult;
 import com.mttch.admin.common.model.CorpUser;
-import com.mttch.admin.server.AppPropertiesService;
+import com.mttch.admin.server.conf.AppPropertiesService;
 import com.mttch.admin.server.session.SessionManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

@@ -13,7 +13,7 @@ public interface OpenfireDao {
             "limit #{limit} offset #{offset}")
     List<XmppEntity> listUsers(@Param("limit") int limit, @Param("offset") int offset);
 
-    @Select("select count(1) from openfire_corp.ofUser")
+    @Select("select count(*) from openfire_corp.ofUser")
     int countUsers();
 
 }

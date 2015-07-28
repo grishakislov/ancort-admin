@@ -19,7 +19,7 @@ public interface LicenseDao {
     @ResultMap("listAll-void")
     List<LicenseEntity> list(@Param("limit") int limit, @Param("offset") int offset);
 
-    @Select("select count(1) from aaa_cts_corp.license")
+    @Select("select count(*) from aaa_cts_corp.license")
     int count();
 
     @Select("select * from aaa_cts_corp.license")

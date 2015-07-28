@@ -6,7 +6,7 @@ import com.mttch.admin.common.model.grid.ServerPagingLoadResult;
 import com.mttch.admin.common.model.grid.servers.JabberServerModel;
 import com.mttch.admin.common.model.grid.servers.MailServerModel;
 import com.mttch.admin.common.model.grid.servers.SipServerModel;
-import com.mttch.admin.server.aop.annotation.AuthenticationNeeded;
+import com.mttch.admin.server.aop.annotation.Secured;
 import com.mttch.admin.server.mybatis.entity.JabberServerEntity;
 import com.mttch.admin.server.mybatis.entity.MailServerEntity;
 import com.mttch.admin.server.mybatis.entity.SipServerEntity;
@@ -22,7 +22,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-@AuthenticationNeeded
+@Secured
 public class ServersServiceImpl implements ServersService {
 
     @Autowired

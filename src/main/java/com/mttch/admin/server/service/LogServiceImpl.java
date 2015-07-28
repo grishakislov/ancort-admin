@@ -5,7 +5,7 @@ import com.mttch.admin.common.exception.BusinessException;
 import com.mttch.admin.common.model.grid.ServerPagingLoadResult;
 import com.mttch.admin.common.model.grid.log.AdminLogModel;
 import com.mttch.admin.common.model.grid.log.LicenseLogModel;
-import com.mttch.admin.server.aop.annotation.AuthenticationNeeded;
+import com.mttch.admin.server.aop.annotation.Secured;
 import com.mttch.admin.server.mybatis.entity.EventEntity;
 import com.mttch.admin.server.mybatis.entity.LogEntity;
 import com.mttch.admin.server.mybatis.helpers.BooleanSetEnum;
@@ -20,7 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service("logService")
-@AuthenticationNeeded
+@Secured
 public class LogServiceImpl implements LogService {
 
     @Autowired

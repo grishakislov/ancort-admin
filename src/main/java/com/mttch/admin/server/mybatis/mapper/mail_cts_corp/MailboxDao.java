@@ -19,7 +19,7 @@ public interface MailboxDao {
     })
     List<MailboxEntity> listAll();
 
-    @Select("select count(1) from mail_cts_corp.mailbox")
+    @Select("select count(*) from mail_cts_corp.mailbox")
     int count();
 
 }
