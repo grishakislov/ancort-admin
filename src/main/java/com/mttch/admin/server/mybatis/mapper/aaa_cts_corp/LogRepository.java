@@ -4,10 +4,7 @@ import com.mttch.admin.server.mybatis.entity.EventEntity;
 import com.mttch.admin.server.mybatis.entity.LogEntity;
 import com.mttch.admin.server.mybatis.helpers.BooleanSetEnum;
 import com.mttch.admin.server.mybatis.helpers.BooleanSetTypeHandler;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Result;
-import org.apache.ibatis.annotations.Results;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
@@ -19,6 +16,12 @@ public interface LogRepository {
 
     @Select("select count(*) from aaa_cts_corp.event")
     int countEvents();
+
+    @Insert("insert into aaa_cts_corp.event " +
+            "(event, useragent, cryptonumber, user, dt, text, ip) " +
+            "values " +
+            "(#{event}, #{useragent}, #{cryptonumber}, #{user}, #{dt}, #{text}, #{ip})")
+    void saveEvent(EventEntity value);
 
     @Select("select * from aaa_cts_corp.log_file " +
             "limit #{limit} offset #{offset}")

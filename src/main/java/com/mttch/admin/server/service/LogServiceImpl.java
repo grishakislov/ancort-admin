@@ -10,6 +10,7 @@ import com.mttch.admin.server.mybatis.entity.EventEntity;
 import com.mttch.admin.server.mybatis.entity.LogEntity;
 import com.mttch.admin.server.mybatis.helpers.BooleanSetEnum;
 import com.mttch.admin.server.mybatis.mapper.aaa_cts_corp.LogRepository;
+import com.mttch.admin.server.utils.EventFactory;
 import com.mttch.admin.server.utils.TimeUtils;
 import com.sencha.gxt.data.shared.loader.PagingLoadConfig;
 import com.sencha.gxt.data.shared.loader.PagingLoadResult;
@@ -20,13 +21,26 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service("logService")
-@Secured
-public class LogServiceImpl implements LogService {
+public class LogServiceImpl implements LogService, EventLogger {
 
     @Autowired
     private LogRepository logRepository;
 
+    @Autowired
+    private EventFactory eventFactory;
+
     @Override
+    public void log(EventEntity value) {
+        logRepository.saveEvent(value);
+    }
+
+    @Override
+    public void userLoggedIn(String login) {
+        logRepository.saveEvent(eventFactory.userLoggedInEvent(login));
+    }
+
+    @Override
+    @Secured
     public PagingLoadResult<AdminLogModel> listAdminLogs(PagingLoadConfig config) throws BusinessException {
         List<EventEntity> entities = logRepository.listEvents(config.getLimit(), config.getOffset());
         List<AdminLogModel> result = new ArrayList<>();
@@ -48,6 +62,7 @@ public class LogServiceImpl implements LogService {
     }
 
     @Override
+    @Secured
     public PagingLoadResult<LicenseLogModel> listLicenseLogs(PagingLoadConfig config) throws BusinessException {
         List<LogEntity> entities = logRepository.listLogs(config.getLimit(), config.getOffset());
         List<LicenseLogModel> models = new ArrayList<>();

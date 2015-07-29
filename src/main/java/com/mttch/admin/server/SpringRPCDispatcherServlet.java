@@ -58,17 +58,28 @@ public class SpringRPCDispatcherServlet extends RemoteServiceServlet {
             if (logger.isDebugEnabled()) {
                 logger.debug("Invoking " + handler.getClass().getName() + "." + rpcRequest.getMethod().getName());
             }
-            return RPC.invokeAndEncodeResponse(handler, rpcRequest.getMethod(), rpcRequest.getParameters(), rpcRequest.getSerializationPolicy());
+            return finishRequest(RPC.invokeAndEncodeResponse(handler, rpcRequest.getMethod(), rpcRequest.getParameters(), rpcRequest.getSerializationPolicy()));
         } catch (IncompatibleRemoteServiceException ex) {
             logger.error("An IncompatibleRemoteServiceException was thrown while processing this call.", ex);
-            return RPC.encodeResponseForFailure(null, ex);
+            return finishRequest(RPC.encodeResponseForFailure(null, ex));
         }
     }
 
+    private String finishRequest(String result) {
+        SessionManager sessionManager = getSessionManager();
+        sessionManager.flushThreadLocalRequest();
+        return result;
+    }
+
     private void storeSession() {
-        SessionManager sessionManager = (SessionManager) applicationContext.getBean("sessionManager");
+        SessionManager sessionManager = getSessionManager();
         String sessionId = getThreadLocalRequest().getSession().getId();
         sessionManager.addLocalSession(sessionId);
+        sessionManager.storeCurrentRequest(getThreadLocalRequest());
+    }
+
+    private SessionManager getSessionManager() {
+        return (SessionManager) applicationContext.getBean("sessionManager");
     }
 
     protected RemoteService retrieveSpringBean(HttpServletRequest request) {

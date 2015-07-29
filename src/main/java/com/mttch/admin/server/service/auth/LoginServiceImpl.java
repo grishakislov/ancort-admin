@@ -4,7 +4,9 @@ import com.mttch.admin.client.server.login.LoginService;
 import com.mttch.admin.common.model.AuthenticationResult;
 import com.mttch.admin.common.model.CorpUser;
 import com.mttch.admin.server.conf.AppPropertiesService;
+import com.mttch.admin.server.service.EventLogger;
 import com.mttch.admin.server.session.SessionManager;
+import com.mttch.admin.server.utils.EventFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,10 +24,8 @@ public class LoginServiceImpl implements LoginService {
     @Autowired
     private AuthenticationService authenticationService;
 
-    @PostConstruct
-    private void init() {
-        System.out.println();
-    }
+    @Autowired
+    private EventLogger eventLogger;
 
     public AuthenticationResult authenticate(String login, String password) {
         AuthenticationResult response = new AuthenticationResult();
@@ -43,6 +43,9 @@ public class LoginServiceImpl implements LoginService {
 
         String sessionId = sessionManager.bindSession(login);
         response.setSessionId(sessionId);
+
+        eventLogger.userLoggedIn(login);
+
         return response;
     }
 
@@ -62,6 +65,7 @@ public class LoginServiceImpl implements LoginService {
             response.setAuthenticated(true);
             response.setSessionId(sessionId);
             response.setCorpUser(corpUser);
+            eventLogger.userLoggedIn(user);
         } else {
             response.setAuthenticated(false);
         }

@@ -6,6 +6,7 @@ import com.mttch.admin.server.utils.TimeUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -13,6 +14,7 @@ import java.util.concurrent.ConcurrentHashMap;
 public class SessionManager {
 
     private ThreadLocal<String> localSessions = new ThreadLocal<>();
+    private ThreadLocal<HttpServletRequest> currentRequests = new ThreadLocal<>();
 
     private ConcurrentHashMap<String, Session> sessionsById = new ConcurrentHashMap<>();
     private HashMultimap<String, Session> sessionsByLogin = HashMultimap.create();
@@ -26,6 +28,18 @@ public class SessionManager {
 
     public String getLocalSession() {
         return localSessions.get();
+    }
+
+    public HttpServletRequest getCurrentRequest() {
+        return currentRequests.get();
+    }
+
+    public void storeCurrentRequest(HttpServletRequest threadLocalRequest) {
+        currentRequests.set(threadLocalRequest);
+    }
+
+    public void flushThreadLocalRequest() {
+        currentRequests.remove();
     }
 
     public synchronized String bindSession(String userName) {
@@ -57,6 +71,7 @@ public class SessionManager {
         }
     }
 
+
     public void unbindSession() {
         String sessionId = getLocalSession();
         unbindSession(sessionId);
@@ -77,7 +92,6 @@ public class SessionManager {
             sessions.remove(find);
         }
     }
-
 
     public String sessionToUser(String sessionId) {
         return sessionsById.get(sessionId).getLogin();
